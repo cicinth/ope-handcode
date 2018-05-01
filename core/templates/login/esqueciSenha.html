@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block css %}
+  
+{% endblock %}
+
+{% block title %}
+	Esequeci minha senha  - {{ block.super }}
+{% endblock %}
+
+{% block main %}
+<div class="full_width_title">
+    <section>
+        <h2 class="title_page">SENHA</h2>
+            <div class="corpo">
+                <fieldset class="field">
+                        <h2>Esqueci minha senha</h2>
+                        <form>
+                            <label for="email">E-mail*</label>
+                                <input class="campo" type="email" name="email" id="mail" maxlength="60" required="true" placeholder="Digite seu e-mail">
+                            <label for="senha">Senha*</label>
+                                <input class="campo" type="password" name="senha" id="senha1" maxlenght="10" required="true" placeholder="Digite uma senha">
+                            <label for="confirmacao">Confime a senha*</label>
+                                <input class="campo" type="password" name="confirmacao" id="confirm" maxlenght="10" required="true" placeholder="Repita a senha">
+                            <button type="submit" name="enviar" id="send">Enviar</button>
+                        </form>
+                    </fieldset>
+            </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    console.log('script home, pos main');
+  </script>
+{% endblock %}
+

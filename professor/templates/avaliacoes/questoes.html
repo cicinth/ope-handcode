@@ -1,0 +1,39 @@
+{% extends "layoutprofessor.html" %}
+{% load static %}
+
+
+{% block main %}
+<div>
+    <h2 id="title">Exercícios</h2>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Número</th>
+            <th>Questão</th>
+            <th>Data Limite</th>
+            <th><input class = "nova" type="button" onclick="window.location.href='cadastrar-exercicio';"  value="Novo Exercício +"></th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        
+        {% for questao in questoes  %}
+        <tr>
+            <td>{{ questao.numero }}</td>
+            <td>{{ questao.descricao }}</td>
+            <td>{{ questao.data_limite_entrega}}</td>
+            <td><input  onclick="" data-turma-id="{{questao.id}}" type="button" value="Excluir"></td>
+            <!--<td><input  onclick="" data-turma-id="{{questao.id}}" type="button" value="Detalhes"></td>-->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    
+</script>
+{% endblock %}

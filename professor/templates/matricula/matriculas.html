@@ -1,0 +1,82 @@
+{% extends "layoutprofessor.html" %}
+{% load static %}
+
+{% block main %}
+<div>
+    <h2 id="title">Matriculas pendentes</h2>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>RA</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Turma</th>
+            <th>Disciplina</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for candidato in candidatos  %}
+        <tr>
+            <td><a href="/professor/alunos/{{ candidato.ra }}">{{ candidato.ra }}</a></td>
+            <td>{{ candidato.nome }}</td>
+            <td>{{ candidato.email }}</td>
+            <td>{{ candidato.turma }}</td>
+            <td>{{ candidato.turma.disciplinaOfertada.disciplina.nome }}</td>
+            <td>
+                <input  onclick="aceitarCandidato(this)" 
+                        data-turma-id="{{candidato.turma.id}}" 
+                        data-candidato-id="{{candidato.id}}" 
+                        type="button" value="Aceitar">
+                        
+                <input  onclick="removerCandidato(this)" 
+                        data-turma-id="{{candidato.turma.id}}" 
+                        data-candidato-id="{{candidato.id}}" 
+                        type="button" value="Remover">
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function aceitarCandidato(botao) {
+        var turmaId = botao.getAttribute('data-turma-id');
+        var candidatoId = botao.getAttribute('data-candidato-id')
+
+        var array = { turmaId: turmaId, candidatoId: candidatoId, csrfmiddlewaretoken: '{{ csrf_token }}'}
+
+        botao.disabled = false;
+        postAjax('/professor/matriculas/confirmar/', array, 
+                function(data) {
+                    botao.closest('tr').remove();
+                    var json = JSON.parse(data);
+                    alert(json.mensagem);
+                }
+            );
+    }
+
+    function removerCandidato(botao) {
+        var turmaId = botao.getAttribute('data-turma-id');
+        var candidatoId = botao.getAttribute('data-candidato-id')
+
+        var array = { turmaId: turmaId, candidatoId: candidatoId, csrfmiddlewaretoken: '{{ csrf_token }}'}
+
+        botao.disabled = false;
+        postAjax('/professor/matriculas/recusar/', array, 
+                function(data) {
+                    botao.closest('tr').remove();
+                    var json = JSON.parse(data);
+                    alert(json.mensagem);
+                }
+            );
+
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block css %}
+  
+{% endblock %}
+
+{% block title %}
+	Noticias  - {{ block.super }}
+{% endblock %}
+
+{% block main %}
+<div class="full_width_title">
+		<section>
+				<h2 class="title_page">Notícias</h2>
+		</section>
+</div>
+		<section>
+		  
+            <h2>Notícias</h2>
+            <div class="links">
+                <a href="/detalheNoticia">
+                    <figure class="img_not">
+                        <img src="{% static 'img/noticias/01.jpg' %}"/>
+                        <figcaption><h3>Alunos do Curso de Administração da Faculdade Impacta apresentam trabalho de conclusão de curso</h3></figcaption>
+                    </figure>
+                </a>
+                <a href="/detalheNoticia2">
+                    <figure class="img_not">
+                        <img src="{% static 'img/noticias/02.jpg' %}"/>
+                        <figcaption><h3>Alunos da Faculdade Impacta vencem a 5.ª edição do Hackathon da FIESP</h3></figcaption>
+                    </figure>
+                </a>
+            </div> 
+        </section>
+<div class="full_width_line"></div> 
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    console.log('script home, pos main');
+  </script>
+{% endblock %}
