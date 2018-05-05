@@ -2,6 +2,10 @@
 
 python manage.py runserver
 
+#ou
+
+python3 manage.py runserver
+
 
 #criando mudancas no bd
 

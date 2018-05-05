@@ -1,0 +1,148 @@
+{% extends "layout-home.html" %}
+{% load static %}
+
+{% block css %}
+  <!--<link rel="stylesheet" href="{% static 'css/ccs-da-pagina.css' %}"> -->
+{% endblock %}
+
+{% block title %}
+	Cadastro Usuário  - {{ block.super }}
+{% endblock %}
+
+{% block main %}
+<section class="content" style="padding:102px 30px 0 30px; margin-left:0px">
+	<div class="content__inner">
+		<main class="main">
+
+			<section class="container">
+
+
+				<div class="content__inner content__inner--sm ">
+					<header class="content__title">
+						<h1>Cadastro do grupo</h1>
+						<small>Insira as informações sobre seu grupo e os integrantes, em seguinda aguarde a aprovação por email para acessar a plataforma!</small>
+
+					</header>
+
+					<div class="card">
+						<div class="card-body">
+
+							<div class="form-group">
+								{{input value=model.nome type="text" class="form-control" placeholder="Nome do grupo" }}
+								<i class="form-group__bar"></i>
+							</div>
+
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Tema">
+										<i class="form-group__bar"></i>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Tags">
+										<i class="form-group__bar"></i>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<div class="select">
+											<select class="form-control">
+												<option>Curso</option>
+												<option>ADS</option>
+												<option>Option 2</option>
+												<option>Option 3</option>
+												<option>Option 4</option>
+												<option>Option 5</option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+
+							</div>
+
+						</div>
+
+					</div>
+
+
+					<div class="card profile">
+						<div class="actions">
+								<a href="" class="actions__item zmdi zmdi-close"></a>
+						</div>
+						<div class="profile__img">
+							<img  src="/img/contacts/2.jpg" alt="">
+							
+
+							<a href="" class="zmdi zmdi-camera profile__img__edit"></a>
+						</div>
+
+
+						{{#each model.alunos as |aluno index|}}
+
+							<div class="profile__info">
+								<h3 class="card-body__title">{{index-helper index}}º Integrante</h3>
+								<div class="col-sm-10">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												{{input value=aluno.nome type="text" class="form-control" placeholder="Nome"}}
+												<i class="form-group__bar"></i>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input type="number" class="form-control" placeholder="RA">
+												<i class="form-group__bar"></i>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input type="email" class="form-control" placeholder="Email">
+												<i class="form-group__bar"></i>
+											</div>
+										</div>
+
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input type="number" class="form-control" placeholder="Telefone">
+												<i class="form-group__bar"></i>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						{{/each}}
+					</div>
+
+
+					<div class="card">
+						<div class="card-body">
+								<div class="d-flex justify-content-between flex-wrap">
+										<button class="btn btn-info btn--icon-text mt-auto" style="margin:1em"><i class="zmdi zmdi-account-o"></i>Adicionar outro integrante</button>
+										<button class="btn btn-success btn--icon-text mt-auto" style="margin:1em"><i class="zmdi zmdi-check"></i>Finalizar</button>
+								</div>
+								
+							</div>
+
+						</div>
+
+					</div>
+
+
+			</section>
+
+		</main>
+	</div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    
+  </script>
+{% endblock %}
+

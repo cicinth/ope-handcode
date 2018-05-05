@@ -1,4 +1,4 @@
-{% extends "layout-painel-admin.html" %}
+{% extends "layout-home.html" %}
 {% load static %}
 
 {% block css %}
@@ -10,37 +10,73 @@
 {% endblock %}
 
 {% block main %}
-<div>
-    <header class="content__title">
-        <h1>xxx</h1>
+<section class="content" style="padding:102px 30px 0 30px; margin-left:0px">
+	<div class="content__inner">
+		<main class="main">
 
-        <div class="actions">
-            <a href="" class="actions__item zmdi zmdi-trending-up"></a>
-            <a href="" class="actions__item zmdi zmdi-check-all"></a>
-
-            <div class="dropdown actions__item">
-                <i data-toggle="dropdown" class="zmdi zmdi-more-vert"></i>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a href="" class="dropdown-item">Refresh</a>
-                    <a href="" class="dropdown-item">Manage Widgets</a>
-                    <a href="" class="dropdown-item">Settings</a>
+			<section class="container">
+        <div class="row content-home flex-center">
+            <div class="col-sm-6 col-md-3">
+                <div class="stats__item bg-impacta home-box">
+                    
+                        <h3 class="text-center text-white">
+                            Trabalhos Anteriores
+                        </h3>
+                        <h1 class="text-center text-white">
+                            <i class="zmdi zmdi-folder mdc-text-white"></i>
+                        </h1>
+                    
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="stats__item bg-impacta text-white home-box">
+                    
+                        <h3 class="text-center text-white">
+                                Grupos
+                        </h3>
+                        <h1 class="text-center text-white">
+                            <i class="zmdi zmdi-accounts"></i>
+                        </h1>
+                    
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="stats__item bg-impacta home-box">
+                    
+                        <h3 class="text-center text-white">
+                            Sobre o Portal
+                        </h3>
+                        <h1 class="text-center text-white">
+                            <i class="zmdi zmdi-help-outline"></i>
+                        </h1>
+                    
                 </div>
             </div>
         </div>
-    </header>
-
-    <div class="card">
-        <div class="card-header">
-            <h2 class="card-title">xxx</h2>
-            <small class="card-subtitle">xxx</small>
+      </section>
+      <section class="container corpo-texto">
+        <h3 class="text-center">Lorem ipsum dolor sit amet</h3>
+        <div class="row">
+            <p class="col-xs-12 col-md-6">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac quam nec libero ornare condimentum. 
+                    Morbi nibh ipsum, luctus at viverra vitae, sodales vitae augue. Aenean ac nulla risus. Proin lobortis 
+                    ac metus eu placerat. Duis eget rhoncus enim, non tincidunt enim. Donec at ultrices odio, vitae placerat
+                    justo. Aenean congue tortor arcu. Ut sodales quam vitae ipsum ornare tempus. Suspendisse ac fermentum velit.
+            </p>
+      
+            <p class="col-xs-12 col-md-6">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac quam nec libero ornare condimentum. 
+                    Morbi nibh ipsum, luctus at viverra vitae, sodales vitae augue. Aenean ac nulla risus. Proin lobortis 
+                    ac metus eu placerat. Duis eget rhoncus enim, non tincidunt enim. Donec at ultrices odio, vitae placerat
+                    justo. Aenean congue tortor arcu. Ut sodales quam vitae ipsum ornare tempus. Suspendisse ac fermentum velit.
+            </p>
         </div>
+      
+      </section>
 
-        <div class="card-block">
-
-        </div>
-    </div>
-    
-</div>
+		</main>
+	</div>
+</section>
 {% endblock %}
 
 {% block scripts %}
