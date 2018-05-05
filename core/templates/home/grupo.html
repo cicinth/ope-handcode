@@ -28,7 +28,7 @@
 						<div class="card-body">
 
 							<div class="form-group">
-								{{input value=model.nome type="text" class="form-control" placeholder="Nome do grupo" }}
+								<input value=model.nome type="text" class="form-control" placeholder="Nome do grupo"/>
 								<i class="form-group__bar"></i>
 							</div>
 
@@ -80,15 +80,13 @@
 						</div>
 
 
-						{{#each model.alunos as |aluno index|}}
-
 							<div class="profile__info">
-								<h3 class="card-body__title">{{index-helper index}}º Integrante</h3>
+								<h3 class="card-body__title">1º Integrante</h3>
 								<div class="col-sm-10">
 									<div class="row">
 										<div class="col-sm-6">
 											<div class="form-group">
-												{{input value=aluno.nome type="text" class="form-control" placeholder="Nome"}}
+												<input value=aluno.nome type="text" class="form-control" placeholder="Nome"/>
 												<i class="form-group__bar"></i>
 											</div>
 										</div>
@@ -115,7 +113,6 @@
 									</div>
 								</div>
 							</div>
-						{{/each}}
 					</div>
 
 
