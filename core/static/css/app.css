@@ -5,7 +5,7 @@
 @import 'ember-power-select';
 :root {
   --blue: #2196f3;
-  --indigo: #3f51b5;
+  --indigo: #2196f3;
   --purple: #d066e2;
   --pink: #ff85af;
   --red: #ff6b68;
@@ -23,7 +23,7 @@
   --pink: #ff85af;
   --purple: #d066e2;
   --deep-purple: #673ab7;
-  --indigo: #3f51b5;
+  --indigo: #2196f3;
   --blue: #2196f3;
   --light-blue: #03a9f4;
   --cyan: #00bcd4;
@@ -8016,10 +8016,10 @@ select.form-control {
   color: #2196f3 !important;
 }
 .bg-indigo {
-  background-color: #3f51b5 !important;
+  background-color: #2196f3 !important;
 }
 .text-indigo {
-  color: #3f51b5 !important;
+  color: #2196f3 !important;
 }
 .bg-purple {
   background-color: #d066e2 !important;
@@ -8124,10 +8124,10 @@ select.form-control {
   color: #673ab7 !important;
 }
 .bg-indigo {
-  background-color: #3f51b5 !important;
+  background-color: #2196f3 !important;
 }
 .text-indigo {
-  color: #3f51b5 !important;
+  color: #2196f3 !important;
 }
 .bg-blue {
   background-color: #2196f3 !important;
@@ -8928,7 +8928,7 @@ button, input, optgroup, select, textarea {
 }
 .top-menu > li > a {
   line-height: 100%;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255);
   font-weight: 500;
   text-transform: uppercase;
   padding: 1rem;
@@ -8936,7 +8936,7 @@ button, input, optgroup, select, textarea {
   transition: color 300ms;
 }
 .top-menu > li > a:hover {
-  color: #fff;
+  color: #ddd;
 }
 .top-menu > li.active > a {
   color: #fff;
@@ -10251,10 +10251,10 @@ button, input, optgroup, select, textarea {
   color: #d066e2;
 }
 [data-ma-theme="indigo"] .header, [data-ma-theme="indigo"] .login__block__header, [data-ma-theme="indigo"] .login__block__btn, [data-ma-theme="indigo"] .top-menu {
-  background-color: #3f51b5;
+  background-color: #2196f3;
 }
 [data-ma-theme="indigo"] .navigation__sub--active > a, [data-ma-theme="indigo"] .navigation__active > a, [data-ma-theme="indigo"] .navigation__active:before {
-  color: #3f51b5;
+  color: #2196f3;
 }
 [data-ma-theme="blue"] .header, [data-ma-theme="blue"] .login__block__header, [data-ma-theme="blue"] .login__block__btn, [data-ma-theme="blue"] .top-menu {
   background-color: #2196f3;
@@ -11902,7 +11902,7 @@ span.flatpickr-weekday {
  }
  */
 .bloco {
-  background-color: #3f51b5;
+  background-color: #2196f3;
   color: #fff;
   border-radius: 5%;
   margin-right: 10vh;
@@ -11956,7 +11956,7 @@ span.flatpickr-weekday {
   justify-content: center;
 }
 .bg-impacta {
-  background-color: #3f51b5;
+  background-color: #2196f3;
 }
 .home-box {
   height: 10em;
