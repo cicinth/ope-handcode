@@ -8,5 +8,6 @@ urlpatterns = [
     path('', index, name="home"),
     path('grupo/', grupo),
     path('painel/administrador/', painelAdministrador),
+    path('painel/administrador/disciplinas/nova', cadastrarDisciplinas),
 ]
 
