@@ -7,6 +7,7 @@ from django.urls import path
 urlpatterns = [
     path('', homeIndex, name="home"),
     path('grupo/', homeCadastroGrupo),
+    path('entrar/', entrar, name="login"),
     path('painel/administrador/', painelAdministradorIndex),
     path('painel/administrador/disciplinas/', listarDisciplina),
     path('painel/administrador/disciplinas/nova', novaDisciplina),
@@ -14,5 +15,6 @@ urlpatterns = [
     path('painel/administrador/cursos/', listarCurso),
     path('painel/administrador/cursos/novo', novoCurso),
     path('painel/administrador/cursos/editar', editarCurso),
+    path('painel/administrador/perfil/', painelAdministradorPerfil),
 ]
 

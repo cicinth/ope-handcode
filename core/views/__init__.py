@@ -9,3 +9,4 @@ from .PainelAdministradorTurmaView import *
 from .PainelAlunoView import *
 from .PainelAlunoGrupoView import *
 from .PainelProfessorView import *
+from .PainelAdministradorPerfil import *
