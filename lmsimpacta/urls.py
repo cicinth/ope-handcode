@@ -8,9 +8,11 @@ urlpatterns = [
     path('', homeIndex, name="home"),
     path('grupo/', homeCadastroGrupo),
     path('painel/administrador/', painelAdministradorIndex),
-    #path('painel/administrador/disciplinas/', listarDisciplinas),
+    path('painel/administrador/disciplinas/', listarDisciplina),
     path('painel/administrador/disciplinas/nova', novaDisciplina),
-    #path('painel/administrador/disciplinas/editar', editarDisciplinas),
-
+    path('painel/administrador/disciplinas/editar', editarDisciplina),
+    path('painel/administrador/cursos/', listarCurso),
+    path('painel/administrador/cursos/novo', novoCurso),
+    path('painel/administrador/cursos/editar', editarCurso),
 ]
 

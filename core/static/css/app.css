@@ -8911,9 +8911,8 @@ button, input, optgroup, select, textarea {
 .top-menu {
   position: absolute;
   left: 0;
-  top: 100%;
+  top: 90%; 
   width: 100%;
-  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.15);
   padding: 0 1rem 0.5rem;
   margin-top: -0.85rem;
   list-style: none;

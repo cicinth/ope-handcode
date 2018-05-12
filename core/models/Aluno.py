@@ -1,21 +1,12 @@
 from django.db import models
 from .Usuario import Usuario
-class Aluno(Usuario):
-    curso = models.ForeignKey(to='Curso', related_name="alunos", null=False, blank=False, on_delete=models.CASCADE) #onetomany
-    #nome = models.CharField(max_length=120,null=False)
-    #email = models.CharField(max_length=80)
-    celular = models.CharField(max_length=11, null=True, blank=True)
-    #ra = models.IntegerField(unique=True,null=False)
-    turmas = models.ManyToManyField('Turma', db_table='Matricula', related_name='alunos', blank=True)
-    foto = models.ForeignKey(to='ArquivosFoto', related_name="alunos", null=True, blank=True, on_delete=models.CASCADE) #onetomany
 
-    def __str__(self):
-        return "{} - {}".format(self.ra,self.nome)
+class Aluno(Usuario):
+    ra = models.IntegerField("ra", unique=True)
+    celular = models.CharField(max_length=11, null=True, blank=True)
+    grupos = models.ManyToManyField(to='Grupo', db_table='GRUPO_ALUNO', related_name='alunos', blank=True)
     
     class Meta:
-        db_table = 'Aluno'
-    
+        db_table = 'ALUNO'
 
-from .Curso import Curso
-from .Turma import Turma
-from .ArquivosFoto import ArquivosFoto
+from .Grupo import Grupo
