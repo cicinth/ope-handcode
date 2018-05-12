@@ -5,9 +5,12 @@ from django.contrib.auth.views import login, logout
 from django.urls import path
 
 urlpatterns = [
-    path('', index, name="home"),
-    path('grupo/', grupo),
-    path('painel/administrador/', painelAdministrador),
-    path('painel/administrador/disciplinas/nova', cadastrarDisciplinas),
+    path('', homeIndex, name="home"),
+    path('grupo/', homeCadastroGrupo),
+    path('painel/administrador/', painelAdministradorIndex),
+    #path('painel/administrador/disciplinas/', listarDisciplinas),
+    path('painel/administrador/disciplinas/nova', novaDisciplina),
+    #path('painel/administrador/disciplinas/editar', editarDisciplinas),
+
 ]
 

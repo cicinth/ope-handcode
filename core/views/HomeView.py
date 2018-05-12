@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from core.models.Curso import Curso
 
-def index (request):
+def homeIndex (request):
     contexto = {}
     return render(request,"home/index.html",contexto)
 
-def grupo (request):
+def homeCadastroGrupo (request):
     contexto = {}
     return render(request,"home/grupo.html",contexto)
