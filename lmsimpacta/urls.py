@@ -10,11 +10,14 @@ urlpatterns = [
     path('entrar/', entrar, name="login"),
     path('painel/administrador/', painelAdministradorIndex),
     path('painel/administrador/disciplinas/', listarDisciplina),
-    path('painel/administrador/disciplinas/nova', novaDisciplina),
+    path('painel/administrador/disciplinas/novo', novoDisciplina),
     path('painel/administrador/disciplinas/editar/<slug:siglaDisciplina>', editarDisciplina),
     path('painel/administrador/cursos/', listarCurso),
     path('painel/administrador/cursos/novo', novoCurso),
     path('painel/administrador/cursos/editar/<slug:siglaCurso>', editarCurso),
     path('painel/administrador/perfil/', painelAdministradorPerfil),
+    path('painel/administrador/turmas/', listarTurma),
+    path('painel/administrador/turmas/novo', novoTurma),
+    path('painel/administrador/turmas/editar/<int:idTurma>', editarTurma),
 ]
 

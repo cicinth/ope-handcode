@@ -4,7 +4,7 @@ from core.models import Curso
 from core.forms import DisciplinaForm
 from django.http import HttpResponseRedirect
 
-def novaDisciplina (request):
+def novoDisciplina (request):
 
     contexto = {}
     contexto['cursos'] = Curso.objects.all()
@@ -21,7 +21,7 @@ def novaDisciplina (request):
     else: 
         contexto['form'] = DisciplinaForm()
 
-    return render(request,"administrador/disciplinas/nova.html", contexto)
+    return render(request,"administrador/disciplinas/novo.html", contexto)
 
 def listarDisciplina (request):
     contexto = {}

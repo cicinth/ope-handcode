@@ -9,4 +9,8 @@ class Turma(models.Model):
     class Meta:
         db_table = 'TURMA'
 
+    def getCursoId(self):
+        return self.curso.id
+
+
 from .Curso import Curso
