@@ -10,3 +10,4 @@ from .PainelAlunoView import *
 from .PainelAlunoGrupoView import *
 from .PainelProfessorView import *
 from .PainelAdministradorPerfil import *
+from .PainelAdministradorAdministradoresView import *
