@@ -27,6 +27,17 @@ class Usuario(AbstractBaseUser):
     def get_full_name(self):
         return self.nome
 
+    def getIniciais(self):
+        xs = (self.nome)
+        name_list = xs.split()
+
+        initials = ""
+
+        for name in name_list:  # go through each name
+            initials += name[0].upper()  # append the initial
+
+        return initials
+
     def __str__(self):
         return str(self.ra)
 

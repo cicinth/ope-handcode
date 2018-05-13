@@ -5,3 +5,4 @@ from .Disciplina import Disciplina
 from .Aluno import Aluno
 from .Usuario import Usuario
 from .Grupo import Grupo
+from .Administrador import Administrador

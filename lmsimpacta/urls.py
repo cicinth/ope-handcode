@@ -19,5 +19,10 @@ urlpatterns = [
     path('painel/administrador/turmas/', listarTurma),
     path('painel/administrador/turmas/novo', novoTurma),
     path('painel/administrador/turmas/editar/<int:idTurma>', editarTurma),
+    path('painel/administrador/administradores/', listarAdministrador),
+    path('painel/administrador/administradores/novo', novoAdministrador),
+    path('painel/administrador/administradores/editar/<int:idAdministrador>', editarAdministrador),
+    path("login/", login, {"template_name":"login/entrar.html"}), 
+    path("logout/", logout, {'next_page': 'home'}),
 ]
 
