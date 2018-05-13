@@ -1,11 +1,7 @@
-Alex Augusto - RA 1700072
-
-Cinthia Queiroz - RA 1700693
-
-Samuel da Silva Oliveira - RA 1601019
-
-Michael da Silva de Souza - RA 1700381
-
-Fabio Aurélio Abe Nogueira - RA 1700603
-
-Reginaldo Rodrigues - RA 1700429
+Alex Augusto - 1700072
+Cinthia Queiroz - 1700693
+Michael da Silva de Souza - 1700381
+Fabio Aurelio Abe Nogueira - 1700603
+Gabriel Bueno - 1601606
+Henrique Borges da Silva - 1700054
+Diego santos - 1700677
