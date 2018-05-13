@@ -24,10 +24,10 @@
         {% for disciplina in disciplinas %}
             <div class="listview__item">
                 <i class="avatar-char js-random-background-color">{{disciplina.sigla}}</i>
-                <div class="listview__content d-flex align-items-center">
+                <div class="listview__content">
                     <div class="listview__heading">{{disciplina.nome}}</div>
                     <div class="listview__attrs">
-                        {% for curso in disciplina.cursos %}
+                        {% for curso in disciplina.cursos.all %}
                             <span>{{curso.sigla}}</span>
                         {% endfor %}
                     </div>

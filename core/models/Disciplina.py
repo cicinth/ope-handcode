@@ -9,3 +9,10 @@ class Disciplina(models.Model):
     class Meta:
         db_table = 'DISCIPLINA'
 
+    def getCursosIds(self):
+        ids = []
+        for curso in self.cursos.all():
+            ids.append(curso.id)
+        return ids
+
+

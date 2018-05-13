@@ -17,6 +17,7 @@ def novaDisciplina (request):
             return HttpResponseRedirect("/painel/administrador/disciplinas")
         else:
             contexto['form'] = form
+            contexto['disciplina'] = Disciplina(form)
     else: 
         contexto['form'] = DisciplinaForm()
 
@@ -36,14 +37,16 @@ def editarDisciplina (request, siglaDisciplina):
     contexto = {}
     contexto['cursos'] = Curso.objects.all()
 
+
     if request.POST:
-        form = CursoForm(request.POST, instance=disciplina)
+        form = DisciplinaForm(request.POST, instance=disciplina)
         
         if form.is_valid():
             form.save()
             return HttpResponseRedirect("/painel/administrador/disciplinas")
         else:
             contexto['form'] = form
+            contexto['disciplina'] = Disciplina(form)
     else: 
         contexto['form'] = DisciplinaForm(instance=disciplina)
         contexto['disciplina'] = disciplina

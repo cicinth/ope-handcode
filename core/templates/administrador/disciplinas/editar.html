@@ -36,11 +36,16 @@
                         <i class="form-group__bar"></i>
                     </div>
                 </div>
-                <div class="col-md-12 col-lg-2">
-                    <div class="form-group">
-                        <input name="semestres" value="{{disciplina.semestres}}" type="number" class="form-control" placeholder="Semestres" />
-                        <i class="form-group__bar"></i>
-                    </div>
+                <div class="col-md-12 col-lg-7">
+                        <div class="form-group">
+                            <div class="select">
+                                <select name="cursos" class="form-control" multiple="multiple">
+                                    {% for curso in cursos %}
+                                        <option {% if curso.id in disciplina.getCursosIds %} selected="selected"{% endif %} value="{{curso.id}}">{{curso.nome}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
                 </div>
             </div>
             <div class="d-flex flex-row-reverse btn-row">
