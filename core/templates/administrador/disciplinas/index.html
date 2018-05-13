@@ -3,39 +3,72 @@
 {% load static %}
 
 {% block title %}
-	Titulo  - {{ block.super }}
+    Disciplinas  - {{ block.super }}
 {% endblock %}
 
 {% block main %}
-
 <header class="content__title">
-    <h1>xxx</h1>
-
+    <h1>Disciplinas</h1>
     <div class="actions">
-        <a href="" class="actions__item zmdi zmdi-trending-up"></a>
-        <a href="" class="actions__item zmdi zmdi-check-all"></a>
-
         <div class="dropdown actions__item">
             <i data-toggle="dropdown" class="zmdi zmdi-more-vert"></i>
             <div class="dropdown-menu dropdown-menu-right">
-                <a href="" class="dropdown-item">Refresh</a>
-                <a href="" class="dropdown-item">Manage Widgets</a>
-                <a href="" class="dropdown-item">Settings</a>
+                <a href="/painel/administrador/disciplinas/nova" class="dropdown-item">Nova</a>
             </div>
         </div>
     </div>
 </header>
-    
+
 <div class="card">
-    <div class="card-header">
-        <h2 class="card-title">xxx</h2>
-        <small class="card-subtitle">xxx</small>
-    </div>
-
-    <div class="card-block">
-
+    <div class="listview listview--striped">
+        {% for disciplina in disciplinas %}
+            <div class="listview__item">
+                <i class="avatar-char js-random-background-color">{{disciplina.sigla}}</i>
+                <div class="listview__content d-flex align-items-center">
+                    <div class="listview__heading">{{disciplina.nome}}</div>
+                    <div class="listview__attrs">
+                        {% for curso in disciplina.cursos %}
+                            <span>{{curso.sigla}}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="actions listview__actions">
+                    <div class="dropdown actions__item">
+                        <i class="zmdi zmdi-more-vert" data-toggle="dropdown"></i>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="/painel/administrador/disciplinas/editar/{{disciplina.sigla}}" class="dropdown-item">Editar</a>
+                            <button type="button" data-url="/painel/administrador/disciplinas/remover/{{disciplina.sigla}}" class="js-btn-remover dropdown-item">Remover</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 </div>
 
+{% endblock %}
 
+{% block scripts %}
+  <script>
+    //cores aleatorias
+    var colors = [];  
+    colors.push("#2196f3");    //--blue: #2196f3
+    colors.push("#03a9f4");    //--light-blue: #03a9f4
+    colors.push("#00bcd4");    //--cyan: #00bcd4
+    colors.push("#39bbb0");    //--teal: #39bbb0
+    colors.push("#32c787");    //--green: #32c787
+    colors.push("#8bc34a");    //--light-green: #8bc34a
+    colors.push("#cddc39");    //--lime: #cddc39
+    colors.push("#ffeb3b");    //--yellow: #ffeb3b
+    colors.push("#ffc721");    //--amber: #ffc721
+    colors.push("#ff9800");    //--orange: #ff9800
+    colors.push("#ff5722");    //--deep-orange: #ff5722
+    colors.push("#795548");    //--brown: #795548
+    colors.push("#607d8b");    //--blue-grey: #607d8b
+    
+    $('.js-random-background-color').each(function( key, value ) {
+        var rand = Math.floor(Math.random()*colors.length);    
+        $(value).css("background-color", colors[rand]);
+    });
+  </script>
 {% endblock %}

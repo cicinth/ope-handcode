@@ -8,11 +8,8 @@
 
 {% block main %}
 <header class="content__title">
-    
     <h1>Cursos</h1>
-
     <div class="actions">
-
         <div class="dropdown actions__item">
             <i data-toggle="dropdown" class="zmdi zmdi-more-vert"></i>
             <div class="dropdown-menu dropdown-menu-right">
@@ -20,63 +17,36 @@
             </div>
         </div>
     </div>
-
 </header>
 
 <div class="card">
-
     <div class="listview listview--striped">
-       
         {% for curso in cursos %}
             <div class="listview__item">
-
                 <i class="avatar-char js-random-background-color">{{curso.sigla}}</i>
-
                 <div class="listview__content d-flex align-items-center">
                     <div class="listview__heading">{{curso.nome}}</div>
                 </div>
-
                 <div class="actions listview__actions">
                     <div class="dropdown actions__item">
                         <i class="zmdi zmdi-more-vert" data-toggle="dropdown"></i>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="/painel/administrador/cursos/editar/{{curso.sigla}}" class="dropdown-item">Editar</a>
-                            <button type="button" data-url="/painel/administrador/cursos/remover/{{curso.sigla}}" class="dropdown-item">Remover</a>
+                            <button type="button" data-url="/painel/administrador/cursos/remover/{{curso.sigla}}" class="js-btn-remover dropdown-item">Remover</a>
                         </div>
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
-
 </div>
 
 {% endblock %}
 
-
 {% block scripts %}
   <script>
-
     //cores aleatorias
     var colors = [];  
-    
-    colors.push("#2196f3");    //--blue: #2196f3
-    colors.push("#2196f3");    //--indigo: #2196f3
-    colors.push("#d066e2");    //--purple: #d066e2
-    colors.push("#ff85af");    //--pink: #ff85af
-    colors.push("#ff6b68");    //--red: #ff6b68
-    colors.push("#ff9800");    //--orange: #ff9800
-    colors.push("#ffeb3b");    //--yellow: #ffeb3b
-    colors.push("#32c787");    //--green: #32c787
-    colors.push("#39bbb0");    //--teal: #39bbb0
-    colors.push("#00bcd4");    //--cyan: #00bcd4
-    colors.push("#868e96");    //--gray: #868e96
-    colors.push("#343a40");    //--gray-dark: #343a40
-    colors.push("#ff6b68");    //--red: #ff6b68
-    colors.push("#ff85af");    //--pink: #ff85af
-    colors.push("#d066e2");    //--purple: #d066e2
-    colors.push("#673ab7");    //--deep-purple: #673ab7
-    colors.push("#2196f3");    //--indigo: #2196f3
     colors.push("#2196f3");    //--blue: #2196f3
     colors.push("#03a9f4");    //--light-blue: #03a9f4
     colors.push("#00bcd4");    //--cyan: #00bcd4
@@ -90,8 +60,6 @@
     colors.push("#ff5722");    //--deep-orange: #ff5722
     colors.push("#795548");    //--brown: #795548
     colors.push("#607d8b");    //--blue-grey: #607d8b
-
-           
     
     $('.js-random-background-color').each(function( key, value ) {
         var rand = Math.floor(Math.random()*colors.length);    
