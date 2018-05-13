@@ -9297,6 +9297,8 @@ button, input, optgroup, select, textarea {
   -ms-flex: 1;
   flex: 1;
   min-width: 0;
+  margin-left: 6px;
+  margin-right: 6px;
 }
 .listview__content > p {
   overflow: hidden;
@@ -11961,4 +11963,8 @@ span.flatpickr-weekday {
 }
 .home-box:hover {
   background-color: #0385f0;
+}
+.btn-row .btn {
+  margin-left: 5px;
+  margin-right: 5px;
 }
