@@ -29,14 +29,14 @@ python manage.py test testes
 #senha do bd
 
 #USUARIO ADMINISTRADOR - COORDENADOR
-ra: 123456
+admin@admin.com: 123456
 
 #PROFESSOR
-ra: 654321
+
 
 #aluno
-ra: 1700072
+
 
 #senhas todas são
-senha: asdf1234
+senha: 123456
 
