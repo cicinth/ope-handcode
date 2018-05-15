@@ -15,9 +15,10 @@
 		<main class="main">
 
 			<section class="container">
-
-
-				<div class="content__inner content__inner--sm ">
+				<form action="/grupo/" method="POST">
+				{{ form.errors }}
+				{% csrf_token %}
+				<div class="content__inner">
 					<header class="content__title">
 						<h1>Cadastro do grupo</h1>
 						<small>Insira as informações sobre seu grupo e os integrantes, em seguinda aguarde a aprovação por email para acessar a plataforma!</small>
@@ -26,100 +27,88 @@
 
 					<div class="card">
 						<div class="card-body">
-
-							<div class="form-group">
-								<input value=model.nome type="text" class="form-control" placeholder="Nome do grupo"/>
-								<i class="form-group__bar"></i>
-							</div>
-
-							<div class="row">
-								<div class="col-sm-6">
-									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Tema">
-										<i class="form-group__bar"></i>
-									</div>
+							
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Nome do grupo"/>
+									<i class="form-group__bar"></i>
 								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Tags">
-										<i class="form-group__bar"></i>
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<div class="select">
-											<select class="form-control">
-												<option>Curso</option>
-												<option>ADS</option>
-												<option>Option 2</option>
-												<option>Option 3</option>
-												<option>Option 4</option>
-												<option>Option 5</option>
-											</select>
+
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="Tema">
+											<i class="form-group__bar"></i>
 										</div>
 									</div>
-								</div>
-
-
-							</div>
-
-						</div>
-
-					</div>
-					<section data-quantia="1" class="js-integrates">
-						<div class="card profile">
-								<div class="actions">
-										<a href="" class="actions__item zmdi zmdi-close"></a>
-								</div>
-								<div class="profile__img">
-									<img  src="{% static "/img/contacts/2.jpg" %}" alt="">
-									
-		
-									<a href="" class="zmdi zmdi-camera profile__img__edit"></a>
-								</div>
-		
-								
-									<div class="profile__info">
-										<h3 class="card-body__title">1º Integrante</h3>
-										<div class="col-sm-10">
-											<div class="row">
-												<div class="col-sm-6">
-													<div class="form-group">
-														<input value=aluno.nome type="text" class="form-control" placeholder="Nome"/>
-														<i class="form-group__bar"></i>
-													</div>
-												</div>
-												<div class="col-sm-6">
-													<div class="form-group">
-														<input type="number" class="form-control" placeholder="RA">
-														<i class="form-group__bar"></i>
-													</div>
-												</div>
-												<div class="col-sm-6">
-													<div class="form-group">
-														<input type="email" class="form-control" placeholder="Email">
-														<i class="form-group__bar"></i>
-													</div>
-												</div>
-		
-												<div class="col-sm-6">
-													<div class="form-group">
-														<input type="number" class="form-control" placeholder="Telefone">
-														<i class="form-group__bar"></i>
-													</div>
-												</div>
-		
+									<div class="col-sm-6">
+										<div class="form-group">
+											<div class="select">
+												<select class="form-control">
+													<option>Curso</option>
+													<option>ADS</option>
+													<option>Option 2</option>
+													<option>Option 3</option>
+													<option>Option 4</option>
+													<option>Option 5</option>
+												</select>
 											</div>
 										</div>
 									</div>
-								
+								</div>
+
 							</div>
+							
+						</div>
+
+					</div>
+					<section id="sec-integrantes" data-quantia="0" class="js-integrates">
+						<div id="card-0" class="card profile">
+							<div class="actions">
+									<a href="" class="actions__item zmdi zmdi-close"></a>
+							</div>
+							<div class="profile__img">
+								<img  src="{% static "/img/contacts/2.jpg" %}" alt="">
+								<a href="" class="zmdi zmdi-camera profile__img__edit"></a>
+							</div>
+							<div class="profile__info">
+								<h3 class="card-body__title">1º Integrante</h3>
+								<div class="col-sm-10">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input name="alunos[0].nome" type="text" class="form-control" placeholder="Nome"/>
+												<i class="form-group__bar"></i>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input name="alunos[0].ra" type="number" class="form-control" placeholder="RA">
+												<i class="form-group__bar"></i>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input name="alunos[0].email" type="email" class="form-control" placeholder="Email">
+												<i class="form-group__bar"></i>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input name="alunos[0].telefone" type="number" class="form-control" placeholder="Telefone">
+												<i class="form-group__bar"></i>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
 					</section>
 
 					<div class="card">
 						<div class="card-body">
 								<div class="d-flex justify-content-between flex-wrap">
-										<button class="btn btn-info btn--icon-text mt-auto" style="margin:1em"><i class="zmdi zmdi-account-o"></i>Adicionar outro integrante</button>
+										<button id="btn-add-aluno" class="btn btn-info btn--icon-text mt-auto" type="button" style="margin:1em"><i class="zmdi zmdi-account-o"></i>Adicionar outro integrante</button>
 										<button class="btn btn-success btn--icon-text mt-auto" style="margin:1em"><i class="zmdi zmdi-check"></i>Finalizar</button>
 								</div>
 								
@@ -129,7 +118,7 @@
 
 					</div>
 
-
+				</form>
 			</section>
 
 		</main>
@@ -139,7 +128,66 @@
 
 {% block scripts %}
   <script>
+
+	var indexAluno = $('#sec-integrantes').data('quantia');
+
+	var containerAlunos = $('#sec-integrantes');
     
+	var btnAddAluno = $('#btn-add-aluno');
+
+	console.log(btnAddAluno);
+
+	btnAddAluno.click(function() {
+		indexAluno = indexAluno + 1;
+		var integranteNumero = indexAluno +1
+		var corpoHtml =	`<div id="card-0" class="card profile">
+							<div class="actions">
+									<a href="" class="actions__item zmdi zmdi-close"></a>
+							</div>
+							<div class="profile__img">
+								<img  src="{% static "/img/contacts/2.jpg" %}" alt="">
+								<a href="" class="zmdi zmdi-camera profile__img__edit"></a>
+							</div>
+							<div class="profile__info">
+								<h3 class="card-body__title">`+integranteNumero+`º Integrante</h3>
+								<div class="col-sm-10">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input name="alunos[`+indexAluno+`].nome" type="text" class="form-control" placeholder="Nome"/>
+												<i class="form-group__bar"></i>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input name="alunos[`+indexAluno+`].ra" type="number" class="form-control" placeholder="RA">
+												<i class="form-group__bar"></i>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input name="alunos[`+indexAluno+`].email" type="email" class="form-control" placeholder="Email">
+												<i class="form-group__bar"></i>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input name="alunos[`+indexAluno+`].telefone" type="number" class="form-control" placeholder="Telefone">
+												<i class="form-group__bar"></i>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>`
+		console.log(indexAluno);
+		containerAlunos.append(corpoHtml);
+	});
+    	  
+	
+	
+	console.log(indexAluno);
   </script>
 {% endblock %}
 

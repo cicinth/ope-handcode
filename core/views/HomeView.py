@@ -7,4 +7,12 @@ def homeIndex (request):
 
 def homeCadastroGrupo (request):
     contexto = {}
+
+
+    if request.POST:
+        print(request.POST)
+        print(request.POST.get("alunos"))
+        print(request.POST.getlist("alunos"))
+
+
     return render(request,"home/grupo.html",contexto)
