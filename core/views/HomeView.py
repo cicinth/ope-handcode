@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from core.models.Curso import Curso
+from core.forms import GrupoForm
 
 def homeIndex (request):
     contexto = {}
@@ -8,11 +9,24 @@ def homeIndex (request):
 def homeCadastroGrupo (request):
     contexto = {}
 
+    alunos = []
+
+    alunoAtual = {}
 
     if request.POST:
-        print(request.POST)
-        print(request.POST.get("alunos"))
-        print(request.POST.getlist("alunos"))
+        dic = request.POST.dict()
+        print(dic)
+        possuiAlunos = True
+        i = 0
+        while possuiAlunos:
+            ra = ''
+            nome = ''
+            email = ''
+            telefone = ''
+            for key in dic:
+                pass
+
+            possuiAlunos = False
 
 
     return render(request,"home/grupo.html",contexto)
