@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from core.models.Curso import Curso
+from core.models.Curso import *
 
 def homeIndex (request):
     contexto = {}
@@ -25,8 +25,14 @@ def salvaGrupoAlunos(dicionario):
     del dicionario['csrfmiddlewaretoken']
     keys = dicionario.keys()
     
-    grupo = {"nome":dicionario["nome"], "tema":dicionario["tema"], "curso":dicionario["curso"]}
+    grupo = {"nome":dicionario["nome"], "tema":dicionario["tema"], "turma":dicionario["turma"]}
 
+    grupoModel = Grupo()
+
+    grupoModel.nome = grupo["nome"]
+    grupoModel.tema = grupo["tema"]
+    grupoModel.turma = grupo["turma"]
+    grupoModel.save()
     print("grupo ",grupo)
 
     alunos = []
@@ -52,4 +58,11 @@ def salvaGrupoAlunos(dicionario):
             alunos.append({"ra":ra,"nome":nome,"email":email,"telefole":telefone})
 
     for aluno in alunos:
+        alunoModel = Aluno()
+        alunoModel.ra = aluno['ra']
+        alunoModel.nome = aluno['nome']
+        alunoModel.email = aluno['email']
+        alunoModel.telefone = aluno['telefone']
+        alunoModel.grupos.append(grupo)
+        alunoModel.save()
         print(aluno)
