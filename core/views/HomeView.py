@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from core.models.Curso import *
+from core.models import *
 
 def homeIndex (request):
     contexto = {}
@@ -7,6 +7,9 @@ def homeIndex (request):
 
 def homeCadastroGrupo (request):
     contexto = {}
+
+    print(Grupo.objects.all())
+    print(Aluno.objects.all())
 
     alunos = []
 
@@ -20,6 +23,7 @@ def homeCadastroGrupo (request):
 
 
 def salvaGrupoAlunos(dicionario):
+    print(dicionario)
     i = 0
     t = len(dicionario)
     del dicionario['csrfmiddlewaretoken']
@@ -31,7 +35,8 @@ def salvaGrupoAlunos(dicionario):
 
     grupoModel.nome = grupo["nome"]
     grupoModel.tema = grupo["tema"]
-    grupoModel.turma = grupo["turma"]
+    print("turma",grupo["turma"])
+    grupoModel.turma = Turma.objects.get(id=int(grupo["turma"]))
     grupoModel.save()
     print("grupo ",grupo)
 
@@ -54,14 +59,15 @@ def salvaGrupoAlunos(dicionario):
             if key == 'alunos['+str(i)+'].telefone':
                 telefone = dicionario[key]
         i = i + 1
-        if ra != '' and nome != '' and email != '' and telefone != '':
-            alunos.append({"ra":ra,"nome":nome,"email":email,"telefole":telefone})
+        if ra != '' or nome != '' or email != '' or telefone != '':
+            alunos.append({"ra":ra,"nome":nome,"email":email,"telefone":telefone})
 
     for aluno in alunos:
         alunoModel = Aluno()
         alunoModel.ra = aluno['ra']
         alunoModel.nome = aluno['nome']
         alunoModel.email = aluno['email']
+        alunoModel.set_password('asdf1234')
         alunoModel.telefone = aluno['telefone']
         alunoModel.grupos.append(grupo)
         alunoModel.save()
