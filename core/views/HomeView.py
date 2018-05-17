@@ -69,6 +69,7 @@ def salvaGrupoAlunos(dicionario):
         alunoModel.email = aluno['email']
         alunoModel.set_password('asdf1234')
         alunoModel.telefone = aluno['telefone']
-        alunoModel.grupos.append(grupo)
+        alunoModel.save()
+        alunoModel.grupos.add(grupoModel)
         alunoModel.save()
         print(aluno)
