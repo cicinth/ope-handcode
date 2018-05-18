@@ -32,7 +32,7 @@ def salvaGrupoAlunos(dicionario):
     grupo = {"nome":dicionario["nome"], "tema":dicionario["tema"], "turma":dicionario["turma"]}
 
     grupoModel = Grupo()
-
+    grupoModel.ativo = False
     grupoModel.nome = grupo["nome"]
     grupoModel.tema = grupo["tema"]
     print("turma",grupo["turma"])
@@ -64,11 +64,13 @@ def salvaGrupoAlunos(dicionario):
 
     for aluno in alunos:
         alunoModel = Aluno()
+        alunoModel.ativo = False
         alunoModel.ra = aluno['ra']
         alunoModel.nome = aluno['nome']
         alunoModel.email = aluno['email']
         alunoModel.set_password('asdf1234')
         alunoModel.telefone = aluno['telefone']
-        alunoModel.grupos.append(grupo)
+        alunoModel.save()
+        alunoModel.grupos.add(grupoModel)
         alunoModel.save()
         print(aluno)

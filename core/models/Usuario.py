@@ -39,7 +39,7 @@ class Usuario(AbstractBaseUser):
         return initials
 
     def __str__(self):
-        return str(self.ra)
+        return str(self.id)
 
     class Meta:
         db_table = 'USUARIO'
