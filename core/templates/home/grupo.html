@@ -60,11 +60,11 @@
 					<section id="sec-integrantes" data-quantia="0" class="js-integrates">
 						<div id="card-0" class="card profile">
 							<div class="actions">
-									<a href="" class="actions__item zmdi zmdi-close"></a>
+									
 							</div>
 							<div class="profile__img">
 								<img  src="{% static "/img/contacts/2.jpg" %}" alt="">
-								<a href="" class="zmdi zmdi-camera profile__img__edit"></a>
+								<a  class="zmdi zmdi-camera profile__img__edit"></a>
 							</div>
 							<div class="profile__info">
 								<h3 class="card-body__title">1º Integrante</h3>
@@ -138,11 +138,11 @@
 		var integranteNumero = indexAluno +1
 		var corpoHtml =	`<div id="card-0" class="card profile">
 							<div class="actions">
-									<a href="" class="actions__item zmdi zmdi-close"></a>
+									<a  class="actions__item zmdi zmdi-close js-clica-remove-card"></a>
 							</div>
 							<div class="profile__img">
 								<img  src="{% static "/img/contacts/2.jpg" %}" alt="">
-								<a href="" class="zmdi zmdi-camera profile__img__edit"></a>
+								<a  class="zmdi zmdi-camera profile__img__edit"></a>
 							</div>
 							<div class="profile__info">
 								<h3 class="card-body__title">`+integranteNumero+`º Integrante</h3>
@@ -177,11 +177,15 @@
 								</div>
 							</div>
 						</div>`
-		console.log(indexAluno);
+		
 		containerAlunos.append(corpoHtml);
+
+		$( ".js-clica-remove-card" ).click(function() {
+			indexAluno = indexAluno - 1;
+			$(this).closest( ".card" ).remove();
+		});
+
 	});
-    	  
-	
 	
 	console.log(indexAluno);
   </script>
