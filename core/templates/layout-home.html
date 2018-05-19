@@ -67,8 +67,35 @@
 
             <aside class="sidebar2">
                 <div class="scrollbar-inner">
+                    <div class="user">
+                    
+                        {% if request.user.is_authenticated %}
+                            <div class="user__info" data-toggle="dropdown">
+                                <img class="user__img" src={% static "img/profile-pics/8.jpg" %} alt="">
+                                <div>
+                                    <div class="user__name">{{ request.user.nome }}</div>
+                                    <div class="user__email">{{ request.user.email }}</div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if not request.user.is_authenticated %}
+                        <li class="user__info">    
+                            <a href="/login">
+                                <i class="zmdi zmdi-account"></i>
+                                Entrar
+                            </a>
+                        </li>
+                        {% endif %}
+                        <div class="dropdown-menu dropdown-menu-right">
+                        {% if request.user.is_authenticated %}
+                            <a href="/painel/administrador" class="dropdown-item">Painel</a>
+                            <a href="/logout" class="dropdown-item">Sair</a>
+                        {% endif %}
+                        </div>
+                    
+                    </div>
                     <ul class="navigation">
-                        <li><a href=""><i class="zmdi zmdi-view-list"></i>Home</a></li>
+                        <li><a href="/"><i class="zmdi zmdi-view-list"></i>Home</a></li>
                         <li><a href=""><i class="zmdi zmdi-view-list"></i>Trabalhos</a></li>
                         <li><a href=""><i class="zmdi zmdi-view-list"></i>Ajuda</a></li>
                     </ul>

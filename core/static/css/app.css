@@ -76,7 +76,7 @@ body {
   line-height: 1.5;
   color: #747a80;
   text-align: left;
-  background-color: #e9e9e9;
+  background-image: url(../img/bg-middle-center.png);
 }
 [tabindex="-1"]:focus {
   outline: 0 !important;
@@ -8971,7 +8971,7 @@ button, input, optgroup, select, textarea {
   color: #a9adb1;
 }
 .sidebar {
-  background-color: #eaeaea;
+  background-color: #ffffff;
   width: 270px;
   position: fixed;
   left: 0;
@@ -8982,11 +8982,11 @@ button, input, optgroup, select, textarea {
 }
 
 .sidebar2 {
-  background-color: #eaeaea;
+  background-color: #ffffff;
   width: 270px;
   position: fixed;
   left: 0;
-  padding: 102px 2rem 0.5rem 2rem;
+  padding: 50px 0;
   height: 100%;
   overflow: hidden;
   z-index: 9;
