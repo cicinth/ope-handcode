@@ -8522,7 +8522,7 @@ button, input, optgroup, select, textarea {
   z-index: 8;
 }
 .header {
-  position: fixed;
+  position: inherit;
   width: 100%;
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.15);
   color: #fff;
@@ -8606,6 +8606,9 @@ button, input, optgroup, select, textarea {
     padding-top: 5px;
     padding-bottom: 5px;
   }
+}
+.header__logo img{
+  align-items: center;
 }
 .header__logo > h1 {
   line-height: 100%;

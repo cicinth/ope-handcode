@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,7 +21,7 @@
         <main class="main">
             <header class="header">
                 <div class="header__logo">
-                    <img id = "img" src="{% static 'img/logo-faculdade-branco.png' %}">
+                    <a href="/"><img id = "img" src="{% static 'img/logo-faculdade-branco.png' %}"></a>
                 </div>
             
                 <ul class="top-nav">
@@ -80,25 +80,3 @@
 </html>
 
 
-<script>
-    window.onscroll = function() {myFunction()};
-    
-    function myFunction() {
-        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-            document.getElementById("cabecalho").className = "cabecalho2";
-            document.getElementById("menu").className = "menu2";
-            document.getElementById("logo").className = "logo2";
-            document.getElementById("img").src = "{% static 'img/handcodeicon2.png' %}";
-            document.getElementById("img2").src = "{% static 'img/logout.png' %}";
-            
-                                            
-        } else {
-            document.getElementById("cabecalho").className = "cabecalho";
-            document.getElementById("menu").className = "menu";
-            document.getElementById("logo").className = "logo";
-            document.getElementById("img").src = "{% static 'img/handcodeicon1.png' %}";
-            document.getElementById("img2").src = "{% static 'img/logout1.png' %}";
-  
-        }
-    }
-  </script>
