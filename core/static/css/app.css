@@ -8980,7 +8980,25 @@ button, input, optgroup, select, textarea {
   overflow: hidden;
   z-index: 9;
 }
+
+.sidebar2 {
+  background-color: #eaeaea;
+  width: 270px;
+  position: fixed;
+  left: 0;
+  padding: 102px 2rem 0.5rem 2rem;
+  height: 100%;
+  overflow: hidden;
+  z-index: 9;
+  display:none;
+}
 @media (max-width: 1199.99px) {
+  .sidebar2{
+    display:block;
+    transition: opacity 300ms, -webkit-transform 300ms;
+    transition: transform 300ms, opacity 300ms;
+    transition: transform 300ms, opacity 300ms, -webkit-transform 300ms;
+  }
   .sidebar {
     transition: opacity 300ms, -webkit-transform 300ms;
     transition: transform 300ms, opacity 300ms;
@@ -8990,7 +9008,16 @@ button, input, optgroup, select, textarea {
     -webkit-transform: translate3d(-100%, 0, 0);
     transform: translate3d(-100%, 0, 0);
   }
+  .sidebar2:not(.toggled) {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
   .sidebar.toggled {
+    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.08);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  .sidebar2.toggled {
     box-shadow: 5px 0 10px rgba(0, 0, 0, 0.08);
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
@@ -9063,6 +9090,11 @@ button, input, optgroup, select, textarea {
 .navigation {
   list-style: none;
   padding: 0;
+}
+.navigation2 {
+  list-style: none;
+  padding: 0;
+  display: none;
 }
 .navigation li a {
   color: #747a80;
