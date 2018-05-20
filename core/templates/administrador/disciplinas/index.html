@@ -57,6 +57,8 @@
         };
 
         var resposta = $.ajax({
+            headers:
+            { 'X-CSRFToken': '{{ csrf_token }}'},
 			url: '/painel/administrador/disciplinas/remover/',
             method: 'POST',
             scriptCharset: "utf-8",

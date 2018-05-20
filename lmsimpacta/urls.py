@@ -25,6 +25,6 @@ urlpatterns = [
     path('painel/administrador/administradores/editar/<int:idAdministrador>', editarAdministrador),
     path("login/", login, {"template_name":"login/entrar.html"}), 
     path("logout/", logout, {'next_page': 'home'}),
-    path("painel/administrador/disciplinas/remover", disciplinaExcluir)
+    path("painel/administrador/disciplinas/remover/", disciplinaExcluir)
 ]
 
