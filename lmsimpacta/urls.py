@@ -3,6 +3,7 @@ from django.contrib import admin
 from core.views import *
 from django.contrib.auth.views import login, logout
 from django.urls import path
+from core.rest import *
 
 urlpatterns = [
     path('', homeIndex, name="home"),
@@ -24,5 +25,6 @@ urlpatterns = [
     path('painel/administrador/administradores/editar/<int:idAdministrador>', editarAdministrador),
     path("login/", login, {"template_name":"login/entrar.html"}), 
     path("logout/", logout, {'next_page': 'home'}),
+    path("painel/administrador/disciplinas/remover", disciplinaExcluir)
 ]
 
