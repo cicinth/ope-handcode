@@ -22,45 +22,57 @@
 					<header class="content__title">
 						<h1>Cadastro do grupo</h1>
 						<small>Insira as informações sobre seu grupo e os integrantes, em seguinda aguarde a aprovação por email para acessar a plataforma!</small>
-
 					</header>
 
 					<div class="card">
 						<div class="card-body">
-							
-								<div class="form-group">
-									<input name="nome" type="text" class="form-control" placeholder="Nome do grupo"/>
-									<i class="form-group__bar"></i>
-								</div>
-
 								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input name="nome" type="text" class="form-control" placeholder="Nome do grupo"/>
+											<i class="form-group__bar"></i>
+										</div>
+									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
 											<input name="tema" type="text" class="form-control" placeholder="Tema">
 											<i class="form-group__bar"></i>
 										</div>
 									</div>
+								</div>
+								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
 											<div class="select">
-												<select name="turma" class="form-control" required="required">
-													<option>Turma</option>
-													<option value="1">ADS - 1 A</option>
+												<select name="curso" class="form-control">
+														<option>Selecione um curso</option>
+													{% for curso in cursos %}
+														<option value="{{curso.id}}">{{curso.nome}}</option>
+													{% endfor %}
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<div class="select">
+												<select name="turma" class="form-control">
+														<option>Selecione uma turma</option>
+													{% for turma in turmas %}
+														<option value="{{turma.id}}">{{turma.semestre}} - {{turma.sigla}} ({{turma.curso.sigla}})</option>
+													{% endfor %}
 												</select>
 											</div>
 										</div>
 									</div>
 								</div>
-
 							</div>
-							
 						</div>
-
 					</div>
 					<section id="sec-integrantes" data-quantia="0" class="js-integrates">
 						<div id="card-0" class="card profile">
 							<div class="actions">
-									<a href="" class="actions__item zmdi zmdi-close"></a>
+								<a href="" class="actions__item zmdi zmdi-close"></a>
 							</div>
 							<div class="profile__img">
 								<img  src="{% static "/img/contacts/2.jpg" %}" alt="">

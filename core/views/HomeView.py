@@ -8,10 +8,12 @@ def homeIndex (request):
 def homeCadastroGrupo (request):
     contexto = {}
 
-    print(Grupo.objects.all())
-    print(Aluno.objects.all())
-
     alunos = []
+
+    contexto = {}
+
+    contexto['turmas'] = Turma.objects.all()
+    contexto['cursos'] = Curso.objects.all()
 
     alunoAtual = {}
 
@@ -35,10 +37,10 @@ def salvaGrupoAlunos(dicionario):
     grupoModel.ativo = False
     grupoModel.nome = grupo["nome"]
     grupoModel.tema = grupo["tema"]
-    print("turma",grupo["turma"])
+    
     grupoModel.turma = Turma.objects.get(id=int(grupo["turma"]))
     grupoModel.save()
-    print("grupo ",grupo)
+    
 
     alunos = []
 
@@ -68,9 +70,9 @@ def salvaGrupoAlunos(dicionario):
         alunoModel.ra = aluno['ra']
         alunoModel.nome = aluno['nome']
         alunoModel.email = aluno['email']
-        alunoModel.set_password('asdf1234')
+        alunoModel.set_password('123456')
         alunoModel.telefone = aluno['telefone']
         alunoModel.save()
         alunoModel.grupos.add(grupoModel)
         alunoModel.save()
-        print(aluno)
+        

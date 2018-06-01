@@ -29,7 +29,7 @@ python manage.py test testes
 #senha do bd
 
 #USUARIO ADMINISTRADOR - COORDENADOR
-admin@admin.com: 123456
+admin@admin.com: asdf1234
 
 #PROFESSOR
 

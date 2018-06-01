@@ -17,6 +17,7 @@ urlpatterns = [
     path('painel/administrador/cursos/novo', novoCurso),
     path('painel/administrador/cursos/editar/<slug:siglaCurso>', editarCurso),
     path('painel/administrador/perfil/', painelAdministradorPerfil),
+    path('painel/administrador/grupos/', listarGrupo),
     path('painel/administrador/turmas/', listarTurma),
     path('painel/administrador/turmas/novo', novoTurma),
     path('painel/administrador/turmas/editar/<int:idTurma>', editarTurma),
