@@ -14,5 +14,3 @@ class Disciplina(models.Model):
         for curso in self.cursos.all():
             ids.append(curso.id)
         return ids
-
-
