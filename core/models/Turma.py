@@ -13,6 +13,15 @@ class Turma(models.Model):
 
     def getCursoId(self):
         return self.curso.id
+    
+    def toJson(self):
+        return {
+            "turno":self.turno,
+            "sigla":self.sigla,
+            "ano":self.ano,
+            "semestre":self.semestre,
+            "curso":self.curso.id
+        }
 
 
 from .Curso import Curso

@@ -28,6 +28,8 @@ urlpatterns = [
     path("logout/", logout, {'next_page': 'home'}),
     path("painel/administrador/disciplinas/remover/", disciplinaExcluir),
     path("painel/administrador/turmas/remover/", turmaExcluir),
-    path("painel/administrador/cursos/remover/", cursoExcluir)
+    path("painel/administrador/cursos/remover/", cursoExcluir),
+    path("api/turmas/", turmaListarJson),
+    
 ]
 
