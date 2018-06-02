@@ -33,7 +33,12 @@
                   <div class="listview__attrs">
                       <span>{{grupo.turma.curso.sigla}}</span>
                       <span>{{grupo.turma.semestre}}º{{grupo.turma.sigla}} - {{grupo.turma.turno}}</span>
-                      <span>{{grupo.ativo}}</span>
+                      {% if grupo.ativo == False%}
+                        <span>Não Aprovado</span>
+                      {% endif %}
+                      {% if grupo.ativo == True%}
+                        <span>Aprovado</span>
+                      {% endif %}
                   </div>
               </div>
               <div class="actions listview__actions">
