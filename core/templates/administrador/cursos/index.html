@@ -32,7 +32,7 @@
                         <i class="zmdi zmdi-more-vert" data-toggle="dropdown"></i>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="/painel/administrador/cursos/editar/{{curso.sigla}}" class="dropdown-item">Editar</a>
-                            <button type="button" data-url="/painel/administrador/cursos/remover/{{curso.sigla}}" class="js-btn-remover dropdown-item">Remover</a>
+                            <button type="button" data-id="{{curso.sigla}}" class="js-btn-remover dropdown-item">Remover</a>
                         </div>
                     </div>
                 </div>
@@ -45,6 +45,42 @@
 
 {% block scripts %}
   <script>
-    
+      
+    function cursoExcluir(siglaEnvio, divRemover) {
+
+        var jsonEnvio = {
+            "sigla":siglaEnvio
+        };
+
+        var resposta = $.ajax({
+            headers:
+            { 'X-CSRFToken': '{{ csrf_token }}'},
+            url: '/painel/administrador/cursos/remover/',
+            method: 'POST',
+            scriptCharset: "utf-8",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(jsonEnvio),
+        });
+
+        resposta.done(function(data) {
+            alert("Curso "+siglaEnvio+" excluido.");
+            console.log('done', data);
+            divRemover.remove();
+            }
+        );
+
+        resposta.fail(function(data) {
+            alert("Falha ao excluir curso "+siglaEnvio);
+            console.log('fail', data);
+            });
+        }
+
+        $(".js-btn-remover").click(function() {
+            var sigla = $(this).data("id");
+            divRemover = $(this).closest(".listview__item");
+            cursoExcluir(sigla, divRemover);
+            console.log(sigla);
+        });
+
   </script>
 {% endblock %}
