@@ -50,7 +50,8 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<div class="select">
-												<select name="curso" class="form-control js-obrigatorio" placeholder="Curso">
+												<select name="curso" class="form-control js-obrigatorio js-cursos" placeholder="Curso">
+													<option></option select>
 													{% for curso in cursos %}
 														<option value="{{curso.id}}">{{curso.nome}}</option>
 													{% endfor %}
@@ -65,10 +66,8 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<div class="select">
-												<select name="turma" class="form-control js-obrigatorio" placeholder="Turma">
-													{% for turma in turmas %}
-														<option value="{{turma.id}}">{{turma.semestre}} - {{turma.sigla}} ({{turma.curso.sigla}})</option>
-													{% endfor %}
+												<select name="turma" class="form-control js-obrigatorio js-turmas" placeholder="Turma">
+													
 												</select>
 												<div class="invalid-feedback">
 													Turma é obrigatório.
@@ -151,79 +150,6 @@
 {% block scripts %}
   <script>
 
-	//btn acao adicionar aluno
-	var indexAluno = $('#sec-integrantes').data('quantia');
-	var containerAlunos = $('#sec-integrantes');
-	var btnAddAluno = $('#btn-add-aluno');
-
-
-	btnAddAluno.click(function() {
-		indexAluno = indexAluno + 1;
-		var integranteNumero = indexAluno +1
-		var corpoHtml =	`<div id="card-0" class="card profile">
-							<div class="actions">
-									<a  class="actions__item zmdi zmdi-close js-clica-remove-card"></a>
-							</div>
-							<div class="profile__img">
-								<img  src="{% static "/img/contacts/2.jpg" %}" alt="">
-								<a  class="zmdi zmdi-camera profile__img__edit"></a>
-							</div>
-							<div class="profile__info">
-								<h3 class="card-body__title">`+integranteNumero+`º Integrante</h3>
-								<div class="col-sm-10">
-									<div class="row">
-										<div class="col-sm-6">
-											<div class="form-group">
-												<input name="alunos[`+indexAluno+`].nome" type="text" class="form-control" placeholder="Nome"/>
-												<div class="invalid-feedback">
-													Nome do integrante é obrigatório.
-												</div>
-												<i class="form-group__bar"></i>
-											</div>
-										</div>
-										<div class="col-sm-6">
-											<div class="form-group">
-												<input name="alunos[`+indexAluno+`].ra" type="number" class="form-control js-obrigatorio" placeholder="RA">
-												<div class="invalid-feedback">
-													RA é obrigatório.
-												</div>
-												<i class="form-group__bar"></i>
-											</div>
-										</div>
-										<div class="col-sm-6">
-											<div class="form-group">
-												<input name="alunos[`+indexAluno+`].email" type="email" class="form-control js-obrigatorio" placeholder="Email">
-												<div class="invalid-feedback">
-													Email é obrigatório.
-												</div>
-												<i class="form-group__bar"></i>
-											</div>
-										</div>
-										<div class="col-sm-6">
-											<div class="form-group">
-												<input name="alunos[`+indexAluno+`].telefone" type="number" class="form-control" placeholder="Telefone">
-												<i class="form-group__bar"></i>
-											</div>
-										</div>
-
-									</div>
-								</div>
-							</div>
-						</div>`
-		
-		containerAlunos.append(corpoHtml);
-
-		$( ".js-clica-remove-card" ).click(function() {
-			indexAluno = indexAluno - 1;
-			$(this).closest( ".card" ).remove();
-		});
-	});
-
-
-	//is-valid is-invalid js-obrigatorio
-
-	//validação ao clicar no btn finalizar
-
 	function validarFormulario(form) {
 		var inputs = form.find(".js-obrigatorio");
 
@@ -244,9 +170,117 @@
 		}
 	}
 
-	$( ".js-btn-finalizar" ).click(function() {
-		var form = $(this).closest("form");
-		validarFormulario(form);
+	function carregarOptionsCurso(selectContainer, cursoId){
+		selectContainer.empty();
+
+        var resposta = $.ajax({
+            headers:
+            { 'X-CSRFToken': '{{ csrf_token }}'},
+            url: '/api/turmas/?cursoId='+cursoId,
+            method: 'GET',
+            scriptCharset: "utf-8",
+        });
+
+        resposta.done(function(data) {
+			$.each( data.turmas, function( key, turma ) {
+				selectContainer.append(`<option value="`+turma.id+`">`+turma.semestre+` - `+turma.sigla+`</option>`)
+			});
+		});
+
+        resposta.fail(function(data) {
+            alert(data);
+		});
+        
+	}
+
+
+	$( document ).ready(function() {
+
+		$(".js-cursos").change(function() {
+			var cursoId = $(this).val();
+			var select = $('.js-turmas');
+			carregarOptionsCurso(select, cursoId);
+		});
+
+		//carrega turmas se curso ja estiver selecionar na hora de carregar a pagina
+
+		var cursoId = $(".js-cursos").val();
+		if (cursoId != null && cursoId != '') {
+			carregarOptionsCurso($('.js-turmas'), cursoId);
+		}
+		
+		$( ".js-btn-finalizar" ).click(function() {
+			var form = $(this).closest("form");
+			validarFormulario(form);
+		});
+
+
+		var indexAluno = $('#sec-integrantes').data('quantia');
+		var containerAlunos = $('#sec-integrantes');
+		var btnAddAluno = $('#btn-add-aluno');
+
+		btnAddAluno.click(function() {
+			indexAluno = indexAluno + 1;
+			var integranteNumero = indexAluno +1
+			var corpoHtml =	`<div id="card-0" class="card profile">
+								<div class="actions">
+										<a  class="actions__item zmdi zmdi-close js-clica-remove-card"></a>
+								</div>
+								<div class="profile__img">
+									<img  src="{% static "/img/contacts/2.jpg" %}" alt="">
+									<a  class="zmdi zmdi-camera profile__img__edit"></a>
+								</div>
+								<div class="profile__info">
+									<h3 class="card-body__title">`+integranteNumero+`º Integrante</h3>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-6">
+												<div class="form-group">
+													<input name="alunos[`+indexAluno+`].nome" type="text" class="form-control" placeholder="Nome"/>
+													<div class="invalid-feedback">
+														Nome do integrante é obrigatório.
+													</div>
+													<i class="form-group__bar"></i>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<input name="alunos[`+indexAluno+`].ra" type="number" class="form-control js-obrigatorio" placeholder="RA">
+													<div class="invalid-feedback">
+														RA é obrigatório.
+													</div>
+													<i class="form-group__bar"></i>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<input name="alunos[`+indexAluno+`].email" type="email" class="form-control js-obrigatorio" placeholder="Email">
+													<div class="invalid-feedback">
+														Email é obrigatório.
+													</div>
+													<i class="form-group__bar"></i>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<input name="alunos[`+indexAluno+`].telefone" type="number" class="form-control" placeholder="Telefone">
+													<i class="form-group__bar"></i>
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>`
+			
+			containerAlunos.append(corpoHtml);
+
+			$( ".js-clica-remove-card" ).click(function() {
+				indexAluno = indexAluno - 1;
+				$(this).closest( ".card" ).remove();
+			});
+		});
+
 	});
 	
   </script>
