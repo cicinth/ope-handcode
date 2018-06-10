@@ -196,6 +196,11 @@
 
 	$( document ).ready(function() {
 
+		$( ".js-btn-finalizar" ).click(function() {
+			var form = $(this).closest("form");
+			validarFormulario(form);
+		});
+
 		$(".js-cursos").change(function() {
 			var cursoId = $(this).val();
 			var select = $('.js-turmas');
@@ -209,11 +214,6 @@
 			carregarOptionsCurso($('.js-turmas'), cursoId);
 		}
 		
-		$( ".js-btn-finalizar" ).click(function() {
-			var form = $(this).closest("form");
-			validarFormulario(form);
-		});
-
 
 		var indexAluno = $('#sec-integrantes').data('quantia');
 		var containerAlunos = $('#sec-integrantes');
