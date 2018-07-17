@@ -16,3 +16,10 @@ def listarGrupo (request):
     
 
     return render(request,"administrador/grupos/index.html", contexto)
+
+def detalheGrupo (request):
+    
+    contexto = {}
+    contexto['grupo'] = Grupo.objects.get(id=1)
+
+    return render(request,"administrador/grupos/detalhe.html", contexto)
