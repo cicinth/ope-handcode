@@ -23,12 +23,12 @@
             <div class="text-left">
                 <p>Grupo</p>
 
-                <h4>HandCode</h4>
+                <h4>{{grupo.nome}}</h4>
 
                 <p>
-                    Tema: Gerenciador de OPE's<br>
-                    Turma: 3B<br>
-                    Curso: ADS
+                    Tema: {{grupo.tema}}<br>
+                    Turma: {{grupo.turma.semestre}}º{{grupo.turma.sigla}} - {{grupo.turma.turno}}<br>
+                    Curso: {{grupo.turma.curso.sigla}}
                 </p>
 
             </div>
@@ -90,6 +90,7 @@
     </div>
 </div>       
 <div class="contacts row">
+        {% for integrante in integrantes %}    
             <div class="col-xl-2 col-lg-3 col-sm-4 col-6">
                 <div class="contacts__item">
                     <a href="" class="contacts__img">
@@ -97,91 +98,13 @@
                     </a>
 
                     <div class="contacts__info">
-                        <strong>Cathy Shelton</strong>
-                        <small>cathy.shelton31@example.com</small>
+                        <strong>{{integrante.nome}}</strong>
+                        <small>{{integrante.email}}</small>
                     </div>
-
-                    <button class="contacts__btn">Following</button>
                 </div>
             </div>
-
-            <div class="col-xl-2 col-lg-3 col-sm-4 col-6">
-                <div class="contacts__item">
-                    <a href="" class="contacts__img">
-                        <img src="demo/img/contacts/3.jpg" alt="">
-                    </a>
-
-                    <div class="contacts__info">
-                        <strong>Marilyn Thomas</strong>
-                        <small>marilyn@example.com</small>
-                    </div>
-
-                    <button class="contacts__btn">Following</button>
-                </div>
-            </div>
-
-            <div class="col-xl-2 col-lg-3 col-sm-4 col-6">
-                <div class="contacts__item">
-                    <a href="" class="contacts__img">
-                        <img src="demo/img/contacts/4.jpg" alt="">
-                    </a>
-
-                    <div class="contacts__info">
-                        <strong>Dwight Gilbert</strong>
-                        <small>dwight@example.com</small>
-                    </div>
-
-                    <button class="contacts__btn">Following</button>
-                </div>
-            </div>
-
-            <div class="col-xl-2 col-lg-3 col-sm-4 col-6">
-                <div class="contacts__item">
-                    <a href="" class="contacts__img">
-                        <img src="demo/img/contacts/5.jpg" alt="">
-                    </a>
-
-                    <div class="contacts__info">
-                        <strong>Cody Moreno</strong>
-                        <small>moreno@example.com</small>
-                    </div>
-
-                    <button class="contacts__btn">Following</button>
-                </div>
-            </div>
-
-            <div class="col-xl-2 col-lg-3 col-sm-4 col-6">
-                <div class="contacts__item">
-                    <a href="" class="contacts__img">
-                        <img src="demo/img/contacts/6.jpg" alt="">
-                    </a>
-
-                    <div class="contacts__info">
-                        <strong>Jamie Freeman</strong>
-                        <small>freeman@example.com</small>
-                    </div>
-
-                    <button class="contacts__btn">Following</button>
-                </div>
-            </div>
-
-            <div class="col-xl-2 col-lg-3 col-sm-4 col-6">
-                <div class="contacts__item">
-                    <a href="" class="contacts__img">
-                        <img src="demo/img/contacts/7.jpg" alt="">
-                    </a>
-
-                    <div class="contacts__info">
-                        <strong>Charles Spencer</strong>
-                        <small>charles@example.com</small>
-                    </div>
-
-                    <button class="contacts__btn">Following</button>
-                </div>
-            </div>
-
-            
-        </div>
+        {% endfor %}        
+</div>
 
     
 
