@@ -51,7 +51,7 @@
 										<div class="form-group">
 											<div class="select">
 												<select name="curso" class="form-control js-obrigatorio js-cursos" placeholder="Curso">
-													<option></option select>
+													<option></option select>	
 													{% for curso in cursos %}
 														<option value="{{curso.id}}">{{curso.nome}}</option>
 													{% endfor %}
@@ -67,6 +67,7 @@
 										<div class="form-group">
 											<div class="select">
 												<select name="turma" class="form-control js-obrigatorio js-turmas" placeholder="Turma">
+													
 													
 												</select>
 												<div class="invalid-feedback">

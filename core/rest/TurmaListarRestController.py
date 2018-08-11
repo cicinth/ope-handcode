@@ -6,8 +6,8 @@ def turmaListarJson(request):
 
     turmas = []
 
-    if 'curso' in request.GET.keys():
-        turmas = Turma.objects.filter(curso=request.GET['curso'])
+    if 'cursoId' in request.GET.keys():
+        turmas = Turma.objects.filter(curso=request.GET['cursoId'])
 
     contexto = {}
 

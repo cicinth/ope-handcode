@@ -10,4 +10,4 @@ class Grupo(models.Model):
     class Meta:
         db_table = 'GRUPO'
 
-from .Turma import Turma
+from .Aluno import Aluno

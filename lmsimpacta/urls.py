@@ -30,6 +30,6 @@ urlpatterns = [
     path("painel/administrador/turmas/remover/", turmaExcluir),
     path("painel/administrador/cursos/remover/", cursoExcluir),
     path("api/turmas/", turmaListarJson),
-    path("painel/administrador/grupos/1/", detalheGrupo),
+    path("painel/administrador/grupos/<int:id>/", detalheGrupo),
 ]
 

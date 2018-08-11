@@ -16,6 +16,7 @@ class Turma(models.Model):
     
     def toJson(self):
         return {
+            "id":self.id,
             "turno":self.turno,
             "sigla":self.sigla,
             "ano":self.ano,

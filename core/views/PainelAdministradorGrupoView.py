@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from core.models import Grupo
+from core.models import Aluno
 
 def listarGrupo (request):
 
@@ -17,9 +18,9 @@ def listarGrupo (request):
 
     return render(request,"administrador/grupos/index.html", contexto)
 
-def detalheGrupo (request):
-    
+def detalheGrupo (request, id):
+    g = Grupo.objects.get(id=id)
     contexto = {}
-    contexto['grupo'] = Grupo.objects.get(id=1)
-
+    contexto['grupo'] = g
+    contexto['integrantes'] = Aluno.objects.filter(grupos=g)
     return render(request,"administrador/grupos/detalhe.html", contexto)
