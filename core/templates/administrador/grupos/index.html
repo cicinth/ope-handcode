@@ -31,21 +31,8 @@
                         <a href="/painel/administrador/grupos/{{grupo.id}}" class="contacts__img">
                             <img src="../../../../template-estatico/demo/img/contacts/1.jpg" alt="">
                         </a>
-                        <div class="dropdown actions__item">
-                            <i class="zmdi zmdi-more-vert" data-toggle="dropdown"></i>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a href="/painel/administrador/grupos/{{grupo.id}}" class="dropdown-item">Detalhes</a>
-                                {% if grupo.ativo == False%}
-                                  <button type="button" data-id="{{grupo.id}}" class="js-btn-remover dropdown-item">Aprovar</a>
-                                {% endif %}
-                                {% if grupo.ativo == True%}
-                                  <button type="button" data-id="{{grupo.id}}" class="js-btn-remover dropdown-item">Remover Aprovação</a>
-                                {% endif %}
-                            </div>
-                        </div>
+                        
                     </div>
-                    
-                    
                     <div class="contacts__info">
                         <strong>{{grupo.nome}}</strong>
                         
@@ -55,16 +42,21 @@
                         <span>{{grupo.turma.semestre}}º{{grupo.turma.sigla}} - {{grupo.turma.turno}}</span>
                         <span>    
                             {% if grupo.ativo == False%}
-                                <span>Não Aprovado</span>
+                                <span><p>Não Aprovado</p></span>
                             {% endif %}
                             {% if grupo.ativo == True%}
-                                <span>Aprovado</span>
+                                <span><p>Aprovado</p></span>
                             {% endif %}
                         </span>
-                    </div>    
-                    
-                    
-                    
+                    </div> 
+                    <div class="btn-demo">
+                        {% if grupo.ativo == False%}
+                                  <button type="button" data-id="{{grupo.id}}" class="btn btn-outline-primary">Aprovar</a>
+                                {% endif %}
+                                {% if grupo.ativo == True%}
+                                  <button type="button" data-id="{{grupo.id}}" class="btn btn-outline-secundary">Remover Aprovação</a>
+                        {% endif %}
+                    </div>   
                 </div>
             </div>
     {% endfor %}   
