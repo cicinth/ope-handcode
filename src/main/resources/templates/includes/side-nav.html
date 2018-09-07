@@ -4,35 +4,38 @@
             <div class="user__info" data-toggle="dropdown">
                 <img class="user__img" th:src="@{/img/profile-pics/8.jpg}" alt="">
                 <div>
-                    <div class="user__name">{{ request.user.nome }}</div>
-                    <div class="user__email">{{ request.user.email }}</div>
+                    <div th:text="${#authentication?.principal?.nome}" class="user__name">Nome</div>
+                    <div th:text="${#authentication?.principal?.email}" class="user__email">Email</div>
                 </div>
             </div>
 
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="/painel/administrador/perfil">Ver perfil</a>
-                <a class="dropdown-item" href="/logout">Sair</a>
+                <a class="dropdown-item" th:href="@{/painel/admin/perfil}">Ver perfil</a>
+                <a class="dropdown-item" th:href="@{/logout}">Sair</a>
             </div>
         </div>
 
         <ul class="navigation">
             <li>
-                <a href="/painel/administrador"><i class="zmdi zmdi-home"></i> Painel</a>
+                <a th:href="@{/painel/admin}"><i class="zmdi zmdi-home"></i>Painel</a>
             </li>
             <li>
-                <a href="/painel/administrador/cursos"><i class="zmdi zmdi-view-list"></i>Cursos</a>
+                <a th:href="@{/painel/admin/cursos}"><i class="zmdi zmdi-view-list"></i>Cursos</a>
             </li>
             <li>
-                <a href="/painel/administrador/disciplinas"><i class="zmdi zmdi-view-list"></i>Disciplinas</a>
+                <a th:href="@{/painel/admin/disciplinas}"><i class="zmdi zmdi-view-list"></i>Disciplinas</a>
             </li>
             <li>
-                <a href="/painel/administrador/turmas"><i class="zmdi zmdi-view-list"></i>Turmas</a>
+                <a th:href="@{/painel/admin/turmas}"><i class="zmdi zmdi-view-list"></i>Turmas</a>
             </li>
             <li>
-                <a href="/painel/administrador/administradores"><i class="zmdi zmdi-view-list"></i>Administradores</a>
+                <a th:href="@{/painel/admin/administradores}"><i class="zmdi zmdi-view-list"></i>Administradores</a>
             </li>
             <li>
-                <a href="/painel/administrador/grupos"><i class="zmdi zmdi-view-list"></i>Grupos</a>
+                <a th:href="@{/painel/admin/professores}"><i class="zmdi zmdi-view-list"></i>Professores</a>
+            </li>
+            <li>
+                <a th:href="@{/painel/admin/grupos}"><i class="zmdi zmdi-view-list"></i>Grupos</a>
             </li>
         </ul>
     </div>

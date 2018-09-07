@@ -16,12 +16,10 @@ open class WebSecurityConfig(private val userDetailsService: UserDetailsService,
 
     override fun configure(http: HttpSecurity) {
         http.authorizeRequests()
-            .anyRequest().permitAll()
             .antMatchers("/h2_console/**").permitAll()
-            .antMatchers("/painel/*").authenticated()
-            .antMatchers("/painel/admin/*").hasRole("ADMIN")
-            .antMatchers("/painel/aluno/*").hasRole("ALUNO")
-            .antMatchers("/painel/professor/*").hasRole("PROFESSOR")
+            .antMatchers("/painel/admin/**").hasRole("ADMIN")
+            .antMatchers("/painel/aluno/**").hasRole("ALUNO")
+            .antMatchers("/painel/professor/**").hasRole("PROFESSOR")
             .and().formLogin().loginPage("/login").permitAll().successHandler(UrlRedirectAuthenticationSuccessHandler())
             .and().logout().logoutUrl("/logout").permitAll()
             .and().exceptionHandling().accessDeniedPage("/403")

@@ -12,26 +12,20 @@
     </div>
     <ul class="top-nav">
         <li class="dropdown hidden-xs-down">
-
-
             <a href="" data-toggle="dropdown">
                 <i class="zmdi zmdi-account"></i>
-                Olá {{ request.user.nome }}
+                <span th:text="|Olá ${#authentication?.principal?.nome}|"></span>
             </a>
-
-            <!--{% if not request.user.is_authenticated %}
-            <a href="/login">
+            <a th:if="${#authentication?.principal == null}" th:href="@{/login}">
                 <i class="zmdi zmdi-account"></i>
                 Entrar
             </a>
-            {% endif %}
-
             <div class="dropdown-menu dropdown-menu-right">
-                {% if request.user.is_authenticated %}
-                <a href="/painel/administrador" class="dropdown-item">Painel</a>
-                <a href="/logout" class="dropdown-item">Sair</a>
-                {% endif %}
-            </div>-->
+                <th:block th:if="${#authentication?.principal != null}">
+                    <a th:href="@{/painel/admin}" class="dropdown-item">Painel</a>
+                    <a th:href="@{/logout}" class="dropdown-item">Sair</a>
+                </th:block>
+            </div>
 
         </li>
     </ul>

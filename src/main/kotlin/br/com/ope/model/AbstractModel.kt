@@ -1,6 +1,5 @@
 package br.com.ope.model
 
-import br.com.ope.security.UsuarioUtil
 import org.hibernate.annotations.GenericGenerator
 import java.util.*
 import javax.persistence.*
@@ -17,19 +16,10 @@ abstract class AbstractModel {
     @Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     var dataCriacao : Date = Date()
 
-    @ManyToOne
-    var usuarioCriacao : Usuario? = UsuarioUtil.usuarioAutenticado()
-
     constructor()
 
     constructor(id: UUID?) {
         this.id = id
     }
-
-    constructor(id: UUID? = null, usuarioCriacao: Usuario? = UsuarioUtil.usuarioAutenticado()) {
-        this.id = id
-        this.usuarioCriacao = usuarioCriacao
-    }
-
 
 }

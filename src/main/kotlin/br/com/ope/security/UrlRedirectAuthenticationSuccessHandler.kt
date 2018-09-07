@@ -1,6 +1,8 @@
 package br.com.ope.security
 
+import br.com.ope.model.Administrador
 import br.com.ope.model.Aluno
+import br.com.ope.model.Professor
 import org.springframework.security.core.Authentication
 import org.springframework.security.web.DefaultRedirectStrategy
 import org.springframework.security.web.WebAttributes
@@ -36,6 +38,10 @@ class UrlRedirectAuthenticationSuccessHandler(private var redirectStrategy : Def
     private fun determineTargetUrl(authentication: Authentication): String {
         return if (authentication.principal is Aluno) {
             "/painel/aluno"
+        } else  if (authentication.principal is Professor) {
+            return "/painel/professor"
+        } else  if (authentication.principal is Administrador) {
+            return "/painel/admin"
         } else {
             return "/"
         }
