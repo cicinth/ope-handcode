@@ -1,0 +1,27 @@
+<th:block xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+          xmlns:th="http://www.thymeleaf.org"
+          layout:decorate="~{layout-painel-admin}">
+
+    <div layout:fragment="conteudo">
+        <header class="content__title">
+            <h1>Grupos</h1>
+            <div class="actions">
+                <div class="dropdown actions__item">
+                    <i data-toggle="dropdown" class="zmdi zmdi-more-vert"></i>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a href="/painel/admin/grupos" class="dropdown-item">Lista</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+
+    <th:block layout:fragment="javascript">
+        <script>
+
+        </script>
+
+    </th:block>
+
+</th:block>

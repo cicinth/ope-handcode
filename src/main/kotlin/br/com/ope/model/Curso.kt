@@ -22,10 +22,11 @@ class Curso : AbstractModel {
     constructor() : super()
 
     constructor(id: UUID?) : super(id)
-    constructor(nome: String, sigla: String, semestres: Int) : super() {
+    constructor(nome: String, sigla: String, semestres: Int, disciplinas : List<Disciplina>  = mutableListOf()) : super() {
         this.nome = nome
         this.sigla = sigla
         this.semestres = semestres
+        this.disciplinas = disciplinas
     }
 
 

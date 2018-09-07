@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">OPE</title>
-    <th:block th:include="includes/dependencias-css" />
+    <th:block th:replace="includes/dependencias-css" />
 </head>
 
 <body data-ma-theme="indigo">
@@ -107,7 +107,7 @@
         <th:block layout:fragment="conteudo" />
     </main>
 
-    <th:block th:include="includes/dependencias-js" />
+    <th:block th:replace="includes/dependencias-js" />
 
     <th:block layout:fragment="javascript"/>
 
