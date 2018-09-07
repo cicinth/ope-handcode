@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+
+<body data-ma-theme="indigo">
+
+<main class="main">
+
+
+    <form
+            th:action="@{/login}"
+            method="post">
+        <div class="form-group">
+            <label for="usuario">Usuário</label>
+            <input
+                    autofocus="autofocus"
+                    id="usuario"
+                    class="form-control"
+                    type="text"
+                    name="username"
+            />
+        </div>
+        <div class="form-group">
+            <label for="senha">Senha</label>
+            <input
+                    id="senha"
+                    class="form-control"
+                    type="password"
+                    name="password"
+            />
+        </div>
+        <button type="submit" class="btn btn-success btn-lg w-100">Entrar</button>
+
+        <div style="margin-top: 8px; font-size: 14px; font-weight: 500">
+            <a th:href="@{/senha}">Esqueceu sua senha?</a>
+        </div>
+
+    </form>
+</main>
+
+
+</body>
+</html>

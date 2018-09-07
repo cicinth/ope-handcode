@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Painel</title>
+    <div layout:replace="includes/dependencias-css" />
+</head>
+
+<body data-ma-theme="indigo">
+<div layout:replace="includes/header" />
+<div layout:replace="includes/side-nav" />
+
+<main class="main">
+    <section class="content">
+        <div class="content__inner">
+            <div th:replace="includes/messagens :: messages(messages = ${messages})"></div>
+            <th:block layout:fragment="conteudo" />
+        </div>
+    </section>
+</main>
+
+<div layout:replace="includes/dependencias-js" />
+
+<th:block layout:fragment="javascript"/>
+
+</body>
+</html>

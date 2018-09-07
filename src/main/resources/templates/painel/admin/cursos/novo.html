@@ -1,0 +1,47 @@
+<th:block xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+          xmlns:th="http://www.thymeleaf.org"
+          layout:decorate="~{layout-painel-admin}">
+
+    <div layout:fragment="conteudo">
+        <div class="card">
+            <div class="card-body">
+
+                <form action="/painel/admin/cursos/novo" on="submit" method="POST">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-4">
+                            <div class="form-group">
+                                <input name="nome"  type="text" class="form-control" placeholder="Nome" />
+                                <i class="form-group__bar"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-2">
+                            <div class="form-group">
+                                <input name="sigla"  type="text" class="form-control" placeholder="Sigla" />
+                                <i class="form-group__bar"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-2">
+                            <div class="form-group">
+                                <input name="semestres"  type="number" class="form-control" placeholder="Semestres" />
+                                <i class="form-group__bar"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row-reverse btn-row">
+                        <button type="submit" class="btn btn-success">Salvar</button>
+                        <a href="/painel/admin/cursos/" class="btn btn-outline-danger">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <th:block layout:fragment="javascript">
+        <script>
+
+        </script>
+
+    </th:block>
+
+</th:block>

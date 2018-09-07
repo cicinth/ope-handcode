@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	<div th:fragment="alert" class="alert alert-dismissible fade show" role="alert" 
+		 th:classappend="${message.type.css} ? 'alert-' + ${message.type.css}">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close" th:if="${closeable}">
+			<span aria-hidden="true">&times;</span>
+		</button>
+
+		<h4 th:text="${title}">Título</h4>
+		
+		<p th:text="${message.content}">Mensagem de feedback</p>
+
+		<p th:each="link : ${message.links}">
+			<span data-icon="&#xe00e;" class="icon" style="display: inline;"></span>
+			<a style="text-decoration: underline;" th:href="@{${link.url}}" th:text="${link.text}">
+				Ação
+			</a>
+		</p>
+	</div> 
+	
+	<div th:fragment="feedbackMessage">
+
+		<div class="label-feedback-container">
+			<div class="js-label-feedback label-feedback" th:classappend="${message.type.css}">
+				<span th:text="${message.content}">Mensagem de feedback</span>
+	
+				<th:block th:each="link : ${message.links}">
+					[<a style="text-decoration: underline;" th:href="@{${link.url}}" th:text="${link.text}">Ação</a>]
+				</th:block>
+			</div>
+		</div>
+
+	</div>
+
+	<div th:fragment="message">
+
+		<div class="label-feedback-container">
+			<div class="js-label-feedback label-feedback" th:classappend="${message.type.css}">
+				<span th:text="${message.content}">Mensagem de feedback</span>
+			</div>
+		</div>
+	</div>
+	
+</html>

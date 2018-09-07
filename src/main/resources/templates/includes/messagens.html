@@ -1,0 +1,20 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="messages" th:if="${messages != null}">
+
+	<div th:each="message, i : ${messages}">
+		<div th:fragment="feedbackMessage">
+
+			<div class="label-feedback-container">
+				<div class="js-label-feedback label-feedback" th:classappend="${message.type.css}">
+					<span th:text="${message.content}">Mensagem de feedback</span>
+
+					<th:block th:each="link : ${message.links}">
+						[<a style="text-decoration: underline;" th:href="@{${link.url}}" th:text="${link.text}">Ação</a>]
+					</th:block>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+</html>
