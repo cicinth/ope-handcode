@@ -1,49 +1,98 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
->
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">OPE</title>
+    <th:block th:include="includes/dependencias-css" />
 </head>
 
 <body data-ma-theme="indigo">
 
-<main class="main">
+    <main class="main">
 
 
-    <form
-            th:action="@{/login}"
-            method="post">
-        <div class="form-group">
-            <label for="usuario">Usuário</label>
-            <input
-                    autofocus="autofocus"
-                    id="usuario"
-                    class="form-control"
-                    type="text"
-                    name="username"
-            />
-        </div>
-        <div class="form-group">
-            <label for="senha">Senha</label>
-            <input
-                    id="senha"
-                    class="form-control"
-                    type="password"
-                    name="password"
-            />
-        </div>
-        <button type="submit" class="btn btn-success btn-lg w-100">Entrar</button>
+        <div th:replace="includes/messagens :: messages(messages = ${messages})"></div>
 
-        <div style="margin-top: 8px; font-size: 14px; font-weight: 500">
-            <a th:href="@{/senha}">Esqueceu sua senha?</a>
-        </div>
 
-    </form>
-</main>
 
+        <div class="login">
+
+
+                <div class="login__block active" id="l-login">
+                    <div class="login__block__header">
+                        <i class="zmdi zmdi-account-circle"></i>
+                        Olá, por favor entre!
+
+                        <div class="actions actions--inverse login__block__actions">
+                            <div class="dropdown">
+                                <i data-toggle="dropdown" class="zmdi zmdi-more-vert actions__item"></i>
+
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="/grupo">Criar uma conta</a>
+                                    <a class="dropdown-item" data-ma-action="login-switch" data-ma-target="#l-forget-password" href="">Esqueceu a senha?</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="login__block__body">
+                        <form  th:action="@{/login}" method="POST" url="/login">
+
+                            <div class="form-group form-group--float form-group--centered">
+                                <input class="form-control" type="text" name="username">
+                                <label>Email</label>
+                                <i class="form-group__bar"></i>
+                            </div>
+
+                            <div class="form-group form-group--float form-group--centered">
+                                <input class="form-control" type="password" name="password">
+                                <label>Senha</label>
+                                <i class="form-group__bar"></i>
+                            </div>
+
+                            <button href="index.html" class="btn btn--icon login__block__btn"><i class="zmdi zmdi-long-arrow-right"></i></button>
+                        </form>
+                    </div>
+                </div>
+
+
+                <div class="login__block" id="l-forget-password">
+                    <div class="login__block__header palette-Purple bg">
+                        <i class="zmdi zmdi-account-circle"></i>
+                        Esqueceu a senha?
+
+                        <div class="actions actions--inverse login__block__actions">
+                            <div class="dropdown">
+                                <i data-toggle="dropdown" class="zmdi zmdi-more-vert actions__item"></i>
+
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" data-ma-action="login-switch" data-ma-target="#l-login" href="">Já tem uma conta?</a>
+                                    <a class="dropdown-item" href="/grupo">Criar uma conta</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="login__block__body">
+                        <p class="mt-4">Entre com seu endereço de email, você recebera um email de confirmação para resetar sua senha.</p>
+
+                        <div class="form-group form-group--float form-group--centered">
+                            <input class="form-control" type="text" name="email">
+                            <label>Email</label>
+                            <i class="form-group__bar"></i>
+                        </div>
+
+                        <button href="index.html" class="btn btn--icon login__block__btn"><i class="zmdi zmdi-check"></i></button>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+    <th:block th:include="includes/dependencias-js" />
 
 </body>
 </html>
