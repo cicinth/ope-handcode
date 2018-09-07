@@ -6,6 +6,14 @@ Gabriel Bueno - 1601606
 Henrique Borges da Silva - 1700054
 Diego santos - 1700677
 
+--
+
+usuarios:
+
+-Aluno
+    email: aluno@email.com.br
+    senha: senha
+
 ----------
 
 inicie a aplicacao com o profile de DEV
