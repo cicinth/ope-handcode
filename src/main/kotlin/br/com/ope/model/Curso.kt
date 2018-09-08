@@ -1,6 +1,5 @@
 package br.com.ope.model
 
-import org.hibernate.annotations.Where
 import java.util.*
 import javax.persistence.Entity
 import javax.persistence.JoinTable
@@ -8,7 +7,6 @@ import javax.persistence.ManyToMany
 import javax.persistence.OneToMany
 
 @Entity
-@Where(clause = "data_exclusao is null")
 class Curso : AbstractModel {
 
     var nome : String = ""
