@@ -6,4 +6,5 @@ import java.util.*
 
 interface CursoRepository : JpaRepository<Curso, UUID> {
     fun findAllByDataExclusaoIsNull(): List<Curso>
+    fun findAllByOrderByNome(): List<Curso>
 }

@@ -1,6 +1,5 @@
 package br.com.ope.security
 
-import org.springframework.core.annotation.Order
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -9,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.password.PasswordEncoder
 
 @EnableWebSecurity
-@Order(1)
 open class WebSecurityConfig(private val userDetailsService: UserDetailsService,
                              private val passwordEncoderAndMatcher: PasswordEncoder)
     : WebSecurityConfigurerAdapter() {
@@ -24,7 +22,6 @@ open class WebSecurityConfig(private val userDetailsService: UserDetailsService,
             .and().logout().logoutUrl("/logout").permitAll()
             .and().exceptionHandling().accessDeniedPage("/403")
 
-        http.csrf().disable()
         http.headers().frameOptions().disable()
     }
 

@@ -30,6 +30,9 @@ class Grupo : AbstractModel {
     @Enumerated(EnumType.STRING)
     var status : TipoStatusAprovacaoGrupo = TipoStatusAprovacaoGrupo.AGUARDANDO
 
+    @Transient
+    var turma : Turma? = null
+
     constructor() : super()
 
     constructor(nome: String, curso: Curso?, alunos: List<Aluno>, alunosRemovidos: List<Aluno>) : super() {

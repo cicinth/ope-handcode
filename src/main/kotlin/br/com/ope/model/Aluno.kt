@@ -1,12 +1,15 @@
 package br.com.ope.model
 
 import br.com.ope.enumx.Role
-import javax.persistence.*
+import javax.persistence.Entity
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToMany
+import javax.persistence.ManyToOne
 
 @Entity
 class Aluno : Usuario {
 
-    var ra : Int = 0
+    var ra : Long = 0
 
     @ManyToMany(mappedBy = "alunos")
     var grupos : List<Grupo> = mutableListOf()
@@ -25,12 +28,13 @@ class Aluno : Usuario {
                 ativo: Boolean = false,
                 senha: String = "",
                 permissoes: MutableSet<Role> = mutableSetOf(),
-                ra: Int = 0,
+                ra: Long = 0,
                 grupos: List<Grupo> = mutableListOf(),
-                gruposRemovidos: List<Grupo> = mutableListOf()) : super(nome, email, ativo, senha, permissoes) {
+                gruposRemovidos: List<Grupo> = mutableListOf(), turma : Turma) : super(nome, email, ativo, senha, permissoes) {
         this.ra = ra
         this.grupos = grupos
         this.gruposRemovidos = gruposRemovidos
+        this.turma = turma
     }
 
 

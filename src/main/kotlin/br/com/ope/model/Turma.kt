@@ -1,7 +1,7 @@
 package br.com.ope.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import java.time.Year
-import java.time.temporal.TemporalField
 import java.util.*
 import javax.persistence.*
 
@@ -15,6 +15,7 @@ class Turma : AbstractModel {
     @JoinColumn
     var curso : Curso? = null
     @OneToMany
+    @JsonIgnore
     var alunos: List<Aluno> = mutableListOf()
     @Enumerated(EnumType.STRING)
     var periodo : Periodo? = null

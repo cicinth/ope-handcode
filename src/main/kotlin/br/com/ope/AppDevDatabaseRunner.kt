@@ -15,17 +15,36 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
                            val alunoRepository: AlunoRepository,
                            val usuarioRepository: UsuarioRepository,
                            val grupoRepository: GrupoRepository,
-                           val disciplinaRepository: DisciplinaRepository) : ApplicationRunner{
+                           val disciplinaRepository: DisciplinaRepository,
+                           val turmaRepository: TurmaRepository) : ApplicationRunner{
 
     private val logger = LoggerFactory.getLogger(AppDevDatabaseRunner::class.java)
     override fun run(args: ApplicationArguments?) = iniciarBanco()
 
     fun iniciarBanco() {
-        logger.info("Populando banco de DEV com dados simulados")
+        logger.info("Populando banco de com dados.")
 
-        val alan = Aluno(nome = "Alan Faraj", ra = 1700041, senha = BCryptPasswordEncoder().encode("senha"), email = "aluno@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO))
-        val alex = Aluno(nome = "Javaboy", ra = 1700072, senha = BCryptPasswordEncoder().encode("senha"), email = "java@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO))
-        val michael = Aluno(nome = "Michael", ra = 1700017, senha = BCryptPasswordEncoder().encode("senha"), email = "michael@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO))
+        val ope1 = Disciplina(nome = "Oficina projeto empresa 1", sigla = "OPE1")
+        disciplinaRepository.save(ope1)
+        val ope2 = Disciplina(nome = "Oficina projeto empresa 2", sigla = "OPE2")
+        disciplinaRepository.save(ope2)
+        val ope3 = Disciplina(nome = "Oficina projeto empresa 3", sigla = "OPE3")
+        disciplinaRepository.save(ope3)
+        val ope4 = Disciplina(nome = "Oficina projeto empresa 4", sigla = "OPE4")
+        disciplinaRepository.save(ope4)
+        var ads = Curso("Analise de sistemas","ADS",4, disciplinaRepository.findAll())
+        ads = cursoRepository.save(ads)
+
+        var turmaA = Turma("A",1,2018,ads, mutableListOf(),Turma.Periodo.MANHA)
+        turmaRepository.save(turmaA)
+        var turmaB = Turma("B",1,2018,ads, mutableListOf(),Turma.Periodo.NOITE)
+        turmaRepository.save(turmaB)
+        var turmaC = Turma("C",1,2018,ads, mutableListOf(),Turma.Periodo.NOITE)
+        turmaRepository.save(turmaC)
+
+        val alan = Aluno(nome = "Alan Faraj", ra = 1700041, senha = BCryptPasswordEncoder().encode("senha"), email = "aluno@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO), turma = turmaA)
+        val alex = Aluno(nome = "Javaboy", ra = 1700072, senha = BCryptPasswordEncoder().encode("senha"), email = "java@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO), turma = turmaA)
+        val michael = Aluno(nome = "Michael", ra = 1700017, senha = BCryptPasswordEncoder().encode("senha"), email = "michael@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO), turma = turmaA)
 
 
 
@@ -41,16 +60,6 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
 
 
 
-        val ope1 = Disciplina(nome = "Oficina projeto empresa 1", sigla = "OPE1")
-        disciplinaRepository.save(ope1)
-        val ope2 = Disciplina(nome = "Oficina projeto empresa 2", sigla = "OPE2")
-        disciplinaRepository.save(ope2)
-        val ope3 = Disciplina(nome = "Oficina projeto empresa 3", sigla = "OPE3")
-        disciplinaRepository.save(ope3)
-        val ope4 = Disciplina(nome = "Oficina projeto empresa 4", sigla = "OPE4")
-        disciplinaRepository.save(ope4)
-        var ads = Curso("Analise de sistemas","ADS",4, disciplinaRepository.findAll())
-        ads = cursoRepository.save(ads)
 
 
         usuarioRepository.save(alan)
@@ -60,7 +69,7 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
 
         grupoRepository.save(handcode)
 
-        val rodolfo = Aluno(nome = "Rodolfo", ra = 1700047, senha = BCryptPasswordEncoder().encode("senha"), email = "rodolfo@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO))
+        val rodolfo = Aluno(nome = "Rodolfo", ra = 1700047, senha = BCryptPasswordEncoder().encode("senha"), email = "rodolfo@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO), turma = turmaB)
         usuarioRepository.save(rodolfo)
 
         Grupo(nome = "Grupo do Rodolfo", curso = ads, alunos = mutableListOf(rodolfo))

@@ -3,14 +3,277 @@
           layout:decorate="~{layout-home}">
 
     <div layout:fragment="conteudo">
+        <section class="content" style="padding:102px 30px 0 30px; margin-left:0px">
+            <div class="content__inner">
+                <main class="main">
 
+                    <section class="container">
+                        <form th:action="@{/grupos/}" method="POST">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" id="token" />
+                            <div class="content__inner">
+                                <header class="content__title">
+                                    <h1>Cadastro do grupo</h1>
+                                    <small>Insira as informações sobre seu grupo e os integrantes, em seguinda aguarde a aprovação por email para acessar a plataforma!</small>
+                                </header>
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <input name="nome" type="text" class="form-control js-obrigatorio" placeholder="Nome do grupo"/>
+                                                    <div class="invalid-feedback">
+                                                        Nome do grupo é obrigatório.
+                                                    </div>
+                                                    <i class="form-group__bar"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <input name="tema" type="text" class="form-control js-obrigatorio" placeholder="Tema">
+                                                    <div class="invalid-feedback">
+                                                        Tema do grupo é obrigatório.
+                                                    </div>
+                                                    <i class="form-group__bar"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="select">
+                                                        <select name="curso" class="form-control js-obrigatorio js-cursos" placeholder="Curso">
+                                                            <option th:each="curso : ${cursos}" th:value="${curso.id}" th:text="${curso.nome}"></option>
+                                                        </select>
+                                                        <div class="invalid-feedback">
+                                                            Curso é obrigatório.
+                                                        </div>
+                                                        <i class="form-group__bar"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="select">
+                                                        <select name="turma" class="form-control js-obrigatorio js-turmas" placeholder="Turma">
+
+
+                                                        </select>
+                                                        <div class="invalid-feedback">
+                                                            Turma é obrigatório.
+                                                        </div>
+                                                        <i class="form-group__bar"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <section id="sec-integrantes" data-quantia="0" class="js-integrates">
+                                <div id="card-0" class="card profile">
+                                    <div class="actions">
+                                    </div>
+                                    <div class="profile__img">
+                                        <img src="" th:src="@{/img/contacts/2.jpg}" alt=""/>
+                                        <a  class="zmdi zmdi-camera profile__img__edit"></a>
+                                    </div>
+                                    <div class="profile__info">
+                                        <h3 class="card-body__title">1º Integrante</h3>
+                                        <div class="col-sm-10">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <input name="alunos[0].nome" type="text" class="form-control js-obrigatorio" placeholder="Nome"/>
+                                                        <div class="invalid-feedback">
+                                                            Nome do integrante é obrigatório.
+                                                        </div>
+                                                        <i class="form-group__bar"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <input name="alunos[0].ra" type="number" class="form-control js-obrigatorio" placeholder="RA">
+                                                        <div class="invalid-feedback">
+                                                            RA é obrigatório.
+                                                        </div>
+                                                        <i class="form-group__bar"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <input name="alunos[0].email" type="email" class="form-control js-obrigatorio" placeholder="Email">
+                                                        <div class="invalid-feedback">
+                                                            Email é obrigatório.
+                                                        </div>
+                                                        <i class="form-group__bar"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <input name="alunos[0].telefone" type="number" class="form-control" placeholder="Telefone">
+                                                        <i class="form-group__bar"></i>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between flex-wrap">
+                                        <button id="btn-add-aluno" class="btn btn-info btn--icon-text mt-auto" type="button" style="margin:1em"><i class="zmdi zmdi-account-o"></i>Adicionar outro integrante</button>
+                                        <button class="btn btn-success btn--icon-text mt-auto js-btn-finalizar" type="button" style="margin:1em"><i class="zmdi zmdi-check"></i>Finalizar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </main>
+            </div>
+        </section>
     </div>
-
 
     <th:block layout:fragment="javascript">
 
         <script>
+function validarFormulario(form) {
+		var inputs = form.find(".js-obrigatorio");
 
+		//busca o valor de todos inputs e verifica se algum possui valor nulo ou em branco
+		inputs.each(function(index, input) {
+			if ($(input).val() == null || $(input).val() == "") {
+				$(input).addClass("is-invalid");
+				$(input).removeClass("is-valid");
+			} else {
+				$(input).addClass("is-valid");
+				$(input).removeClass("is-invalid");
+			}
+		});
+
+		//se nao possuir nenhum input com a classe is-invalid o formulario é submetido
+		if (!$(".is-invalid").length > 0) {
+			form.submit();
+		}
+	}
+
+	function carregarOptionsCurso(selectContainer, cursoId){
+		selectContainer.empty();
+
+        var resposta = $.ajax({
+            headers:
+            { '_csrf': $('#token').val()},
+            url: '/rest/turmas/?cursoId='+cursoId,
+            method: 'GET',
+            scriptCharset: "utf-8",
+        });
+
+        resposta.done(function(data) {
+			$.each( data, function( key, turma ) {
+				selectContainer.append(`<option value="`+turma.id+`">`+turma.semestre+` - `+turma.letra+` (`+turma.periodo+`)</option>`)
+			});
+		});
+
+        resposta.fail(function(data) {
+            alert('Falha ao buscar as turmas');
+		});
+
+	}
+
+
+	$( document ).ready(function() {
+
+		$( ".js-btn-finalizar" ).click(function() {
+			var form = $(this).closest("form");
+			validarFormulario(form);
+		});
+
+		$(".js-cursos").change(function() {
+			var cursoId = $(this).val();
+			var select = $('.js-turmas');
+			carregarOptionsCurso(select, cursoId);
+		});
+
+		//carrega turmas se curso ja estiver selecionar na hora de carregar a pagina
+
+		var cursoId = $(".js-cursos").val();
+		if (cursoId != null && cursoId != '') {
+			carregarOptionsCurso($('.js-turmas'), cursoId);
+		}
+
+
+		var indexAluno = $('#sec-integrantes').data('quantia');
+		var containerAlunos = $('#sec-integrantes');
+		var btnAddAluno = $('#btn-add-aluno');
+
+		btnAddAluno.click(function() {
+			indexAluno = indexAluno + 1;
+			var integranteNumero = indexAluno +1
+			var corpoHtml =	`<div id="card-0" class="card profile">
+								<div class="actions">
+										<a  class="actions__item zmdi zmdi-close js-clica-remove-card"></a>
+								</div>
+								<div class="profile__img">
+									<img  src="/img/contacts/2.jpg" alt="">
+									<a  class="zmdi zmdi-camera profile__img__edit"></a>
+								</div>
+								<div class="profile__info">
+									<h3 class="card-body__title">`+integranteNumero+`º Integrante</h3>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-6">
+												<div class="form-group">
+													<input name="alunos[`+indexAluno+`].nome" type="text" class="form-control js-obrigatorio" placeholder="Nome"/>
+													<div class="invalid-feedback">
+														Nome do integrante é obrigatório.
+													</div>
+													<i class="form-group__bar"></i>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<input name="alunos[`+indexAluno+`].ra" type="number" class="form-control js-obrigatorio" placeholder="RA">
+													<div class="invalid-feedback">
+														RA é obrigatório.
+													</div>
+													<i class="form-group__bar"></i>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<input name="alunos[`+indexAluno+`].email" type="email" class="form-control js-obrigatorio" placeholder="Email">
+													<div class="invalid-feedback">
+														Email é obrigatório.
+													</div>
+													<i class="form-group__bar"></i>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<input name="alunos[`+indexAluno+`].telefone" type="number" class="form-control" placeholder="Telefone">
+													<i class="form-group__bar"></i>
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>`
+
+			containerAlunos.append(corpoHtml);
+
+			$( ".js-clica-remove-card" ).click(function() {
+			    if (indexAluno > 0) {
+			        //indexAluno = indexAluno - 1;
+			    }
+
+				$(this).closest( ".card" ).remove();
+			});
+		});
+
+	});
         </script>
 
     </th:block>
