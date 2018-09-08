@@ -16,6 +16,8 @@ abstract class AbstractModel {
     @Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     var dataCriacao : Date = Date()
 
+    var dataExclusao : Date? = null
+
     constructor()
 
     constructor(id: UUID?) {

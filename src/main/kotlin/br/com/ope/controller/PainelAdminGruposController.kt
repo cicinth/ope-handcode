@@ -1,14 +1,11 @@
 package br.com.ope.controller
 
-import br.com.ope.dto.mensagemDTO
-import br.com.ope.model.Curso
-import br.com.ope.repository.CursoRepository
+import br.com.ope.dto.MensagemVO
 import br.com.ope.repository.GrupoRepository
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.servlet.mvc.support.RedirectAttributes
 import java.util.*
@@ -41,7 +38,7 @@ class PainelAdminGruposController {
     }
 
     private fun redirectGrupoNaoEncontrado(model: Model, redirectAttributes: RedirectAttributes): String {
-        redirectAttributes.addFlashAttribute("mensagem", mensagemDTO("Grupo não encontrado!","Erro!", mensagemDTO.TipoMensagem.danger ))
+        redirectAttributes.addFlashAttribute("mensagem", MensagemVO("Grupo não encontrado!","Erro!", MensagemVO.TipoMensagem.danger ))
         return "redirect:/painel/admin/grupos"
     }
 

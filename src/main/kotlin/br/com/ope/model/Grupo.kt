@@ -11,6 +11,14 @@ class Grupo : AbstractModel {
     @JoinColumn
     var curso : Curso? = null
 
+    @ManyToOne
+    @JoinColumn
+    var disciplina : Disciplina? = null
+
+    @ManyToMany
+    @JoinTable
+    var disciplinasAnteriores : List<Disciplina> = mutableListOf()
+
     @ManyToMany
     @JoinTable
     var alunos : List<Aluno> = mutableListOf()
@@ -31,11 +39,17 @@ class Grupo : AbstractModel {
         this.alunosRemovidos = alunosRemovidos
     }
 
-    constructor(id: UUID? = null, nome: String, curso: Curso?, alunos: List<Aluno> = mutableListOf(), alunosRemovidos: List<Aluno> = mutableListOf()) : super(id) {
+    constructor(id: UUID? = null,
+                nome: String,
+                curso: Curso?,
+                alunos: List<Aluno> = mutableListOf(),
+                alunosRemovidos: List<Aluno> = mutableListOf(),
+                disciplina: Disciplina? = null) : super(id) {
         this.nome = nome
         this.curso = curso
         this.alunos = alunos
         this.alunosRemovidos = alunosRemovidos
+        this.disciplina = disciplina
     }
 
     enum class TipoStatusAprovacaoGrupo(val nome : String, val cor : String) {

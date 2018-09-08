@@ -1,6 +1,6 @@
 package br.com.ope.controller
 
-import br.com.ope.dto.mensagemDTO
+import br.com.ope.dto.MensagemVO
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.RequestMapping
@@ -17,7 +17,7 @@ class LoginController {
             val attr = Optional.ofNullable(request.session.getAttribute("SPRING_SECURITY_LAST_EXCEPTION"))
             if (attr.isPresent) {
                 val exception = attr.get() as Exception
-                model.addAttribute("mensagem", listOf(mensagemDTO(conteudo = exception.localizedMessage, tipo = mensagemDTO.TipoMensagem.danger)))
+                model.addAttribute("mensagem", listOf(MensagemVO(conteudo = exception.localizedMessage, tipo = MensagemVO.TipoMensagem.danger)))
             }
         }
         return "login"

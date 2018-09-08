@@ -1,0 +1,30 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <th:block th:fragment="cursoForm">
+        <form th:action="${edicao} == true ? @{/painel/admin/cursos/__${curso.id}__} : @{/painel/admin/cursos/novo}" method="POST" th:object="${curso}">
+            <div class="row">
+                <div class="col-md-12 col-lg-4">
+                    <div class="form-group">
+                        <input th:field="*{nome}"  type="text" class="form-control" placeholder="Nome" />
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-2">
+                    <div class="form-group">
+                        <input th:field="*{sigla}"  type="text" class="form-control" placeholder="Sigla" />
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-2">
+                    <div class="form-group">
+                        <input th:field="*{semestres}"  type="number" class="form-control" placeholder="Semestres" />
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-row-reverse btn-row">
+                <button type="submit" class="btn btn-success">Salvar</button>
+                <a href="/painel/admin/cursos/" class="btn btn-outline-danger">Cancelar</a>
+            </div>
+        </form>
+    </th:block>
+</html>

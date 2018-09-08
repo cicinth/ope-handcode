@@ -2,6 +2,7 @@
           xmlns:th="http://www.thymeleaf.org"
           layout:decorate="~{layout-painel-admin}">
 
+
     <div layout:fragment="conteudo">
 
         <header class="content__title">
@@ -18,7 +19,7 @@
 
         <div class="card">
             <div class="card-body">
-                <th:block th:replace="includes/cursoForm :: cursoForm(curso = ${curso}, edicao = false)"></th:block>
+                <th:block th:replace="includes/cursoForm :: cursoForm(curso = ${curso}, edicao = true)"></th:block>
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
 package br.com.ope.model
 
+import org.hibernate.annotations.Where
 import java.util.*
 import javax.persistence.Entity
 import javax.persistence.JoinTable
@@ -7,17 +8,26 @@ import javax.persistence.ManyToMany
 import javax.persistence.OneToMany
 
 @Entity
+@Where(clause = "data_exclusao is null")
 class Curso : AbstractModel {
 
     var nome : String = ""
     var sigla : String = ""
-    var semestres : Int = 0
+    var semestres : Int = 4
     @ManyToMany
     @JoinTable
     var disciplinas: List<Disciplina> = mutableListOf()
 
     @OneToMany
     var grupos: List<Grupo> = mutableListOf()
+
+    fun atualizar(curso: Curso): Curso {
+        this.nome = curso.nome
+        this.sigla = curso.sigla
+        this.semestres = curso.semestres
+        this.disciplinas = curso.disciplinas
+        return this
+    }
 
     constructor() : super()
 
