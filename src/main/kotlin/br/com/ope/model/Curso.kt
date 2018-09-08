@@ -1,16 +1,21 @@
 package br.com.ope.model
 
+import org.jetbrains.annotations.NotNull
 import java.util.*
 import javax.persistence.Entity
 import javax.persistence.JoinTable
 import javax.persistence.ManyToMany
 import javax.persistence.OneToMany
+import javax.validation.constraints.NotBlank
 
 @Entity
 class Curso : AbstractModel {
 
+    @NotBlank
     var nome : String = ""
+    @NotBlank
     var sigla : String = ""
+    @NotNull
     var semestres : Int = 4
     @ManyToMany
     @JoinTable

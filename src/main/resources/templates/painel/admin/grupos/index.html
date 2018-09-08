@@ -9,7 +9,10 @@
                 <div class="dropdown actions__item">
                     <i data-toggle="dropdown" class="zmdi zmdi-more-vert"></i>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a href="/painel/admin/grupos/novo" class="dropdown-item">Novo</a>
+                        <a th:href="@{/painel/admin/grupos}" class="dropdown-item">Pendentes</a>
+                        <a th:href="@{/painel/admin/grupos}" class="dropdown-item">Não aprovados</a>
+                        <a th:href="@{/painel/admin/grupos}" class="dropdown-item">Aprovados</a>
+                        <a th:href="@{/painel/admin/grupos}" class="dropdown-item">Todos</a>
                     </div>
                 </div>
             </div>

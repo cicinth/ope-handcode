@@ -4,26 +4,32 @@
             <div class="row">
                 <div class="col-md-12 col-lg-4">
                     <div class="form-group">
-                        <input th:field="*{nome}"  type="text" class="form-control" placeholder="Nome" />
+                        <input th:field="*{nome}" th:errorclass="is-invalid" type="text" class="form-control" placeholder="Nome" />
+                        <div class="invalid-feedback">
+                            Coloque um nome.
+                        </div>
                         <i class="form-group__bar"></i>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-2">
                     <div class="form-group">
-                        <input th:field="*{sigla}"  type="text" class="form-control" placeholder="Sigla" />
+                        <input th:field="*{sigla}" th:errorclass="is-invalid" type="text" class="form-control" placeholder="Sigla" />
+                        <div class="invalid-feedback">
+                            Coloque uma sigla.
+                        </div>
                         <i class="form-group__bar"></i>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-2">
                     <div class="form-group">
-                        <input th:field="*{semestres}"  type="number" class="form-control" placeholder="Semestres" />
+                        <input th:field="*{semestres}" th:errorclass="is-invalid" type="number" class="form-control" placeholder="Semestres" />
                         <i class="form-group__bar"></i>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-6">
                     <div class="form-group">
                         <div class="form-group">
-                            <select th:field="*{disciplinas}" class="select2 select2-hidden-accessible" multiple="" data-placeholder="Disciplinas" tabindex="-1" aria-hidden="true">
+                            <select th:field="*{disciplinas}" th:errorclass="is-invalid" class="select2 select2-hidden-accessible" multiple="" data-placeholder="Disciplinas" tabindex="-1" aria-hidden="true">
                                 <option th:each="disciplina : ${disciplinas}" th:value="${disciplina.id}" th:text="${disciplina.nome}"></option>
                             </select>
                         </div>

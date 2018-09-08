@@ -102,9 +102,14 @@
         </aside>
 
 
+        <section class="content" style="padding:102px 30px 0 30px; margin-left:0px">
+            <div class="content__inner">
+            <div th:replace="includes/mensagem :: mensagem(mensagem = ${mensagem})"></div>
+                <th:block layout:fragment="conteudo" />
+            </div>
+        </section>
 
-        <div th:replace="includes/mensagem :: mensagem(mensagem = ${mensagem})"></div>
-        <th:block layout:fragment="conteudo" />
+
     </main>
 
     <th:block th:replace="includes/dependencias-js" />

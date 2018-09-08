@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.servlet.mvc.support.RedirectAttributes
 import java.util.*
+import javax.validation.Valid
 
 @Controller
 @RequestMapping("/painel/admin/cursos")
@@ -34,21 +35,21 @@ class PainelAdminCursosController {
     }
 
     @GetMapping("/novo")
-    fun novo(model : Model) : String {
-        popularForm(model)
+    fun novo(curso: Curso, bindingResult : BindingResult, model : Model) : String {
+        popularForm(model, curso)
         return "painel/admin/cursos/novo"
     }
 
     @PostMapping("/novo")
-    fun novoSalvar(model : Model, curso: Curso, redirectAttributes: RedirectAttributes,  bindingResult : BindingResult) : String {
-        if (bindingResult.hasErrors()) return "painel/admin/cursos/novo"
+    fun novoSalvar(@Valid curso: Curso, bindingResult : BindingResult, model : Model, redirectAttributes: RedirectAttributes) : String {
+        if (bindingResult.hasErrors()) return novo(curso,bindingResult,model)
         cursoRepository.save(curso)
         redirectAttributes.addFlashAttribute("mensagem", MensagemVO("Curso salvo!","Sucesso!", MensagemVO.TipoMensagem.success ))
         return "redirect:/painel/admin/cursos"
     }
 
     @GetMapping("/{id}")
-    fun editar(model : Model, redirectAttributes: RedirectAttributes, @PathVariable id : UUID) : String {
+    fun editar(redirectAttributes: RedirectAttributes, model : Model, @PathVariable id : UUID) : String {
         var curso = cursoRepository.findById(id)
 
         if (!curso.isPresent) return redirectCursoNaoEncontrado(model, redirectAttributes)
@@ -58,7 +59,7 @@ class PainelAdminCursosController {
     }
 
     @PostMapping("/{id}")
-    fun editarSalvar(model : Model, cursoEditado: Curso, redirectAttributes: RedirectAttributes, @PathVariable id : UUID,  bindingResult : BindingResult) : String {
+    fun editarSalvar(@Valid cursoEditado: Curso, bindingResult : BindingResult, redirectAttributes: RedirectAttributes, model : Model,  @PathVariable id : UUID) : String {
         var curso = cursoRepository.findById(id)
 
         if (!curso.isPresent) return redirectCursoNaoEncontrado(model, redirectAttributes)
