@@ -6,7 +6,6 @@ import br.com.ope.repository.CursoRepository
 import br.com.ope.repository.TurmaRepository
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.validation.AbstractBindingResult
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -30,7 +29,7 @@ class PainelAdminTurmasController {
     @GetMapping
     fun index(model : Model) : String {
         model.addAttribute("turmas", turmaRepository.findAll())
-        return "/painel/admin/turmas/index"
+        return "painel/admin/turmas/index"
     }
 
     @GetMapping("/novo")
@@ -38,7 +37,7 @@ class PainelAdminTurmasController {
         model.addAttribute("turma", turma)
         model.addAttribute("periodos", Turma.Periodo.values())
         model.addAttribute("cursos", cursoRepository.findAllByDataExclusaoIsNull())
-        return "/painel/admin/turmas/novo"
+        return "painel/admin/turmas/novo"
     }
 
     @PostMapping("/novo")
@@ -60,14 +59,14 @@ class PainelAdminTurmasController {
         model.addAttribute("turma", turma.get())
         model.addAttribute("periodos", Turma.Periodo.values())
         model.addAttribute("cursos", cursoRepository.findAllByDataExclusaoIsNull())
-        return "/painel/admin/turmas/editar"
+        return "painel/admin/turmas/editar"
     }
     @PostMapping("/{id}")
     fun editarSalvar(redirectAttributes: RedirectAttributes , model : Model, @PathVariable id : UUID, @Valid turma : Turma, bindingResult: BindingResult) : String {
         if (bindingResult.hasErrors()){
             model.addAttribute("periodos", Turma.Periodo.values())
             model.addAttribute("cursos", cursoRepository.findAllByDataExclusaoIsNull())
-            return "/painel/admin/turmas/editar"
+            return "painel/admin/turmas/editar"
         }
         var turmaBanco = turmaRepository.findById(id)
 
