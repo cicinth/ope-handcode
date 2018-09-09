@@ -18,6 +18,9 @@ class Disciplina : AbstractModel {
     @ManyToMany(mappedBy = "disciplinasAnteriores")
     var gruposAnteriores: List<Grupo> = mutableListOf()
 
+    @OneToMany
+    var tarefas : List<Tarefa> = mutableListOf()
+
     constructor() : super()
 
     constructor(id: UUID?) : super(id)

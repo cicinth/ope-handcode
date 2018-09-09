@@ -24,6 +24,9 @@ class Curso : AbstractModel {
     @OneToMany
     var grupos: List<Grupo> = mutableListOf()
 
+    @OneToMany
+    var tarefas : List<Tarefa> = mutableListOf()
+
     fun atualizar(curso: Curso): Curso {
         this.nome = curso.nome
         this.sigla = curso.sigla
