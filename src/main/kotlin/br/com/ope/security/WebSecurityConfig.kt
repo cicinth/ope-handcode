@@ -15,14 +15,15 @@ open class WebSecurityConfig(private val userDetailsService: UserDetailsService,
     override fun configure(http: HttpSecurity) {
         http.authorizeRequests()
             .antMatchers("/publico/**").permitAll()
-            .antMatchers("/h2_console/**").permitAll()
+            .antMatchers("/h2-console/**").hasRole("ADMIN")
             .antMatchers("/painel/admin/**").hasRole("ADMIN")
             .antMatchers("/painel/aluno/**").hasRole("ALUNO")
             .antMatchers("/painel/professor/**").hasRole("PROFESSOR")
             .and().formLogin().loginPage("/login").permitAll().successHandler(UrlRedirectAuthenticationSuccessHandler())
             .and().logout().logoutUrl("/logout").permitAll()
             .and().exceptionHandling().accessDeniedPage("/403")
-
+            .and().csrf().ignoringAntMatchers("/h2-console/**")
+            .and().headers().frameOptions().sameOrigin()
 
     }
 
