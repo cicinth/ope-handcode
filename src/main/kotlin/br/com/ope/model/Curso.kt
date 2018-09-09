@@ -21,8 +21,11 @@ class Curso : AbstractModel {
     @JoinTable
     var disciplinas: List<Disciplina> = mutableListOf()
 
-    @OneToMany
+    @OneToMany(mappedBy = "curso")
     var grupos: List<Grupo> = mutableListOf()
+
+    @OneToMany(mappedBy = "curso")
+    var tarefas : List<Tarefa> = mutableListOf()
 
     fun atualizar(curso: Curso): Curso {
         this.nome = curso.nome

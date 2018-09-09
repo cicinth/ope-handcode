@@ -39,6 +39,4 @@ class Aluno : Usuario {
         this.gruposRemovidos = gruposRemovidos
         this.turma = turma
     }
-
-
 }
