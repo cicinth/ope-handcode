@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.multipart.MultipartFile
 import java.util.*
-import javax.servlet.http.HttpServletResponse
 
 @Controller
 @RequestMapping
@@ -29,7 +28,7 @@ class ArquivoRestController {
     }
 
     @GetMapping("/publico/arquivos/{id}")
-    fun receberPublico(@PathVariable id : UUID, response: HttpServletResponse) :  ResponseEntity<Resource> {
+    fun receberPublico(@PathVariable id : UUID) :  ResponseEntity<Resource> {
         try {
             val file = fileStorage.loadFile(id)
             return ResponseEntity.ok()

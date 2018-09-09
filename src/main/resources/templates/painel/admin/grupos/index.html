@@ -17,33 +17,23 @@
                 </div>
             </div>
         </header>
-
-
         <div class="contacts row">
-
             <div th:each="grupo, i : ${grupos}" class="col-xl-2 col-lg-3 col-sm-4 col-6">
-
                 <div class="contacts__item">
-                    <div class="listview listview--striped">
-                        <a th:href="@{/painel/admin/grupos/__${grupo.id}__}" class="contacts__img">
-                            <img th:if="${grupo.logoHash}" th:src="@{/publico/arquivos/__${grupo.logoHash}__}" alt="Detalhes">
-                        </a>
-
-                    </div>
+                    <a th:href="@{/painel/admin/grupos/__${grupo.id}__}" class="contacts__img">
+                        <img th:if="${!#strings.isEmpty(grupo.logoHash)}" th:src="@{/publico/arquivos/__${grupo.logoHash}__}" alt="Logo">
+                        <img th:if="${#strings.isEmpty(grupo.logoHash)}" th:src="@{/img/grupos/default.jpg}" alt="Logo">
+                    </a>
                     <div class="contacts__info">
-                        <strong th:text="${grupo?.nome}">{{grupo.nome}}</strong>
+                        <strong th:text="${grupo?.nome}">Cathy Shelton</strong>
+                        <small th:text="${grupo?.curso?.sigla}">curso</small>
                     </div>
-                    <div class="contacts__info">
-                        <p class="m-0" th:text="${grupo?.curso?.sigla}">{{grupo.curso.sigla}}</p>
-                        <!--<p class="m-0" th:text="${grupo.disciplina.sigla}">{{grupo.curso.sigla}}</p>-->
-                        <p class="m-0" th:text="${grupo?.status?.nome}">Aprovado</p>
-                    </div>
+                    <p class="m-0 badge" th:classappend="|badge-${grupo?.status?.cor}|" th:text="${grupo?.status?.nome}">Aprovado</p>
                 </div>
             </div>
-
         </div>
-    </div>
 
+    </div>
 
     <th:block layout:fragment="javascript">
         <script>

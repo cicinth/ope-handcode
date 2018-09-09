@@ -61,7 +61,7 @@ class Grupo : AbstractModel {
 
         APROVADO("Aprovado", "success"),
         REPROVADO("Reprovado", "danger"),
-        AGUARDANDO("Aguardando aprovação", "warning")
+        AGUARDANDO("Aguardando", "warning")
 
     }
 
