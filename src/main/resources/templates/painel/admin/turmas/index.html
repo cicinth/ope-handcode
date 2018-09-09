@@ -1,0 +1,47 @@
+<th:block xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+          xmlns:th="http://www.thymeleaf.org"
+          layout:decorate="~{layout-painel-admin}">
+
+    <div layout:fragment="conteudo">
+        <header class="content__title">
+            <h1>turmas</h1>
+            <div class="actions">
+                <div class="dropdown actions__item">
+                    <i data-toggle="dropdown" class="zmdi zmdi-more-vert"></i>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a href="/painel/admin/turmas/novo" class="dropdown-item">Novo</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="card">
+            <div class="listview listview--striped">
+                <div th:each="turma : ${turmas}" class="listview__item">
+                    <i class="avatar-char js-random-background-color" th:text="${turma.curso.sigla}"></i>
+                    <div class="listview__content d-flex align-items-center">
+                        <div class="listview__heading" th:text="|${turma.semestre}º${turma.letra} - ${turma.curso.sigla} (${turma.periodo.nome}) - ${turma.ano}|"> 1ºA - ADS (Manha - 2018)</div>
+                    </div>
+                    <div class="actions listview__actions">
+                        <div class="dropdown actions__item">
+                            <i class="zmdi zmdi-more-vert" data-toggle="dropdown"></i>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a th:href="@{/painel/admin/turmas/__${turma.id}__}" class="dropdown-item">Editar</a>
+                                <a th:href="@{/painel/admin/turmas/__${turma.id}__/excluir}" class="dropdown-item">Excluir</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <th:block layout:fragment="javascript">
+        <script>
+
+        </script>
+
+    </th:block>
+
+</th:block>

@@ -1,0 +1,57 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <th:block th:fragment="turmaForm">
+        <form th:action="${edicao} == true ? @{/painel/admin/turmas/__${turma.id}__} : @{/painel/admin/turmas/novo}" method="POST" th:object="${turma}">
+            <div class="row">
+                <div class="col-md-12 col-lg-2">
+                    <div class="form-group">
+                        <input th:field="*{semestre}" th:errorclass="is-invalid" type="number" class="form-control" placeholder="Semestre" />
+                        <div class="invalid-feedback">
+                            Digite um semestre
+                        </div>
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-2">
+                    <div class="form-group">
+                        <input th:field="*{letra}" th:errorclass="is-invalid" type="text" class="form-control" placeholder="Letra" />
+                        <div class="invalid-feedback">
+                            Coloque uma letra.
+                        </div>
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-2">
+                    <div class="form-group">
+                        <input th:field="*{ano}" th:errorclass="is-invalid" type="number" class="form-control" placeholder="Ano" />
+                        <div class="invalid-feedback">
+                            Digite um ano
+                        </div>
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <select th:field="*{curso}" th:errorclass="is-invalid" class="select2 select2-hidden-accessible" data-placeholder="Cursos" tabindex="-1" aria-hidden="true">
+                                <option th:each="curso : ${cursos}" th:value="${curso.id}" th:text="${curso.nome}"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <select th:field="*{periodo}" th:errorclass="is-invalid" class="select2 select2-hidden-accessible" data-placeholder="Periodos" tabindex="-1" aria-hidden="true">
+                                <option th:each="periodo : ${periodos}" th:value="${periodo}" th:text="${periodo.nome}"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-row-reverse btn-row">
+                <button type="submit" class="btn btn-success">Salvar</button>
+                <a href="/painel/admin/turmas/" class="btn btn-outline-danger">Cancelar</a>
+            </div>
+        </form>
+    </th:block>
+</html>
