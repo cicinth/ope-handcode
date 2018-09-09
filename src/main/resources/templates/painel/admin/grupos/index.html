@@ -26,7 +26,7 @@
                 <div class="contacts__item">
                     <div class="listview listview--striped">
                         <a th:href="@{/painel/admin/grupos/__${grupo.id}__}" class="contacts__img">
-                            <img th:src="@{/img/contacts/__${i.index+1}__.jpg}" alt="Detalhes">
+                            <img th:if="${grupo.logoHash}" th:src="@{/publico/arquivos/__${grupo.logoHash}__}" alt="Detalhes">
                         </a>
 
                     </div>

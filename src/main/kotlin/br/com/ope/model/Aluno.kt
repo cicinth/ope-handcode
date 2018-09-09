@@ -1,6 +1,7 @@
 package br.com.ope.model
 
 import br.com.ope.enumx.Role
+import java.util.*
 import javax.persistence.Entity
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToMany
@@ -17,6 +18,8 @@ class Aluno : Usuario {
     @ManyToOne
     @JoinColumn
     var turma: Turma? = null
+
+    var fotoHash : UUID? = null
 
     @ManyToMany(mappedBy = "alunosRemovidos")
     var gruposRemovidos : List<Grupo> = mutableListOf()

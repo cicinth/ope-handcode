@@ -30,6 +30,8 @@ class Grupo : AbstractModel {
     @Enumerated(EnumType.STRING)
     var status : TipoStatusAprovacaoGrupo = TipoStatusAprovacaoGrupo.AGUARDANDO
 
+    var logoHash : UUID? = null
+
     @Transient
     var turma : Turma? = null
 

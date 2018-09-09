@@ -27,7 +27,6 @@ class PainelAdminCursosController {
         this.disciplinaRepository = disciplinaRepository
     }
 
-
     @GetMapping
     fun index(model : Model) : String {
         model.addAttribute("cursos", cursoRepository.findAllByDataExclusaoIsNull())

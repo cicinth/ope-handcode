@@ -14,6 +14,7 @@ open class WebSecurityConfig(private val userDetailsService: UserDetailsService,
 
     override fun configure(http: HttpSecurity) {
         http.authorizeRequests()
+            .antMatchers("/publico/**").permitAll()
             .antMatchers("/h2_console/**").permitAll()
             .antMatchers("/painel/admin/**").hasRole("ADMIN")
             .antMatchers("/painel/aluno/**").hasRole("ALUNO")
@@ -21,8 +22,6 @@ open class WebSecurityConfig(private val userDetailsService: UserDetailsService,
             .and().formLogin().loginPage("/login").permitAll().successHandler(UrlRedirectAuthenticationSuccessHandler())
             .and().logout().logoutUrl("/logout").permitAll()
             .and().exceptionHandling().accessDeniedPage("/403")
-
-        http.headers().frameOptions().disable()
     }
 
     override fun configure(auth: AuthenticationManagerBuilder) {
