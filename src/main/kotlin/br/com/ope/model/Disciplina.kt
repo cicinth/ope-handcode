@@ -18,7 +18,7 @@ class Disciplina : AbstractModel {
     @ManyToMany(mappedBy = "disciplinasAnteriores")
     var gruposAnteriores: List<Grupo> = mutableListOf()
 
-    @OneToMany
+    @OneToMany(mappedBy = "curso")
     var tarefas : List<Tarefa> = mutableListOf()
 
     constructor() : super()
