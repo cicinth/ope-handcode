@@ -23,8 +23,7 @@ open class WebSecurityConfig(private val userDetailsService: UserDetailsService,
             .and().logout().logoutUrl("/logout").permitAll()
             .and().exceptionHandling().accessDeniedPage("/403")
 
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
+
     }
 
     override fun configure(auth: AuthenticationManagerBuilder) {
