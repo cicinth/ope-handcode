@@ -18,6 +18,7 @@ class Turma : AbstractModel {
     @ManyToOne
     @JoinColumn
     @NotNull
+    @JsonIgnore
     var curso : Curso? = null
     @OneToMany
     @JsonIgnore
