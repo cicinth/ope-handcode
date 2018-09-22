@@ -1,5 +1,6 @@
 package br.com.ope.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import org.jetbrains.annotations.NotNull
 import java.util.*
 import javax.persistence.Entity
@@ -19,12 +20,15 @@ class Curso : AbstractModel {
     var semestres : Int = 4
     @ManyToMany
     @JoinTable
+    @JsonIgnore
     var disciplinas: List<Disciplina> = mutableListOf()
 
     @OneToMany(mappedBy = "curso")
+    @JsonIgnore
     var grupos: List<Grupo> = mutableListOf()
 
     @OneToMany(mappedBy = "curso")
+    @JsonIgnore
     var tarefas : List<Tarefa> = mutableListOf()
 
     fun atualizar(curso: Curso): Curso {

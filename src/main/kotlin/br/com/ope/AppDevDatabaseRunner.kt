@@ -8,10 +8,13 @@ import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Component
+import java.util.*
 
 @Component
 //@Profile(value = ["dev","default"])
 class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
+                           val eventoRepository: EventoRepository,
+                           val tarefaRepository: TarefaRepository,
                            val alunoRepository: AlunoRepository,
                            val usuarioRepository: UsuarioRepository,
                            val grupoRepository: GrupoRepository,
@@ -58,10 +61,6 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
         usuarioRepository.save(yuri)
         usuarioRepository.save(fernando)
 
-
-
-
-
         usuarioRepository.save(alan)
         usuarioRepository.save(michael)
         usuarioRepository.save(alex)
@@ -74,6 +73,15 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
 
         Grupo(nome = "Grupo do Rodolfo", curso = ads, alunos = mutableListOf(rodolfo))
 
+        val tarefa = Tarefa(Date(), Date(), 1, mutableListOf(), "Lista de entregaveis.", "Entrega de parte da documentacao", ope1, ads, turmaRepository.findAllByCurso_idOrderBySemestreDesc(ads.id
+                ?: UUID.randomUUID()))
+
+        tarefaRepository.save(tarefa)
+
+        val evento = Evento(Date(), "Lista de entregaveis.", "Entrega de parte da documentacao", ope1, ads, turmaRepository.findAllByCurso_idOrderBySemestreDesc(ads.id
+                ?: UUID.randomUUID()), tarefa)
+
+        eventoRepository.save(evento)
 
         logger.info("Finalizado setup dos dados simulados no banco")
     }

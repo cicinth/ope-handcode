@@ -1,5 +1,6 @@
 package br.com.ope.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import java.util.*
 import javax.persistence.Entity
 import javax.persistence.ManyToMany
@@ -11,14 +12,18 @@ class Disciplina : AbstractModel {
     var nome : String = ""
     var sigla  : String = ""
     var semestre : Int = 1
-    @ManyToMany
+    @ManyToMany(mappedBy = "disciplinas")
+    @JsonIgnore
     var cursos: List<Curso> = mutableListOf()
     @OneToMany(mappedBy = "disciplina")
+    @JsonIgnore
     var grupos: List<Grupo> = mutableListOf()
     @ManyToMany(mappedBy = "disciplinasAnteriores")
+    @JsonIgnore
     var gruposAnteriores: List<Grupo> = mutableListOf()
 
     @OneToMany(mappedBy = "curso")
+    @JsonIgnore
     var tarefas : List<Tarefa> = mutableListOf()
 
     constructor() : super()

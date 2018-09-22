@@ -5,5 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 import java.util.*
 
 interface DisciplinaRepository : JpaRepository<Disciplina, UUID> {
-
+    fun findAllByDataExclusaoIsNull(): List<Disciplina>
+    fun findAllByDataExclusaoIsNullAndCursos_idIn(cursoId: List<UUID>): List<Disciplina>
 }
