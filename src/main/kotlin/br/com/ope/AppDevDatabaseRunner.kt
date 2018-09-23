@@ -45,16 +45,19 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
         var turmaC = Turma("C",1,2018,ads, mutableListOf(),Turma.Periodo.NOITE)
         turmaRepository.save(turmaC)
 
-        val alan = Aluno(nome = "Alan Faraj", ra = 1700041, senha = BCryptPasswordEncoder().encode("senha"), email = "aluno@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO), turma = turmaA)
-        val alex = Aluno(nome = "Javaboy", ra = 1700072, senha = BCryptPasswordEncoder().encode("senha"), email = "java@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO), turma = turmaA)
-        val michael = Aluno(nome = "Michael", ra = 1700017, senha = BCryptPasswordEncoder().encode("senha"), email = "michael@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO), turma = turmaA)
-
-
-
+        val alan = Aluno(nome = "Alan Faraj", ra = 1, senha = BCryptPasswordEncoder().encode("senha"), email = "aluno@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO), turma = turmaA)
+        val alex = Aluno(nome = "Alex Augusto (Javaboy)", ra = 1700072, senha = BCryptPasswordEncoder().encode("senha"), email = "java@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO), turma = turmaA)
+        val michael = Aluno(nome = "Michael da Silva de Souza", ra = 1700381, senha = BCryptPasswordEncoder().encode("senha"), email = "michael@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO), turma = turmaA)
+        val cicinth = Aluno(nome = " Cinthia Queiroz", ra = 1700693, senha = BCryptPasswordEncoder().encode("senha"), email = "cicinth@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO), turma = turmaA)
+        val mestre = Aluno(nome = "Fabio Aurelio Abe Nogueira", ra = 1700603, senha = BCryptPasswordEncoder().encode("senha"), email = "mestre@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO), turma = turmaA)
+        val gabs = Aluno(nome = "Gabriel Bueno", ra = 1601606, senha = BCryptPasswordEncoder().encode("senha"), email = "gabs@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO), turma = turmaA)
+        val russo = Aluno(nome = "Henrique Borges da Silva", ra = 1700054, senha = BCryptPasswordEncoder().encode("senha"), email = "russo@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO), turma = turmaA)
+        val diego = Aluno(nome = "Diego santos", ra = 1700677, senha = BCryptPasswordEncoder().encode("senha"), email = "digao@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO), turma = turmaA)
 
         val admin = Administrador(nome = "Administrador", email = "admin@email.com.br", senha = BCryptPasswordEncoder().encode("senha"), ativo = true, permissoes = mutableSetOf(Role.ROLE_ADMIN))
         val yuri = Professor(nome = "Yuri", email = "professor@email.com.br", senha = BCryptPasswordEncoder().encode("senha"), ativo = true, permissoes = mutableSetOf(Role.ROLE_PROFESSOR))
         val fernando = Professor(nome = "Fernando", email = "fernando@email.com.br", senha = BCryptPasswordEncoder().encode("senha"), ativo = true, permissoes = mutableSetOf(Role.ROLE_PROFESSOR))
+
 
 
         usuarioRepository.save(admin)
@@ -64,14 +67,25 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
         usuarioRepository.save(alan)
         usuarioRepository.save(michael)
         usuarioRepository.save(alex)
-        val handcode = Grupo(nome = "Handcode", curso = ads, alunos = alunoRepository.findAll())
+        usuarioRepository.save(alan)
+        usuarioRepository.save(cicinth)
+        usuarioRepository.save(mestre)
+        usuarioRepository.save(gabs)
+        usuarioRepository.save(russo)
+        usuarioRepository.save(diego)
+
+
+
+
+
+        val handcode = Grupo(nome = "Handcode", curso = ads, alunos = alunoRepository.findAll(), turma = turmaA, tema = "Sistema gerenciador de OPE" )
 
         grupoRepository.save(handcode)
 
         val rodolfo = Aluno(nome = "Rodolfo", ra = 1700047, senha = BCryptPasswordEncoder().encode("senha"), email = "rodolfo@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO), turma = turmaB)
         usuarioRepository.save(rodolfo)
 
-        Grupo(nome = "Grupo do Rodolfo", curso = ads, alunos = mutableListOf(rodolfo))
+        Grupo(nome = "Grupo do Rodolfo", curso = ads, alunos = mutableListOf(rodolfo), turma = turmaB , tema = "Tema do Rodolfo")
 
         val tarefa = Tarefa(Date(), Date(), 1, mutableListOf(), "Lista de entregaveis.", "Entrega de parte da documentacao", ope1, ads, turmaRepository.findAllByCurso_idOrderBySemestreDesc(ads.id
                 ?: UUID.randomUUID()))

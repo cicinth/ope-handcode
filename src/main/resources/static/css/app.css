@@ -9614,7 +9614,8 @@ button, input, optgroup, select, textarea {
 .profile__img img {
   max-width: 200px;
   max-height: 200px;
-  border-radius: 2px;
+  border: 5px solid #fff;
+  border-radius: 50%;
 }
 @media (max-width: 767.99px) {
   .profile__img img {

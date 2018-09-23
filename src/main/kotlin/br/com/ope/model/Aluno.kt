@@ -39,4 +39,6 @@ class Aluno : Usuario {
         this.gruposRemovidos = gruposRemovidos
         this.turma = turma
     }
+
+    override fun getPainelUrl() = "aluno"
 }

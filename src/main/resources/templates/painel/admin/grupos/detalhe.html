@@ -1,10 +1,139 @@
-<th:block xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-          xmlns:th="http://www.thymeleaf.org"
-          layout:decorate="~{layout-painel-admin}">
+<th:block xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout-painel-admin}">
+
+    <th:block layout:fragment="css">
+        <style>
+            /* Propeller buttons */
+
+            @import "http://propeller.in/components/button/css/button.css";
+
+            /* Propeller icons */
+
+            @import "http://fonts.googleapis.com/icon?family=Material+Icons";
+            @import "http://propeller.in/components/icons/css/google-icons.css";
+
+            /* Propeller css for Floating Action Button*/
+
+            .pmd-floating-action {
+                bottom: 0;
+                position: fixed;
+                margin: 1em;
+                right: 0;
+            }
+
+            .pmd-floating-action-btn {
+                display: block;
+                position: relative;
+                transition: all .2s ease-out;
+            }
+
+            .pmd-floating-action-btn:before {
+                bottom: 10%;
+                content: attr(data-title);
+                opacity: 0;
+                position: absolute;
+                right: 100%;
+                transition: all .2s ease-out .5s;
+                white-space: nowrap;
+                background-color: #fff;
+                padding: 6px 12px;
+                border-radius: 2px;
+                color: #333;
+                font-size: 12px;
+                margin-right: 5px;
+                display: inline-block;
+                box-shadow: 0px 2px 3px -2px rgba(0, 0, 0, 0.18), 0px 2px 2px -7px rgba(0, 0, 0, 0.15);
+            }
+
+            .pmd-floating-action-btn:last-child:before {
+                font-size: 14px;
+                bottom: 25%;
+            }
+
+            .pmd-floating-action-btn:active,
+            .pmd-floating-action-btn:focus,
+            .pmd-floating-action-btn:hover {
+                box-shadow: 0px 5px 11px -2px rgba(0, 0, 0, 0.18), 0px 4px 12px -7px rgba(0, 0, 0, 0.15);
+            }
+
+            .pmd-floating-action-btn:not(:last-child) {
+                opacity: 0;
+                -ms-transform: translateY(20px) scale(0.3);
+                transform: translateY(20px) scale(0.3);
+                margin-bottom: 15px;
+                margin-left: 8px;
+                position: absolute;
+                bottom: 0;
+            }
+
+            .pmd-floating-action-btn:not(:last-child):nth-last-child(1) {
+                transition-delay: 50ms;
+            }
+
+            .pmd-floating-action-btn:not(:last-child):nth-last-child(2) {
+                transition-delay: 100ms;
+            }
+
+            .pmd-floating-action-btn:not(:last-child):nth-last-child(3) {
+                transition-delay: 150ms;
+            }
+
+            .pmd-floating-action-btn:not(:last-child):nth-last-child(4) {
+                transition-delay: 200ms;
+            }
+
+            .pmd-floating-action-btn:not(:last-child):nth-last-child(5) {
+                transition-delay: 250ms;
+            }
+
+            .pmd-floating-action-btn:not(:last-child):nth-last-child(6) {
+                transition-delay: 300ms;
+            }
+
+            .pmd-floating-action:hover .pmd-floating-action-btn,
+            .menu--floating--open .pmd-floating-action-btn {
+                opacity: 1;
+                -ms-transform: none;
+                transform: none;
+                position: relative;
+                bottom: auto;
+            }
+
+            .pmd-floating-action:hover .pmd-floating-action-btn:before,
+            .menu--floating--open .pmd-floating-action-btn:before {
+                opacity: 1;
+            }
+
+            .pmd-floating-hidden {
+                display: none;
+            }
+
+            .pmd-floating-action-btn.btn:hover {
+                overflow: visible;
+            }
+
+            .pmd-floating-action-btn .ink {
+                width: 50px;
+                height: 50px;
+            }
+
+            .list-group-item:hover {
+                background-color: #17a2b8;
+            }
+        </style>
+    </th:block>
 
     <div layout:fragment="conteudo">
         <header class="content__title">
-            <h1>Grupos</h1>
+            <nav style="background-color:transparent;">
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active show pt-0" style="background-color:transparent;" id="nav-home-tab" data-toggle="tab" href="#nav-home"
+                        role="tab" aria-controls="nav-home" aria-selected="true">Grupo</a>
+                    <a class="nav-item nav-link pt-0" style="background-color:transparent;" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                        role="tab" aria-controls="nav-profile" aria-selected="false">Tarefas</a>
+                    <a class="nav-item nav-link pt-0" style="background-color:transparent;" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
+                        role="tab" aria-controls="nav-contact" aria-selected="false">Boletim</a>
+                </div>
+            </nav>
             <div class="actions">
                 <div class="dropdown actions__item">
                     <i data-toggle="dropdown" class="zmdi zmdi-more-vert"></i>
@@ -14,6 +143,113 @@
                 </div>
             </div>
         </header>
+
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="card profile">
+                    <div class="profile__img">
+                        <img style="height: 200px;width: 200px;" th:if="${!#strings.isEmpty(grupo.logoHash)}" th:src="@{/publico/arquivos/__${grupo.logoHash}__}" alt="Logo">
+                        <img style="height: 200px;width: 200px;" th:if="${#strings.isEmpty(grupo.logoHash)}"  th:src="@{/img/group_empty.jpg}" alt="Logo">
+                    </div>
+                    <div class="profile__info">
+                        <p th:text="${grupo.nome}">Handcode</p>
+                        <ul class="icon-list">
+                            <li th:text="|Curso: ${grupo?.curso?.nome}|">Curso: ADS</li>
+                            <li th:text="|Turma: ${grupo?.turma?.semestre}º${grupo?.turma?.letra} - ${grupo?.turma?.periodo?.nome}|">Turma: 3ºA - Manhã</li>
+                            <li th:text="|${grupo.tema}|">Tema: OPE</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <header class="content__title">
+                    <h1>Integrantes</h1>
+
+                    <!-- <div class="actions">
+                        <a href="" class="actions__item zmdi zmdi-trending-up"></a>
+                        <a href="" class="actions__item zmdi zmdi-check-all"></a>
+
+                        <div class="dropdown actions__item">
+                            <i data-toggle="dropdown" class="zmdi zmdi-more-vert"></i>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a href="" class="dropdown-item">Atualizar</a>
+                                <a href="" class="dropdown-item">Editar</a>
+                            </div>
+                        </div>
+                    </div> -->
+                </header>
+                <div class="row">
+                    <div th:each="aluno : ${grupo.alunos}" class="col-xl-3 col-lg-3 col-sm-4 col-6">
+                        <div class="contacts__item">
+                            <a href="" class="contacts__img">
+                                <img th:if="${!#strings.isEmpty(aluno.fotoHash)}" th:src="@{/publico/arquivos/__${aluno.fotoHash}__}" alt="Foto">
+                                <img th:if="${#strings.isEmpty(aluno.fotoHash)}" th:src="@{/img/group_empty.jpg}" alt="Foto">
+                            </a>
+                            <div class="contacts__info">
+                                <strong th:text="${aluno.nome}">Alan presidente</strong>
+                                <small  th:text="${aluno.email}">alan@alan.com</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+            </div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+
+            </div>
+        </div>
+
+        <div class="menu btn-support pmd-floating-action" role="navigation"> 
+            <button 
+            data-toggle="tooltip" 
+            data-placement="top" 
+            data-original-title="Recusar grupo"
+            class="m-2 btn pmd-btn-fab pmd-ripple-effect btn-danger" 
+            type="button">
+                <i class="material-icons pmd-sm">clear</i>
+            </button>
+            <button 
+            data-toggle="tooltip" 
+            data-placement="top" 
+            data-original-title="Aprovar grupo"
+            class="m-2 btn pmd-btn-fab pmd-ripple-effect btn-success" 
+            type="button">
+                <i class="material-icons pmd-sm">check</i>
+            </button>
+        </div>
+
+
+         <!-- <div class="menu pmd-floating-action" role="navigation">
+            <a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default"
+                data-title="Supervisor Account">
+                <span class="pmd-floating-hidden">Supervisor Account</span>
+                <i class="material-icons">supervisor_account</i>
+            </a>
+            <a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default"
+                data-title="Cloud Queue">
+                <span class="pmd-floating-hidden">Cloud Queue</span>
+                <i class="material-icons">cloud_queue</i>
+            </a>
+            <a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default"
+                data-title="Headset">
+                <span class="pmd-floating-hidden">Headset</span>
+                <i class="material-icons">headset</i>
+            </a>
+            <a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default"
+                data-title="Dialpad">
+                <span class="pmd-floating-hidden">Dialpad</span>
+                <i class="material-icons">dialpad</i>
+            </a>
+            <a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" data-title="Add" href="javascript:void(0);">
+                <span class="pmd-floating-hidden">Primary</span>
+                <i class="material-icons pmd-sm">add</i>
+            </a>
+        </div>  -->
+       
+
     </div>
 
 

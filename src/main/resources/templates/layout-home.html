@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,25 +33,19 @@
             <ul class="top-nav">
                 <li class="dropdown hidden-xs-down">
 
-<!--
-
-                    <a href="" data-toggle="dropdown">
-                        <i class="zmdi zmdi-account"></i>
-                        Olá
-                    </a>
--->
-
-
-                    <a href="/login">
+                    <a sec:authorize="isAnonymous()" th:href="@{/login}">
                         <i class="zmdi zmdi-account"></i>
                         Entrar
                     </a>
 
+                    <a sec:authorize="isAuthenticated()" href="" data-toggle="dropdown">
+                        <i class="zmdi zmdi-account"></i>
+                        <span  th:text="|Olá ${#authentication?.principal?.nome}|"></span>
+                    </a>
+                    <div sec:authorize="isAuthenticated()" class="dropdown-menu dropdown-menu-right">
 
-                    <div class="dropdown-menu dropdown-menu-right">
-
-                        <a href="/painel/administrador" class="dropdown-item">Painel</a>
-                        <a href="/logout" class="dropdown-item">Sair</a>
+                            <a th:href="@{/painel}" class="dropdown-item">Painel</a>
+                            <a th:href="@{/logout}" class="dropdown-item">Sair</a>
 
                     </div>
 
