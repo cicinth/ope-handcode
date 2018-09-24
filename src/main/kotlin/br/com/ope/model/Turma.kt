@@ -49,7 +49,7 @@ class Turma : AbstractModel {
 
     enum class Periodo(val nome : String) {
 
-        MANHA("Manha"),
+        MANHA("Manhã"),
         TARDE("Tarde"),
         NOITE("Noite")
 

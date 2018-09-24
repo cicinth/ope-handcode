@@ -2,7 +2,6 @@ package br.com.ope.model
 
 import br.com.ope.enumx.Role
 import javax.persistence.Entity
-import javax.persistence.ManyToMany
 
 @Entity
 open class Administrador : Usuario {

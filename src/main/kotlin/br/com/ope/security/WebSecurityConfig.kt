@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 
 @EnableWebSecurity
 open class WebSecurityConfig(private val userDetailsService: UserDetailsService,
@@ -20,7 +21,7 @@ open class WebSecurityConfig(private val userDetailsService: UserDetailsService,
             .antMatchers("/painel/aluno/**").hasRole("ALUNO")
             .antMatchers("/painel/professor/**").hasRole("PROFESSOR")
             .and().formLogin().loginPage("/login").permitAll().successHandler(UrlRedirectAuthenticationSuccessHandler())
-            .and().logout().logoutUrl("/logout").permitAll()
+            .and().logout().logoutRequestMatcher(AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
             .and().exceptionHandling().accessDeniedPage("/403")
             .and().csrf().ignoringAntMatchers("/h2_console/**")
             .and().headers().frameOptions().sameOrigin()

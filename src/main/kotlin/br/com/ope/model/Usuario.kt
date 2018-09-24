@@ -75,8 +75,6 @@ open class Usuario : AbstractModel, UserDetails {
         return ativo
     }
 
-    fun exibirNomeDaClasse() {
-        println("Usuario")
-    }
+    open fun getPainelUrl() = "painel"
 
 }
