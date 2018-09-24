@@ -66,4 +66,10 @@ class Grupo : AbstractModel {
 
     }
 
+    fun isAprovado() = TipoStatusAprovacaoGrupo.APROVADO == status
+
+    fun isNotAprovado() = !isAprovado()
+
+    fun isAguardando() = TipoStatusAprovacaoGrupo.AGUARDANDO == status
+
 }
