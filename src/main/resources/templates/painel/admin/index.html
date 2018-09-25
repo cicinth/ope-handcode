@@ -97,8 +97,6 @@
 
     <th:block layout:fragment="javascript">
         <script>
-
-                'use strict';
             $(document).ready(function() {
                 var date = new Date();
                 var m = date.getMonth();
@@ -378,11 +376,6 @@
                 var i = moment().format("YYYY"),
                     j = moment().format("dddd, MMM D");
                 $(".widget-calendar__year").html(i), $(".widget-calendar__day").html(j)
-
-
-
-
-
             });
         </script>
     </th:block>
