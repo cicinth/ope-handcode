@@ -12,21 +12,20 @@
     </div>
     <ul class="top-nav">
         <li class="dropdown hidden-xs-down">
-            <a href="" data-toggle="dropdown">
-                <i class="zmdi zmdi-account"></i>
-                <span th:text="|Olá ${#authentication?.principal?.nome}|"></span>
-            </a>
-            <a th:if="${#authentication?.principal == null}" th:href="@{/login}">
+            <a sec:authorize="isAnonymous()" th:href="@{/login}">
                 <i class="zmdi zmdi-account"></i>
                 Entrar
             </a>
-            <div class="dropdown-menu dropdown-menu-right">
-                <th:block th:if="${#authentication?.principal != null}">
-                    <a th:href="@{/painel/admin}" class="dropdown-item">Painel</a>
+            <a sec:authorize="isAuthenticated()" href="" data-toggle="dropdown">
+                <i class="zmdi zmdi-account"></i>
+                <span  th:text="|Olá ${#authentication?.principal?.nome}|"></span>
+            </a>
+            <div sec:authorize="isAuthenticated()" class="dropdown-menu dropdown-menu-right">
+                <th:block >
+                    <a th:href="@{/painel}" class="dropdown-item">Painel</a>
                     <a th:href="@{/logout}" class="dropdown-item">Sair</a>
                 </th:block>
             </div>
-
         </li>
     </ul>
 </header>

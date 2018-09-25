@@ -7,6 +7,7 @@ import javax.persistence.*
 class Grupo : AbstractModel {
 
     var nome : String = ""
+    var tema : String = ""
     @ManyToOne
     @JoinColumn
     var curso : Curso? = null
@@ -32,29 +33,29 @@ class Grupo : AbstractModel {
 
     var logoHash : UUID? = null
 
-    @Transient
+    @ManyToOne
+    @JoinColumn
     var turma : Turma? = null
 
     constructor() : super()
 
-    constructor(nome: String, curso: Curso?, alunos: List<Aluno>, alunosRemovidos: List<Aluno>) : super() {
-        this.nome = nome
-        this.curso = curso
-        this.alunos = alunos
-        this.alunosRemovidos = alunosRemovidos
-    }
+
 
     constructor(id: UUID? = null,
                 nome: String,
                 curso: Curso?,
                 alunos: List<Aluno> = mutableListOf(),
                 alunosRemovidos: List<Aluno> = mutableListOf(),
-                disciplina: Disciplina? = null) : super(id) {
+                disciplina: Disciplina? = null,
+                turma : Turma,
+                tema : String) : super(id) {
         this.nome = nome
         this.curso = curso
         this.alunos = alunos
         this.alunosRemovidos = alunosRemovidos
         this.disciplina = disciplina
+        this.turma = turma
+        this.tema = tema
     }
 
     enum class TipoStatusAprovacaoGrupo(val nome : String, val cor : String) {
@@ -64,5 +65,11 @@ class Grupo : AbstractModel {
         AGUARDANDO("Aguardando", "warning")
 
     }
+
+    fun isAprovado() = TipoStatusAprovacaoGrupo.APROVADO == status
+
+    fun isNotAprovado() = !isAprovado()
+
+    fun isAguardando() = TipoStatusAprovacaoGrupo.AGUARDANDO == status
 
 }

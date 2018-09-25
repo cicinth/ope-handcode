@@ -22,7 +22,7 @@
                 <div class="contacts__item">
                     <a th:href="@{/painel/admin/grupos/__${grupo.id}__}" class="contacts__img">
                         <img th:if="${!#strings.isEmpty(grupo.logoHash)}" th:src="@{/publico/arquivos/__${grupo.logoHash}__}" alt="Logo">
-                        <img th:if="${#strings.isEmpty(grupo.logoHash)}" th:src="@{/img/grupos/default.jpg}" alt="Logo">
+                        <img th:if="${#strings.isEmpty(grupo.logoHash)}" th:src="@{/img/group_empty.jpg}" alt="Logo">
                     </a>
                     <div class="contacts__info">
                         <strong th:text="${grupo?.nome}">Cathy Shelton</strong>

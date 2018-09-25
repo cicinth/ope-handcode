@@ -82,7 +82,7 @@ $( document ).ready(function() {
                                     <a  class="actions__item zmdi zmdi-close js-clica-remove-card"></a>
                             </div>
                             <div class="profile__img">
-                                <img id="img-foto-integrante-`+indexAluno+`" src="" alt=""/>
+                                <img id="img-foto-integrante-`+indexAluno+`" src="/img/group_empty.jpg" alt="" style="height: 200px;width: 200px;" />
                                 <a data-img-id="img-foto-integrante-`+indexAluno+`" data-input-result-id="input-foto-hash-`+indexAluno+`" class="js-link-upload-foto zmdi zmdi-camera profile__img__edit"></a>
                                 <input id="input-foto-hash-`+indexAluno+`" name="fotoHash" type="text" hidden=""/>
                             </div>
