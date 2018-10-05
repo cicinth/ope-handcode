@@ -28,7 +28,7 @@ class HomeController {
     @GetMapping("/")
     fun index(model : Model) : String {
 
-        return "home/index"
+        return "redirect:/grupos"
     }
 
     @GetMapping("/grupos")

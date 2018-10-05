@@ -32,7 +32,7 @@
             </div>
 
             <ul class="top-nav">
-                <li class="dropdown hidden-xs-down">
+                <li class="dropdown">
 
                     <a sec:authorize="isAnonymous()" th:href="@{/login}">
                         <i class="zmdi zmdi-account"></i>
@@ -64,39 +64,33 @@
         <aside class="sidebar2">
             <div class="scrollbar-inner">
                 <div class="user">
-
-
-                    <div class="user__info" data-toggle="dropdown">
+                    <div sec:authorize="isAuthenticated()" class="user__info" data-toggle="dropdown">
                         <img class="user__img" th:src="@{/img/profile-pics/8.jpg}" alt="">
                         <div>
-                            <div class="user__name">{{ request.user.nome }}</div>
-                            <div class="user__email">{{ request.user.email }}</div>
+                            <div th:text="${#authentication?.principal?.nome}" class="user__name">Nome</div>
+                            <div th:text="${#authentication?.principal?.email}" class="user__email">Email</div>
                         </div>
                     </div>
 
-                    <!--{% if not request.user.is_authenticated %}
-                    <li class="user__info">
-                        <a href="/login">
-                            <i class="zmdi zmdi-account"></i>
-                            Entrar
-                        </a>
-                    </li>
-                    {% endif %}-->
-                    <div class="dropdown-menu dropdown-menu-right">
-
-                        <a href="/painel/administrador" class="dropdown-item">Painel</a>
-                        <a href="/logout" class="dropdown-item">Sair</a>
-
+                    <div sec:authorize="isAuthenticated()" class="dropdown-menu">
+                        <a class="dropdown-item" th:href="@{/logout}">Sair</a>
                     </div>
-
                 </div>
+
                 <ul class="navigation">
-                    <li><a href="/"><i class="zmdi zmdi-view-list"></i>Home</a></li>
-                    <li><a href=""><i class="zmdi zmdi-view-list"></i>Trabalhos</a></li>
-                    <li><a href=""><i class="zmdi zmdi-view-list"></i>Ajuda</a></li>
+                    <li>
+                        <a th:href="@{/}"><i class="zmdi zmdi-home"></i>Home</a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()">
+                        <a th:href="@{/painel}"><i class="zmdi zmdi-view-dashboard"></i>Painel</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/grupos}"><i class="zmdi zmdi-view-list"></i>Cadastro de Grupos</a>
+                    </li>
                 </ul>
             </div>
         </aside>
+
 
 
         <section class="content" style="padding:102px 30px 0 30px; margin-left:0px">
