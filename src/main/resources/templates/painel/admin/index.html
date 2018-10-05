@@ -5,8 +5,8 @@
     <div layout:fragment="conteudo">
 
         <header class="content__title content__title--calendar">
-            <h1>September 2018</h1>
-            <small>FullCalendar is a highly customizable open source javaScript event calendar.</small>
+            <h1></h1>
+            <small></small>
 
             <div class="actions actions--calendar">
                 <a href="" class="actions__item actions__calender-prev"><i class="zmdi zmdi-long-arrow-left"></i></a>
@@ -93,6 +93,38 @@
                 </div>
             </div>
         </div>
+
+
+
+
+        <div class="menu pmd-floating-action" role="navigation">
+            <a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default"
+                data-title="Supervisor Account">
+                <span class="pmd-floating-hidden">Supervisor Account</span>
+                <i class="material-icons">supervisor_account</i>
+            </a>
+            <a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default"
+                data-title="Cloud Queue">
+                <span class="pmd-floating-hidden">Cloud Queue</span>
+                <i class="material-icons">cloud_queue</i>
+            </a>
+            <a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default"
+                data-title="Headset">
+                <span class="pmd-floating-hidden">Headset</span>
+                <i class="material-icons">headset</i>
+            </a>
+            <a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default"
+                data-title="Dialpad">
+                <span class="pmd-floating-hidden">Dialpad</span>
+                <i class="material-icons">dialpad</i>
+            </a>
+            <a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" data-title="Add" href="javascript:void(0);">
+                <span class="pmd-floating-hidden">Primary</span>
+                <i class="material-icons pmd-sm">add</i>
+            </a>
+        </div>
+
+
     </div>
 
     <th:block layout:fragment="javascript">
@@ -224,14 +256,16 @@
                     ],
 
                     dayClick: function(date) {
-                        var isoDate = moment(date).toISOString();
+                        console.log('date')
+                        /* var isoDate = moment(date).toISOString();
                         $('#new-event').modal('show');
                         $('.new-event__title').val('');
                         $('.new-event__start').val(isoDate);
-                        $('.new-event__end').val(isoDate);
+                        $('.new-event__end').val(isoDate); */
                     },
 
                     viewRender: function (view) {
+                        console.log('view')
                         var calendarDate = $('.calendar').fullCalendar('getDate');
                         var calendarMonth = calendarDate.month();
 
@@ -239,10 +273,11 @@
                         $('.calendar .fc-toolbar').attr('data-calendar-month', calendarMonth);
 
                         //Set title in page header
-                        $('.content__title--calendar > h1').html(view.title);
+                         $('.content__title--calendar > h1').html(view.title);
                     },
 
                     eventClick: function (event, element) {
+                        console.log('event')
                         $('#edit-event input[value='+event.className+']').prop('checked', true);
                         $('#edit-event').modal('show');
                         $('.edit-event__id').val(event.id);
@@ -253,7 +288,7 @@
 
 
                 //Add new Event
-                $('body').on('click', '.new-event__add', function(){
+               /*  $('body').on('click', '.new-event__add', function(){
                     var eventTitle = $('.new-event__title').val();
 
                     // Generate ID
@@ -295,7 +330,7 @@
                         $('.new-event__title').focus();
                     }
                 });
-
+ */
 
                 //Update/Delete an Event
                 $('body').on('click', '[data-calendar]', function(){
