@@ -1,9 +1,9 @@
 package br.com.ope.controller
 
-import br.com.ope.dto.MensagemVO
 import br.com.ope.model.Turma
 import br.com.ope.repository.CursoRepository
 import br.com.ope.repository.TurmaRepository
+import br.com.ope.vo.MensagemVO
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.validation.BindingResult

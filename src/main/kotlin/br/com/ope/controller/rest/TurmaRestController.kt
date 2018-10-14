@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 import java.util.*
 
 @RestController
-@RequestMapping("/rest/turmas")
+@RequestMapping(value = ["/rest/turmas", "/api/v1/turmas"])
 class TurmaRestController {
 
     private val turmaRepository : TurmaRepository

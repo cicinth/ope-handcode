@@ -40,9 +40,16 @@ open class Usuario : AbstractModel, UserDetails {
         this.permissoes = permissoes
     }
 
+    constructor(email: String, authorities: MutableSet<GrantedAuthority>) : super() {
+        this.email = email
+        for (authority in authorities) {
+            permissoes.add(Role.valueOf(authority.authority))
+        }
+    }
+
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
-        var authorities = mutableSetOf<GrantedAuthority>()
+        val authorities = mutableSetOf<GrantedAuthority>()
 
         for (permissao in permissoes) {
             authorities.add(SimpleGrantedAuthority(permissao.name))

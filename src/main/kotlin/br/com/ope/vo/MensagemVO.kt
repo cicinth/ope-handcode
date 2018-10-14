@@ -1,4 +1,4 @@
-package br.com.ope.dto
+package br.com.ope.vo
 
 data class  MensagemVO(val conteudo : String = "",
                        val titulo : String = "",

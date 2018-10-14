@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/rest/eventos")
+@RequestMapping(value = ["/rest/eventos", "/api/v1/eventos"])
 class EventosRestController {
 
     private val eventoRepository : EventoRepository

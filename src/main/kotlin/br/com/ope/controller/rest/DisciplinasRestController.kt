@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 import java.util.*
 
 @RestController
-@RequestMapping("/rest/disciplinas")
+@RequestMapping(value = ["/rest/disciplinas","/api/v1/disciplinas"])
 class DisciplinasRestController {
 
     private val disciplinaRepository : DisciplinaRepository

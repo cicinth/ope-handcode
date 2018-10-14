@@ -1,6 +1,6 @@
 package br.com.ope.controller
 
-import br.com.ope.dto.MensagemVO
+import br.com.ope.vo.MensagemVO
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.RequestMapping

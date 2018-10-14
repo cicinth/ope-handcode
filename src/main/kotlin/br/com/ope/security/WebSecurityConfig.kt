@@ -1,5 +1,6 @@
 package br.com.ope.security
 
+import org.springframework.core.annotation.Order
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -9,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 
 @EnableWebSecurity
+@Order(2)
 open class WebSecurityConfig(private val userDetailsService: UserDetailsService,
                              private val passwordEncoderAndMatcher: PasswordEncoder)
     : WebSecurityConfigurerAdapter() {
