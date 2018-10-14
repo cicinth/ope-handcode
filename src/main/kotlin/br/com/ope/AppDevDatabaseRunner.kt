@@ -58,7 +58,7 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
         val yuri = Professor(nome = "Yuri", email = "professor@email.com.br", senha = BCryptPasswordEncoder().encode("senha"), ativo = true, permissoes = mutableSetOf(Role.ROLE_PROFESSOR))
         val fernando = Professor(nome = "Fernando", email = "fernando@email.com.br", senha = BCryptPasswordEncoder().encode("senha"), ativo = true, permissoes = mutableSetOf(Role.ROLE_PROFESSOR))
 
-        val aluno = Aluno(nome = "Aluno teste", ra = 123456, senha = BCryptPasswordEncoder().encode("senha"), email = "aluno", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO), turma = turmaA)
+        val aluno = Aluno(nome = "Aluno teste", ra = 123456, senha = BCryptPasswordEncoder().encode("impacta"), email = "aluno", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO), turma = turmaA)
         usuarioRepository.save(aluno)
 
         usuarioRepository.save(admin)
@@ -86,7 +86,7 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
         val rodolfo = Aluno(nome = "Rodolfo", ra = 1700047, senha = BCryptPasswordEncoder().encode("senha"), email = "rodolfo@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO), turma = turmaB)
         usuarioRepository.save(rodolfo)
 
-        Grupo(nome = "Grupo do Rodolfo", curso = ads, alunos = mutableListOf(rodolfo), turma = turmaB , tema = "Tema do Rodolfo")
+        Grupo(nome = "Grupo do Rodolfo", curso = ads, alunos = mutableListOf(rodolfo, aluno), turma = turmaB , tema = "Tema do Rodolfo")
 
         val tarefa = Tarefa(Date(), Date(), 1, mutableListOf(), "Lista de entregaveis.", "Entrega de parte da documentacao", ope1, ads, turmaRepository.findAllByCurso_idOrderBySemestreDesc(ads.id
                 ?: UUID.randomUUID()))
