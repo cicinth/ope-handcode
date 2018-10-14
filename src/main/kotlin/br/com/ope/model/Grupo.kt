@@ -1,5 +1,6 @@
 package br.com.ope.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import java.util.*
 import javax.persistence.*
 
@@ -22,6 +23,7 @@ class Grupo : AbstractModel {
 
     @ManyToMany
     @JoinTable
+    @JsonIgnore
     var alunos : List<Aluno> = mutableListOf()
 
     @ManyToMany

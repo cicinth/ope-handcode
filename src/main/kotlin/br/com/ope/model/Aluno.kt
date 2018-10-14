@@ -1,6 +1,7 @@
 package br.com.ope.model
 
 import br.com.ope.enumx.Role
+import com.fasterxml.jackson.annotation.JsonIgnore
 import java.util.*
 import javax.persistence.Entity
 import javax.persistence.JoinColumn
@@ -13,6 +14,7 @@ class Aluno : Usuario {
     var ra : Long = 0
 
     @ManyToMany(mappedBy = "alunos")
+    @JsonIgnore
     var grupos : List<Grupo> = mutableListOf()
 
     @ManyToOne
@@ -22,6 +24,7 @@ class Aluno : Usuario {
     var fotoHash : UUID? = null
 
     @ManyToMany(mappedBy = "alunosRemovidos")
+    @JsonIgnore
     var gruposRemovidos : List<Grupo> = mutableListOf()
 
     constructor() : super()
