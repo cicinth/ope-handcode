@@ -21,7 +21,14 @@ constructor(@field:Autowired
         if (userContext.authorities.isEmpty()) throw IllegalArgumentException("Usuario não tem permissões no perfil")
 
         val claims = Jwts.claims().setSubject(userContext.username)
-        claims["scopes"] = userContext.authorities.stream().map { s -> s.toString() }
+        val roles = mutableListOf<String>()
+
+        for (grantedAuthority in userContext.authorities) {
+            roles.add(grantedAuthority.toString())
+        }
+        claims.put("scopes", roles)
+
+
         //TODO FIX ME
         val currentTime = LocalDateTime.now()
 

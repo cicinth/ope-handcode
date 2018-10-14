@@ -47,14 +47,16 @@ open class Usuario : AbstractModel, UserDetails {
         for (authority in authorities) {
             permissoes.add(Role.valueOf(authority.authority))
         }
+
     }
 
-
+    @JsonIgnore
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         val authorities = mutableSetOf<GrantedAuthority>()
 
         for (permissao in permissoes) {
             authorities.add(SimpleGrantedAuthority(permissao.name))
+
         }
 
         return authorities
