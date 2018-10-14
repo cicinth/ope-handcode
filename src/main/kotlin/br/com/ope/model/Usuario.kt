@@ -1,6 +1,7 @@
 package br.com.ope.model
 
 import br.com.ope.enumx.Role
+import com.fasterxml.jackson.annotation.JsonIgnore
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
@@ -17,6 +18,7 @@ open class Usuario : AbstractModel, UserDetails {
     var nome  : String = ""
     var email : String = ""
     var ativo : Boolean = false
+    @JsonIgnore
     var senha : String = ""
     @ElementCollection(targetClass = Role::class)
     @Enumerated(EnumType.STRING)
@@ -57,27 +59,27 @@ open class Usuario : AbstractModel, UserDetails {
 
         return authorities
     }
-
+    @JsonIgnore
     override fun isEnabled(): Boolean {
         return ativo
     }
-
+    @JsonIgnore
     override fun getUsername(): String {
         return email
     }
-
+    @JsonIgnore
     override fun isCredentialsNonExpired(): Boolean {
         return ativo
     }
-
+    @JsonIgnore
     override fun getPassword(): String {
         return senha
     }
-
+    @JsonIgnore
     override fun isAccountNonExpired(): Boolean {
         return ativo
     }
-
+    @JsonIgnore
     override fun isAccountNonLocked(): Boolean {
         return ativo
     }
