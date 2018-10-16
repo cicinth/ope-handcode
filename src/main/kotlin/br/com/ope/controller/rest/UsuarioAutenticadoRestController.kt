@@ -1,6 +1,7 @@
 package br.com.ope.controller.rest
 
 import br.com.ope.model.Usuario
+import br.com.ope.repository.AtividadeRepository
 import br.com.ope.security.jwt.auth.JwtAuthenticationToken
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -10,22 +11,31 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping(value = ["/api/v1/me"])
-class AutenticacaoRestController {
+@RequestMapping(value = ["/api/v1/me", "/api/v1/eu"])
+class UsuarioAutenticadoRestController {
 
     val userDetailsService : UserDetailsService
+    val ativiadeRepository: AtividadeRepository
 
-    constructor(userDetailsService: UserDetailsService) {
+    constructor(userDetailsService: UserDetailsService, agendamentoRepository: AtividadeRepository) {
         this.userDetailsService = userDetailsService
+        this.ativiadeRepository = agendamentoRepository
     }
+
 
     @GetMapping
     fun detalhesUsuarioAutenticado(token: JwtAuthenticationToken): ResponseEntity<*> {
         val userContext = token.getPrincipal() as Usuario
         val usuario = userDetailsService.loadUserByUsername(userContext.email) ?: throw UsernameNotFoundException("Usuário não encontrado: " + userContext.email)
-
-
         return ResponseEntity.ok(usuario)
+    }
+
+    @GetMapping("/atividades")
+    fun agendamentosUsuarioAutenticado(token: JwtAuthenticationToken): ResponseEntity<*> {
+        val userContext = token.getPrincipal() as Usuario
+        val usuario = userDetailsService.loadUserByUsername(userContext.email) ?: throw UsernameNotFoundException("Usuário não encontrado: " + userContext.email)
+        val atividades = ativiadeRepository.findAll()
+        return ResponseEntity.ok(atividades)
     }
 
 }

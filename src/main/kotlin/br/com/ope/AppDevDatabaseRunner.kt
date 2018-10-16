@@ -19,7 +19,9 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
                            val usuarioRepository: UsuarioRepository,
                            val grupoRepository: GrupoRepository,
                            val disciplinaRepository: DisciplinaRepository,
-                           val turmaRepository: TurmaRepository) : ApplicationRunner{
+                           val turmaRepository: TurmaRepository,
+                           val atividadeRepository: AtividadeRepository,
+                           val entregaRepository: EntregaRepository) : ApplicationRunner{
 
     private val logger = LoggerFactory.getLogger(AppDevDatabaseRunner::class.java)
     override fun run(args: ApplicationArguments?) = iniciarBanco()
@@ -88,15 +90,70 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
 
         Grupo(nome = "Grupo do Rodolfo", curso = ads, alunos = mutableListOf(rodolfo, aluno), turma = turmaB , tema = "Tema do Rodolfo")
 
-        val tarefa = Tarefa(Date(), Date(), 1, mutableListOf(), "Lista de entregaveis.", "Entrega de parte da documentacao", ope1, ads, turmaRepository.findAllByCurso_idOrderBySemestreDesc(ads.id
-                ?: UUID.randomUUID()))
+        //val tarefa = Tarefa(Date(), Date(), 1, mutableListOf(), "Lista de entregaveis.", "Entrega de parte da documentacao", ope1, ads, turmaRepository.findAllByCurso_idOrderBySemestreDesc(ads.id
+        //        ?: UUID.randomUUID()))
+//
+        //tarefaRepository.save(tarefa)
 
-        tarefaRepository.save(tarefa)
+       // val evento = Evento(Date(), "Lista de entregaveis.", "Entrega de parte da documentacao", ope1, ads, turmaRepository.findAllByCurso_idOrderBySemestreDesc(ads.id
+       //         ?: UUID.randomUUID()), tarefa)
 
-        val evento = Evento(Date(), "Lista de entregaveis.", "Entrega de parte da documentacao", ope1, ads, turmaRepository.findAllByCurso_idOrderBySemestreDesc(ads.id
-                ?: UUID.randomUUID()), tarefa)
+        //eventoRepository.save(evento)
 
-        eventoRepository.save(evento)
+        val atividades = mutableListOf<Atividade>()
+
+        atividades.add( Atividade(Date(), "Descrição tarefa 1", "Titulo tarefa 1",
+                Date(),
+                Date(),
+                ope1,
+                ads,
+                Arrays.asList(turmaA)))
+
+        atividades.add( Atividade(Date(), "Descrição tarefa 2", "Titulo tarefa 2",
+                Date(),
+                Date(),
+                ope1,
+                ads,
+                Arrays.asList(turmaA)))
+
+        atividades.add( Atividade(Date(), "Descrição tarefa 3", "Titulo tarefa 3",
+                Date(),
+                Date(),
+                ope1,
+                ads,
+                Arrays.asList(turmaA)))
+
+        atividadeRepository.saveAll(atividades)
+
+        val entregas = mutableListOf<Entrega>()
+
+        entregas.add( Entrega(Date(), "Descrição tarefa 1", "Titulo tarefa 1",
+                Date(),
+                Date(),
+                Entrega.Status.PENDENTE,
+                ope1,
+                ads,
+                Arrays.asList(turmaA)))
+
+        entregas.add( Entrega(Date(), "Descrição tarefa 2", "Titulo tarefa 2",
+                Date(),
+                Date(),
+                Entrega.Status.PENDENTE,
+                ope1,
+                ads,
+                Arrays.asList(turmaA)))
+
+        entregas.add( Entrega(Date(), "Descrição tarefa 3", "Titulo tarefa 3",
+                Date(),
+                Date(),
+                Entrega.Status.ENTREGUE,
+                ope1,
+                ads,
+                Arrays.asList(turmaA)))
+
+
+
+        entregaRepository.saveAll(entregas)
 
         logger.info("Finalizado setup dos dados simulados no banco")
     }
