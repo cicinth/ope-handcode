@@ -1,24 +1,24 @@
 package br.com.ope.controller.rest
 
-import br.com.ope.model.Atividade
-import br.com.ope.repository.AtividadeRepository
+import br.com.ope.model.Tarefa
+import br.com.ope.repository.TarefaRepository
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping(value = ["/rest/atividades", "/api/v1/atividades"])
-class AtividadesRestController {
+@RequestMapping(value = ["/rest/tarefas", "/api/v1/tarefas"])
+class TarefasRestController {
 
-    private val atividadeRepository : AtividadeRepository
+    private val tarefaRepository : TarefaRepository
 
-    constructor(atividadeRepository: AtividadeRepository) {
-        this.atividadeRepository = atividadeRepository
+    constructor(tarefaRepository: TarefaRepository) {
+        this.tarefaRepository = tarefaRepository
     }
 
     @GetMapping
-    fun atividades() :  List<Atividade> {
-        return atividadeRepository.findAll()
+    fun tarefas() :  List<Tarefa> {
+        return tarefaRepository.findAll()
     }
 
 }

@@ -7,39 +7,30 @@ import javax.persistence.*
 @Entity
 class Entrega : AbstractModel {
 
-    var data : Date? = null
-    var descricao : String = ""
-    var titulo : String = ""
     var dataEntrega : Date? = null
-    var dataLiberacao : Date? = null
-    var situacaoEntega : Status = Status.PENDENTE
+    var situacaoEntrega : Status = Status.PENDENTE
 
     @ManyToOne
     @JoinColumn
     @JsonIgnore
-    var disciplina : Disciplina? = null
+    var tarefa : Tarefa? = null
 
     @ManyToOne
     @JoinColumn
     @JsonIgnore
-    var curso : Curso? = null
+    var grupo : Grupo? = null
 
     @ManyToMany
     @JoinTable
-    @JsonIgnore
-    var turmas : List<Turma> = mutableListOf()
+    var arquivos: List<Arquivo> = mutableListOf()
 
     constructor() : super()
-    constructor(data: Date?, descricao: String, titulo: String, dataEntrega: Date?, dataLiberacao: Date?, situacaoEntega: Status, disciplina: Disciplina?, curso: Curso?, turmas: List<Turma>) : super() {
-        this.data = data
-        this.descricao = descricao
-        this.titulo = titulo
+    constructor(dataEntrega: Date?, situacaoEntrega: Status, tarefa: Tarefa?, grupo: Grupo?, arquivos: List<Arquivo>) : super() {
         this.dataEntrega = dataEntrega
-        this.dataLiberacao = dataLiberacao
-        this.situacaoEntega = situacaoEntega
-        this.disciplina = disciplina
-        this.curso = curso
-        this.turmas = turmas
+        this.situacaoEntrega = situacaoEntrega
+        this.tarefa = tarefa
+        this.grupo = grupo
+        this.arquivos = arquivos
     }
 
 

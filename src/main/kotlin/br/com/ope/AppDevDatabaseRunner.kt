@@ -20,7 +20,6 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
                            val grupoRepository: GrupoRepository,
                            val disciplinaRepository: DisciplinaRepository,
                            val turmaRepository: TurmaRepository,
-                           val atividadeRepository: AtividadeRepository,
                            val entregaRepository: EntregaRepository) : ApplicationRunner{
 
     private val logger = LoggerFactory.getLogger(AppDevDatabaseRunner::class.java)
@@ -77,10 +76,6 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
         usuarioRepository.save(russo)
         usuarioRepository.save(diego)
 
-
-
-
-
         val handcode = Grupo(nome = "Handcode", curso = ads, alunos = alunoRepository.findAll(), turma = turmaA, tema = "Sistema gerenciador de OPE" )
 
         grupoRepository.save(handcode)
@@ -100,58 +95,19 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
 
         //eventoRepository.save(evento)
 
-        val atividades = mutableListOf<Atividade>()
+        val atividades = mutableListOf<Tarefa>()
 
-        atividades.add( Atividade(Date(), "Descrição tarefa 1", "Titulo tarefa 1",
-                Date(),
-                Date(),
-                ope1,
-                ads,
-                Arrays.asList(turmaA)))
+        val tarefa1 = Tarefa("Lista de entregaveis", "Entrega de parte da documentacao 1", ope1, ads, Arrays.asList(turmaA), Date(), Date())
 
-        atividades.add( Atividade(Date(), "Descrição tarefa 2", "Titulo tarefa 2",
-                Date(),
-                Date(),
-                ope1,
-                ads,
-                Arrays.asList(turmaA)))
+        atividades.add(tarefa1)
 
-        atividades.add( Atividade(Date(), "Descrição tarefa 3", "Titulo tarefa 3",
-                Date(),
-                Date(),
-                ope1,
-                ads,
-                Arrays.asList(turmaA)))
-
-        atividadeRepository.saveAll(atividades)
+        tarefaRepository.saveAll(atividades)
 
         val entregas = mutableListOf<Entrega>()
 
-        entregas.add( Entrega(Date(), "Descrição tarefa 1", "Titulo tarefa 1",
-                Date(),
-                Date(),
-                Entrega.Status.PENDENTE,
-                ope1,
-                ads,
-                Arrays.asList(turmaA)))
+        val entrega1 = Entrega(Date(), Entrega.Status.ENTREGUE, tarefa1, handcode, mutableListOf())
 
-        entregas.add( Entrega(Date(), "Descrição tarefa 2", "Titulo tarefa 2",
-                Date(),
-                Date(),
-                Entrega.Status.PENDENTE,
-                ope1,
-                ads,
-                Arrays.asList(turmaA)))
-
-        entregas.add( Entrega(Date(), "Descrição tarefa 3", "Titulo tarefa 3",
-                Date(),
-                Date(),
-                Entrega.Status.ENTREGUE,
-                ope1,
-                ads,
-                Arrays.asList(turmaA)))
-
-
+        entregas.add(entrega1)
 
         entregaRepository.saveAll(entregas)
 

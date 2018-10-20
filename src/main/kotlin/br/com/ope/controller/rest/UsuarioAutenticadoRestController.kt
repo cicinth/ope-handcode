@@ -1,9 +1,8 @@
 package br.com.ope.controller.rest
 
-import br.com.ope.model.Grupo
 import br.com.ope.model.Usuario
-import br.com.ope.repository.AtividadeRepository
 import br.com.ope.repository.GrupoRepository
+import br.com.ope.repository.TarefaRepository
 import br.com.ope.security.jwt.auth.JwtAuthenticationToken
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -18,10 +17,10 @@ import java.util.*
 class UsuarioAutenticadoRestController {
 
     val userDetailsService : UserDetailsService
-    val ativiadeRepository: AtividadeRepository
+    val ativiadeRepository: TarefaRepository
     val grupoRepository : GrupoRepository
 
-    constructor(userDetailsService: UserDetailsService, ativiadeRepository: AtividadeRepository, grupoRepository: GrupoRepository) {
+    constructor(userDetailsService: UserDetailsService, ativiadeRepository: TarefaRepository, grupoRepository: GrupoRepository) {
         this.userDetailsService = userDetailsService
         this.ativiadeRepository = ativiadeRepository
         this.grupoRepository = grupoRepository

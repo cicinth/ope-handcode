@@ -39,9 +39,10 @@ class Grupo : AbstractModel {
     @JoinColumn
     var turma : Turma? = null
 
+    @OneToMany(mappedBy = "grupo")
+    var entregas : List<Entrega> = mutableListOf()
+
     constructor() : super()
-
-
 
     constructor(id: UUID? = null,
                 nome: String,

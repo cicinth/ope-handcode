@@ -1,43 +1,22 @@
 package br.com.ope.model
 
 import java.util.*
-import javax.persistence.*
+import javax.persistence.Entity
+import javax.persistence.OneToMany
 
 @Entity
-class Tarefa : AbstractModel {
+class Tarefa : Evento {
     var dataEntrega : Date? = null
     var dataLiberacao : Date? = null
 
-    @ManyToMany
-    @JoinTable
-    var anexos : List<Arquivo> = mutableListOf()
-    var descricao : String = ""
-    var titulo : String = ""
-
-    @ManyToOne
-    @JoinColumn
-    var disciplina : Disciplina? = null
-
-    @ManyToOne
-    @JoinColumn
-    var curso : Curso? = null
-
-    @ManyToMany
-    @JoinTable
-    var turmas : List<Turma> = mutableListOf()
+    @OneToMany(mappedBy = "tarefa")
+    var entregas : List<Entrega> = mutableListOf()
 
     constructor() : super()
 
-    constructor(dataEntrega: Date?, dataLiberacao: Date?, anexos: List<Arquivo>, descricao: String, titulo: String, disciplina: Disciplina?, curso: Curso?, turmas: List<Turma>) : super() {
+    constructor(descricao: String, titulo: String, disciplina: Disciplina?, curso: Curso?, turmas: List<Turma>, dataEntrega: Date?, dataLiberacao: Date?) : super(descricao, titulo, disciplina, curso, turmas) {
         this.dataEntrega = dataEntrega
         this.dataLiberacao = dataLiberacao
-        this.anexos = anexos
-        this.descricao = descricao
-        this.titulo = titulo
-        this.disciplina = disciplina
-        this.curso = curso
-        this.turmas = turmas
     }
-
 
 }

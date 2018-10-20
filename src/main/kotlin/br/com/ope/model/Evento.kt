@@ -1,11 +1,9 @@
 package br.com.ope.model
 
-import java.util.*
 import javax.persistence.*
 
 @Entity
-class Evento : AbstractModel {
-    var data : Date? = null
+open class Evento : AbstractModel {
     var descricao : String = ""
     var titulo : String = ""
 
@@ -21,20 +19,13 @@ class Evento : AbstractModel {
     @JoinTable
     var turmas : List<Turma> = mutableListOf()
 
-    @ManyToOne
-    @JoinColumn
-    var tarefa : Tarefa? = null
-
     constructor() : super()
-
-    constructor(data: Date?, descricao: String, titulo: String, disciplina: Disciplina?, curso: Curso?, turmas: List<Turma>, tarefa: Tarefa?) : super() {
-        this.data = data
+    constructor(descricao: String, titulo: String, disciplina: Disciplina?, curso: Curso?, turmas: List<Turma>) : super() {
         this.descricao = descricao
         this.titulo = titulo
         this.disciplina = disciplina
         this.curso = curso
         this.turmas = turmas
-        this.tarefa = tarefa
     }
 
 
