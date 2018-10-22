@@ -97,7 +97,7 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
 
         val atividades = mutableListOf<Tarefa>()
 
-        val tarefa1 = Tarefa("Lista de entregaveis", "Entrega de parte da documentacao 1", ope1, ads, Arrays.asList(turmaA), Date(), Date())
+        val tarefa1 = Tarefa(Date(), "Lista de entregaveis", "Entrega de parte da documentacao 1", Arrays.asList(ope1), Arrays.asList(ads), Arrays.asList(turmaA), Arrays.asList())
 
         atividades.add(tarefa1)
 
@@ -112,6 +112,14 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
         entregaRepository.saveAll(entregas)
 
         logger.info("Finalizado setup dos dados simulados no banco")
+
+        val eventos = mutableListOf<Evento>()
+
+        val evento1 = Evento(Date(), "Lista de entregaveis", "Entrega de parte da documentacao 1", Arrays.asList(ope1), Arrays.asList(ads), Arrays.asList(turmaA))
+
+        eventos.add(evento1)
+
+        eventoRepository.saveAll(eventos)
     }
 
 }

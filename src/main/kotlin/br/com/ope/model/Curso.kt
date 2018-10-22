@@ -27,10 +27,6 @@ class Curso : AbstractModel {
     @JsonIgnore
     var grupos: List<Grupo> = mutableListOf()
 
-    @OneToMany(mappedBy = "curso")
-    @JsonIgnore
-    var tarefas : List<Tarefa> = mutableListOf()
-
     fun atualizar(curso: Curso): Curso {
         this.nome = curso.nome
         this.sigla = curso.sigla

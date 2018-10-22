@@ -22,10 +22,6 @@ class Disciplina : AbstractModel {
     @JsonIgnore
     var gruposAnteriores: List<Grupo> = mutableListOf()
 
-    @OneToMany(mappedBy = "curso")
-    @JsonIgnore
-    var tarefas : List<Tarefa> = mutableListOf()
-
     constructor() : super()
 
     constructor(id: UUID?) : super(id)

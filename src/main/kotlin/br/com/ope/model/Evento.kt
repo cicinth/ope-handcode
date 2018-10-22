@@ -1,32 +1,54 @@
 package br.com.ope.model
 
-import javax.persistence.*
+import org.springframework.format.annotation.DateTimeFormat
+import java.util.*
+import javax.persistence.Entity
+import javax.persistence.JoinTable
+import javax.persistence.ManyToMany
 
 @Entity
 open class Evento : AbstractModel {
+
+
+    @DateTimeFormat(pattern="YYYY-MM-dd hh:mm")
+    var dataHora : Date = Date()
     var descricao : String = ""
     var titulo : String = ""
 
-    @ManyToOne
-    @JoinColumn
-    var disciplina : Disciplina? = null
+    @ManyToMany
+    @JoinTable
+    var disciplinas : List<Disciplina> = mutableListOf()
 
-    @ManyToOne
-    @JoinColumn
-    var curso : Curso? = null
+    @ManyToMany
+    @JoinTable
+    var cursos : List<Curso> = mutableListOf()
 
     @ManyToMany
     @JoinTable
     var turmas : List<Turma> = mutableListOf()
 
+    @ManyToMany
+    @JoinTable
+    var arquivos: List<Arquivo> = mutableListOf()
+
     constructor() : super()
-    constructor(descricao: String, titulo: String, disciplina: Disciplina?, curso: Curso?, turmas: List<Turma>) : super() {
+    constructor(dataHora: Date, descricao: String, titulo: String, disciplinas: List<Disciplina>, cursos: List<Curso>, turmas: List<Turma>) : super() {
+        this.dataHora = dataHora
         this.descricao = descricao
         this.titulo = titulo
-        this.disciplina = disciplina
-        this.curso = curso
+        this.disciplinas = disciplinas
+        this.cursos = cursos
         this.turmas = turmas
     }
 
+    open fun atualizar(evento: Evento): Evento {
+        this.dataHora = evento.dataHora
+        this.descricao = evento.descricao
+        this.titulo = evento.titulo
+        this.cursos = evento.cursos
+        this.turmas = evento.turmas
+        this.disciplinas = evento.disciplinas
+        return this
+    }
 
 }

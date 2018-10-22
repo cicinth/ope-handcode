@@ -2,16 +2,15 @@
           xmlns:th="http://www.thymeleaf.org"
           layout:decorate="~{layout-painel-admin}">
 
-
     <div layout:fragment="conteudo">
 
         <header class="content__title">
-            <h1>Cursos</h1>
+            <h1>Eventos</h1>
             <div class="actions">
                 <div class="dropdown actions__item">
                     <i data-toggle="dropdown" class="zmdi zmdi-more-vert"></i>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a href="/painel/admin/cursos" class="dropdown-item">Lista</a>
+                        <a href="/painel/admin" class="dropdown-item">Agenda</a>
                     </div>
                 </div>
             </div>
@@ -19,7 +18,7 @@
 
         <div class="card">
             <div class="card-body">
-                <th:block th:replace="includes/cursoForm :: cursoForm(curso = ${curso}, edicao = true)"></th:block>
+                <th:block th:replace="includes/eventoForm :: eventoForm(evento = ${evento}, edicao = true)"></th:block>
             </div>
         </div>
     </div>

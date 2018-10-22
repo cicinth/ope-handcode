@@ -6,17 +6,20 @@ import javax.persistence.OneToMany
 
 @Entity
 class Tarefa : Evento {
-    var dataEntrega : Date? = null
-    var dataLiberacao : Date? = null
 
     @OneToMany(mappedBy = "tarefa")
     var entregas : List<Entrega> = mutableListOf()
 
     constructor() : super()
-
-    constructor(descricao: String, titulo: String, disciplina: Disciplina?, curso: Curso?, turmas: List<Turma>, dataEntrega: Date?, dataLiberacao: Date?) : super(descricao, titulo, disciplina, curso, turmas) {
-        this.dataEntrega = dataEntrega
-        this.dataLiberacao = dataLiberacao
+    constructor(data: Date, descricao: String, titulo: String, disciplinas: List<Disciplina>, cursos: List<Curso>, turmas: List<Turma>, entregas: List<Entrega>) : super(data, descricao, titulo, disciplinas, cursos, turmas) {
+        this.entregas = entregas
     }
+
+    fun atualizar(evento: Tarefa): Tarefa {
+        super.atualizar(evento)
+        this.entregas = entregas
+        return this
+    }
+
 
 }

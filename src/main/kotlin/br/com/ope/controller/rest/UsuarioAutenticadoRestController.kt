@@ -29,23 +29,21 @@ class UsuarioAutenticadoRestController {
 
     @GetMapping
     fun detalhesUsuarioAutenticado(token: JwtAuthenticationToken): ResponseEntity<*> {
-        val userContext = token.getPrincipal() as Usuario
+        val userContext = token.principal as Usuario
         val usuario = userDetailsService.loadUserByUsername(userContext.email) ?: throw UsernameNotFoundException("Usuário não encontrado: " + userContext.email)
         return ResponseEntity.ok(usuario)
     }
 
     @GetMapping("/atividades")
     fun agendamentosUsuarioAutenticado(token: JwtAuthenticationToken): ResponseEntity<*> {
-        val userContext = token.getPrincipal() as Usuario
-        val usuario = userDetailsService.loadUserByUsername(userContext.email) ?: throw UsernameNotFoundException("Usuário não encontrado: " + userContext.email)
+        val userContext = token.principal as Usuario
         val atividades = ativiadeRepository.findAll()
         return ResponseEntity.ok(atividades)
     }
 
     @GetMapping("/grupos")
     fun grupos(token: JwtAuthenticationToken): ResponseEntity<*> {
-        val userContext = token.getPrincipal() as Usuario
-        val usuario = userDetailsService.loadUserByUsername(userContext.email) ?: throw UsernameNotFoundException("Usuário não encontrado: " + userContext.email)
+        val userContext = token.principal as Usuario
 
         val grupos = grupoRepository.findAllByAlunos_idIn(Arrays.asList(userContext.id))
         return ResponseEntity.ok(grupos)
