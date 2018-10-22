@@ -17,8 +17,12 @@ class EntregasRestController {
     }
 
     @GetMapping
-    fun entregas() :  List<Entrega> {
-        return entregaRepository.findAll()
+    fun entregas(status: Entrega.Status?) :  List<Entrega> {
+        if (status == null) {
+            return entregaRepository.findAll()
+        } else {
+            return entregaRepository.findAllByStatus(status)
+        }
     }
 
 }

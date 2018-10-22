@@ -11,19 +11,21 @@ class Grupo : AbstractModel {
     var tema : String = ""
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     var curso : Curso? = null
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     var disciplina : Disciplina? = null
 
     @ManyToMany
     @JoinTable
+    @JsonIgnore
     var disciplinasAnteriores : List<Disciplina> = mutableListOf()
 
     @ManyToMany
     @JoinTable
-    @JsonIgnore
     var alunos : List<Aluno> = mutableListOf()
 
     @ManyToMany

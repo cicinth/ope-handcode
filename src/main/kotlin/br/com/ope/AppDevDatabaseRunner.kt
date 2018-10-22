@@ -109,6 +109,10 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
 
         entregas.add(entrega1)
 
+        val entrega2 = Entrega(Date(), Entrega.Status.PENDENTE, tarefa1, handcode, mutableListOf())
+
+        entregas.add(entrega2)
+
         entregaRepository.saveAll(entregas)
 
         logger.info("Finalizado setup dos dados simulados no banco")
@@ -118,6 +122,10 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
         val evento1 = Evento(Date(), "Lista de entregaveis", "Entrega de parte da documentacao 1", Arrays.asList(ope1), Arrays.asList(ads), Arrays.asList(turmaA))
 
         eventos.add(evento1)
+
+        val evento2 = Evento(Date(), "Lista de entregaveis", "Entrega de parte da documentacao 1", Arrays.asList(ope1), Arrays.asList(ads), Arrays.asList(turmaA))
+
+        eventos.add(evento2)
 
         eventoRepository.saveAll(eventos)
     }

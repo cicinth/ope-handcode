@@ -1,6 +1,8 @@
 package br.com.ope.controller.rest
 
+import br.com.ope.model.Entrega
 import br.com.ope.model.Usuario
+import br.com.ope.repository.EntregaRepository
 import br.com.ope.repository.GrupoRepository
 import br.com.ope.repository.TarefaRepository
 import br.com.ope.security.jwt.auth.JwtAuthenticationToken
@@ -17,13 +19,15 @@ import java.util.*
 class UsuarioAutenticadoRestController {
 
     val userDetailsService : UserDetailsService
-    val ativiadeRepository: TarefaRepository
+    val tarefaRepository: TarefaRepository
     val grupoRepository : GrupoRepository
+    val entregaRepository: EntregaRepository
 
-    constructor(userDetailsService: UserDetailsService, ativiadeRepository: TarefaRepository, grupoRepository: GrupoRepository) {
+    constructor(userDetailsService: UserDetailsService, tarefaRepository: TarefaRepository, grupoRepository: GrupoRepository, entregaRepository: EntregaRepository) {
         this.userDetailsService = userDetailsService
-        this.ativiadeRepository = ativiadeRepository
+        this.tarefaRepository = tarefaRepository
         this.grupoRepository = grupoRepository
+        this.entregaRepository = entregaRepository
     }
 
 
@@ -34,19 +38,26 @@ class UsuarioAutenticadoRestController {
         return ResponseEntity.ok(usuario)
     }
 
-    @GetMapping("/atividades")
-    fun agendamentosUsuarioAutenticado(token: JwtAuthenticationToken): ResponseEntity<*> {
-        val userContext = token.principal as Usuario
-        val atividades = ativiadeRepository.findAll()
-        return ResponseEntity.ok(atividades)
-    }
-
     @GetMapping("/grupos")
     fun grupos(token: JwtAuthenticationToken): ResponseEntity<*> {
         val userContext = token.principal as Usuario
 
         val grupos = grupoRepository.findAllByAlunos_idIn(Arrays.asList(userContext.id))
         return ResponseEntity.ok(grupos)
+    }
+
+    @GetMapping("/entregas")
+    fun entregas(token: JwtAuthenticationToken, status: Entrega.Status?): ResponseEntity<*> {
+        val userContext = token.principal as Usuario
+        var entregas : List<Entrega> = mutableListOf<Entrega>()
+
+        if (status == null) {
+            entregas = entregaRepository.findAll()
+        } else {
+            entregas = entregaRepository.findAllByStatus(status)
+        }
+
+        return ResponseEntity.ok(entregas)
     }
 
 }

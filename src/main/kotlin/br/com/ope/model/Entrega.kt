@@ -8,11 +8,10 @@ import javax.persistence.*
 class Entrega : AbstractModel {
 
     var dataEntrega : Date? = null
-    var situacaoEntrega : Status = Status.PENDENTE
+    var status : Status = Status.PENDENTE
 
     @ManyToOne
     @JoinColumn
-    @JsonIgnore
     var tarefa : Tarefa? = null
 
     @ManyToOne
@@ -27,7 +26,7 @@ class Entrega : AbstractModel {
     constructor() : super()
     constructor(dataEntrega: Date?, situacaoEntrega: Status, tarefa: Tarefa?, grupo: Grupo?, arquivos: List<Arquivo>) : super() {
         this.dataEntrega = dataEntrega
-        this.situacaoEntrega = situacaoEntrega
+        this.status = situacaoEntrega
         this.tarefa = tarefa
         this.grupo = grupo
         this.arquivos = arquivos

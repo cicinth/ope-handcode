@@ -1,5 +1,6 @@
 package br.com.ope.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import java.util.*
 import javax.persistence.Entity
 import javax.persistence.OneToMany
@@ -8,6 +9,7 @@ import javax.persistence.OneToMany
 class Tarefa : Evento {
 
     @OneToMany(mappedBy = "tarefa")
+    @JsonIgnore
     var entregas : List<Entrega> = mutableListOf()
 
     constructor() : super()
