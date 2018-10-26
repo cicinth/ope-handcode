@@ -9,8 +9,7 @@ import javax.persistence.ManyToMany
 @Entity
 open class Evento : AbstractModel {
 
-
-    @DateTimeFormat(pattern="YYYY-MM-dd hh:mm")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
     var dataHora : Date = Date()
     var descricao : String = ""
     var titulo : String = ""
