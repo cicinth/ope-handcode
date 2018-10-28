@@ -17,7 +17,7 @@ class LoginController {
             val attr = Optional.ofNullable(request.session.getAttribute("SPRING_SECURITY_LAST_EXCEPTION"))
             if (attr.isPresent) {
                 val exception = attr.get() as Exception
-                model.addAttribute("mensagem", listOf(MensagemVO(conteudo = exception.localizedMessage, tipo = MensagemVO.TipoMensagem.danger)))
+                model.addAttribute("mensagem", MensagemVO(conteudo = "Usuário ou senha incorretos!", tipo = MensagemVO.TipoMensagem.danger))
             }
         }
         return "login"
