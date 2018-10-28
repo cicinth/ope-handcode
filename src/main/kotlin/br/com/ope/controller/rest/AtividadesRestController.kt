@@ -17,7 +17,7 @@ class TarefasRestController {
     }
 
     @GetMapping
-    fun tarefas() :  List<Tarefa> {
+    fun tarefas() :  MutableList<Tarefa> {
         return tarefaRepository.findAll()
     }
 

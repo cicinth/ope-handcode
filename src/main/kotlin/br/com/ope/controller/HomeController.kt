@@ -24,7 +24,6 @@ class HomeController {
         this.alunoRepository = alunoRepository
     }
 
-
     @GetMapping("/")
     fun index(model : Model) : String {
 
@@ -40,14 +39,16 @@ class HomeController {
 
     @PostMapping("/grupos")
     fun gruposSalvar(model : Model, redirectAttributes: RedirectAttributes, grupo: Grupo) : String {
+        grupo.status = Grupo.Status.AGUARDANDO
+        grupo.disciplina = grupo.turma!!.disciplina!!
+        grupoRepository.save(grupo)
 
         for (aluno in grupo.alunos) {
-            //TODO IF ALUNO EXISTE PELO RA OU EMAIL BUSCA ATUAL
             aluno.turma = grupo.turma
+            aluno.grupo = grupo
             alunoRepository.save(aluno)
         }
 
-        grupoRepository.save(grupo)
         redirectAttributes.addFlashAttribute("mensagem", MensagemVO("Aguarde a aprovação do administrador por email, para poder acessar a plataforma!","Grupo salvo!", MensagemVO.TipoMensagem.success ))
         return "redirect:/grupos"
     }

@@ -28,7 +28,7 @@ class JwtAuthenticationProvider(private val jwtSettings: JwtSettings, private va
 
         val jwsClaims = rawAccessToken.parseClaims(jwtSettings.tokenSigningKey)
         val subject = jwsClaims.body.subject
-        val scopes = jwsClaims.body.get("scopes", List::class.java)
+        val scopes = jwsClaims.body.get("scopes", MutableList::class.java)
         val authorities : MutableSet<GrantedAuthority> = hashSetOf()
         for (scope in scopes) {
             authorities.add(SimpleGrantedAuthority(scope as String))

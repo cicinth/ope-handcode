@@ -19,7 +19,7 @@ class TurmaRestController {
     }
 
     @GetMapping
-    fun turmas (@RequestParam("cursoId") cursoId : UUID) :  List<Turma> {
+    fun turmas (@RequestParam("cursoId") cursoId : UUID) :  MutableList<Turma> {
         return turmaRepository.findAllByCurso_idOrderBySemestreDesc(cursoId)
     }
 

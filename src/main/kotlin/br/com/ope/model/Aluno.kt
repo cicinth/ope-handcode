@@ -13,9 +13,10 @@ class Aluno : Usuario {
 
     var ra : Long = 0
 
-    @ManyToMany(mappedBy = "alunos")
+    @ManyToOne
+    @JoinColumn
     @JsonIgnore
-    var grupos : List<Grupo> = mutableListOf()
+    var grupo : Grupo? = null
 
     @ManyToOne
     @JoinColumn
@@ -25,7 +26,7 @@ class Aluno : Usuario {
 
     @ManyToMany(mappedBy = "alunosRemovidos")
     @JsonIgnore
-    var gruposRemovidos : List<Grupo> = mutableListOf()
+    var gruposRemovidos : MutableList<Grupo> = mutableListOf()
 
     constructor() : super()
 
@@ -35,10 +36,10 @@ class Aluno : Usuario {
                 senha: String = "",
                 permissoes: MutableSet<Role> = mutableSetOf(),
                 ra: Long = 0,
-                grupos: List<Grupo> = mutableListOf(),
-                gruposRemovidos: List<Grupo> = mutableListOf(), turma : Turma) : super(nome, email, ativo, senha, permissoes) {
+                grupo: Grupo? = null,
+                gruposRemovidos: MutableList<Grupo> = mutableListOf(), turma : Turma) : super(nome, email, ativo, senha, permissoes) {
         this.ra = ra
-        this.grupos = grupos
+        this.grupo = grupo
         this.gruposRemovidos = gruposRemovidos
         this.turma = turma
     }

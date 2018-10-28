@@ -1,6 +1,7 @@
 package br.com.ope.model
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import java.math.BigDecimal
 import java.util.*
 import javax.persistence.*
 
@@ -9,6 +10,11 @@ class Entrega : AbstractModel {
 
     var dataEntrega : Date? = null
     var status : Status = Status.PENDENTE
+    var nota : BigDecimal? = null
+
+    @ManyToOne
+    @JoinColumn
+    var professorAvaliador : Professor? = null
 
     @ManyToOne
     @JoinColumn
@@ -21,10 +27,16 @@ class Entrega : AbstractModel {
 
     @ManyToMany
     @JoinTable
-    var arquivos: List<Arquivo> = mutableListOf()
+    var arquivos: MutableList<Arquivo> = mutableListOf()
+
+    @ManyToOne
+    @JoinColumn
+    var disciplina: Disciplina? = null
 
     constructor() : super()
-    constructor(dataEntrega: Date?, situacaoEntrega: Status, tarefa: Tarefa?, grupo: Grupo?, arquivos: List<Arquivo>) : super() {
+
+    constructor(disciplina: Disciplina,  dataEntrega: Date? = null, situacaoEntrega: Status = Status.PENDENTE, tarefa: Tarefa, grupo: Grupo, arquivos: MutableList<Arquivo> = mutableListOf()) : super() {
+        this.disciplina = disciplina
         this.dataEntrega = dataEntrega
         this.status = situacaoEntrega
         this.tarefa = tarefa
@@ -33,10 +45,10 @@ class Entrega : AbstractModel {
     }
 
 
-    enum class Status(val nome : String) {
+    enum class Status(val nome : String, val textClass: String) {
 
-        PENDENTE("Pendente"),
-        ENTREGUE("Entregue")
+        PENDENTE("Pendente", "text-warning"),
+        REALIZADA("Realizada","text-success")
 
     }
 

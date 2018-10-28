@@ -21,11 +21,11 @@ class Curso : AbstractModel {
     @ManyToMany
     @JoinTable
     @JsonIgnore
-    var disciplinas: List<Disciplina> = mutableListOf()
+    var disciplinas: MutableList<Disciplina> = mutableListOf()
 
     @OneToMany(mappedBy = "curso")
     @JsonIgnore
-    var grupos: List<Grupo> = mutableListOf()
+    var grupos: MutableList<Grupo> = mutableListOf()
 
     fun atualizar(curso: Curso): Curso {
         this.nome = curso.nome
@@ -38,7 +38,7 @@ class Curso : AbstractModel {
     constructor() : super()
 
     constructor(id: UUID?) : super(id)
-    constructor(nome: String, sigla: String, semestres: Int, disciplinas : List<Disciplina>  = mutableListOf()) : super() {
+    constructor(nome: String, sigla: String, semestres: Int, disciplinas : MutableList<Disciplina>  = mutableListOf()) : super() {
         this.nome = nome
         this.sigla = sigla
         this.semestres = semestres
