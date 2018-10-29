@@ -72,6 +72,14 @@ class PainelAdminGruposController {
 
         grupoRepository.save(grupo.get())
 
+        val alunosAtivos = mutableListOf<Aluno>()
+        for (aluno in grupo.get().alunos) {
+            aluno.ativo = true
+            alunosAtivos.add(aluno)
+        }
+
+        alunoRepository.saveAll(alunosAtivos)
+
         redirectAttributes.addFlashAttribute("mensagem", MensagemVO("Grupo aprovado!","Sucesso!", MensagemVO.TipoMensagem.success ))
 
         return "redirect:/painel/admin/grupos/$id"

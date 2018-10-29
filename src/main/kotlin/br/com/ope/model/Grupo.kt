@@ -3,11 +3,15 @@ package br.com.ope.model
 import com.fasterxml.jackson.annotation.JsonIgnore
 import java.util.*
 import javax.persistence.*
+import javax.validation.Valid
+import javax.validation.constraints.NotBlank
 
 @Entity
 class Grupo : AbstractModel {
 
+    @NotBlank
     var nome : String = ""
+    @NotBlank
     var tema : String = ""
     @ManyToOne
     @JoinColumn
@@ -26,6 +30,7 @@ class Grupo : AbstractModel {
 
     @OneToMany(mappedBy = "grupo")
     @JsonIgnore
+    @Valid
     var alunos : MutableList<Aluno> = mutableListOf()
 
     @ManyToMany

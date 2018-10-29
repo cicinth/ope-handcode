@@ -3,15 +3,15 @@ package br.com.ope.model
 import br.com.ope.enumx.Role
 import com.fasterxml.jackson.annotation.JsonIgnore
 import java.util.*
-import javax.persistence.Entity
-import javax.persistence.JoinColumn
-import javax.persistence.ManyToMany
-import javax.persistence.ManyToOne
+import javax.persistence.*
+import javax.validation.constraints.NotNull
 
 @Entity
 class Aluno : Usuario {
 
-    var ra : Long = 0
+    @Column(unique=true)
+    @NotNull
+    var ra : Long? = null
 
     @ManyToOne
     @JoinColumn
@@ -24,11 +24,15 @@ class Aluno : Usuario {
 
     var fotoHash : UUID? = null
 
+    var telefone : String? = null
+
     @ManyToMany(mappedBy = "alunosRemovidos")
     @JsonIgnore
     var gruposRemovidos : MutableList<Grupo> = mutableListOf()
 
     constructor() : super()
+
+    constructor(id: UUID?) : super(id)
 
     constructor(nome: String = "",
                 email: String = "",
