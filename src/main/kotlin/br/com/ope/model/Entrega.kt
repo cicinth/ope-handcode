@@ -1,6 +1,7 @@
 package br.com.ope.model
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
 import java.util.*
 import javax.persistence.*
 
@@ -22,6 +23,16 @@ class Entrega : AbstractModel {
     @ManyToMany
     @JoinTable
     var arquivos: List<Arquivo> = mutableListOf()
+
+    @JsonProperty("titulo")
+    fun getTitulo() : String {
+        return tarefa!!.titulo
+    }
+
+    @JsonProperty("descricao")
+    fun getDescricao() : String {
+        return tarefa!!.descricao
+    }
 
     constructor() : super()
     constructor(dataEntrega: Date?, situacaoEntrega: Status, tarefa: Tarefa?, grupo: Grupo?, arquivos: List<Arquivo>) : super() {
