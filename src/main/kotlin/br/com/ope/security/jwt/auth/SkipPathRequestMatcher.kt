@@ -7,7 +7,7 @@ import org.springframework.util.Assert
 
 import javax.servlet.http.HttpServletRequest
 
-class SkipPathRequestMatcher(pathsToSkip: List<String>, processingPath: String) : RequestMatcher {
+class SkipPathRequestMatcher(pathsToSkip: MutableList<String>, processingPath: String) : RequestMatcher {
     private val matchers: OrRequestMatcher
     private val processingMatcher: RequestMatcher
 

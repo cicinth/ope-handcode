@@ -17,7 +17,7 @@ class EntregasRestController {
     }
 
     @GetMapping
-    fun entregas(status: Entrega.Status?) :  List<Entrega> {
+    fun entregas(status: Entrega.Status?) :  MutableList<Entrega> {
         if (status == null) {
             return entregaRepository.findAll()
         } else {

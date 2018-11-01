@@ -19,7 +19,7 @@ class DisciplinasRestController {
     }
 
     @GetMapping
-    fun disciplinas (@RequestParam("cursoId") cursoId : UUID) :  List<Disciplina> {
+    fun disciplinas (@RequestParam("cursoId") cursoId : UUID) :  MutableList<Disciplina> {
         return disciplinaRepository.findAllByDataExclusaoIsNullAndCursos_idIn(arrayListOf(cursoId))
     }
 

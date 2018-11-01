@@ -49,7 +49,7 @@ class UsuarioAutenticadoRestController {
     @GetMapping("/entregas")
     fun entregas(token: JwtAuthenticationToken, status: Entrega.Status?): ResponseEntity<*> {
         val userContext = token.principal as Usuario
-        var entregas : List<Entrega> = mutableListOf<Entrega>()
+        var entregas : MutableList<Entrega> = mutableListOf<Entrega>()
 
         if (status == null) {
             entregas = entregaRepository.findAll()

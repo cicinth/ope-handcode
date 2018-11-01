@@ -10,7 +10,10 @@ Henrique Borges da Silva - 1700054
 usuarios:
 
 -Aluno
-    email: aluno@email.com.br
+    email: aluno
+    senha: impacta
+-Admin
+    email: admin@email.com.br
     senha: senha
 
 ----------

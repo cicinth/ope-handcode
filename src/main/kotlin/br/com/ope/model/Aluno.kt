@@ -3,19 +3,20 @@ package br.com.ope.model
 import br.com.ope.enumx.Role
 import com.fasterxml.jackson.annotation.JsonIgnore
 import java.util.*
-import javax.persistence.Entity
-import javax.persistence.JoinColumn
-import javax.persistence.ManyToMany
-import javax.persistence.ManyToOne
+import javax.persistence.*
+import javax.validation.constraints.NotNull
 
 @Entity
 class Aluno : Usuario {
 
-    var ra : Long = 0
+    @Column(unique=true)
+    @NotNull
+    var ra : Long? = null
 
-    @ManyToMany(mappedBy = "alunos")
+    @ManyToOne
+    @JoinColumn
     @JsonIgnore
-    var grupos : List<Grupo> = mutableListOf()
+    var grupo : Grupo? = null
 
     @ManyToOne
     @JoinColumn
@@ -23,11 +24,15 @@ class Aluno : Usuario {
 
     var fotoHash : UUID? = null
 
+    var telefone : String? = null
+
     @ManyToMany(mappedBy = "alunosRemovidos")
     @JsonIgnore
-    var gruposRemovidos : List<Grupo> = mutableListOf()
+    var gruposRemovidos : MutableList<Grupo> = mutableListOf()
 
     constructor() : super()
+
+    constructor(id: UUID?) : super(id)
 
     constructor(nome: String = "",
                 email: String = "",
@@ -35,10 +40,10 @@ class Aluno : Usuario {
                 senha: String = "",
                 permissoes: MutableSet<Role> = mutableSetOf(),
                 ra: Long = 0,
-                grupos: List<Grupo> = mutableListOf(),
-                gruposRemovidos: List<Grupo> = mutableListOf(), turma : Turma) : super(nome, email, ativo, senha, permissoes) {
+                grupo: Grupo? = null,
+                gruposRemovidos: MutableList<Grupo> = mutableListOf(), turma : Turma) : super(nome, email, ativo, senha, permissoes) {
         this.ra = ra
-        this.grupos = grupos
+        this.grupo = grupo
         this.gruposRemovidos = gruposRemovidos
         this.turma = turma
     }

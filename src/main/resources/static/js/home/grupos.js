@@ -1,5 +1,5 @@
 function validarFormulario(form) {
-    var inputs = form.find(".js-obrigatorio");
+    var inputs = form.find(".js-obrigatorio2");
 
     //busca o valor de todos inputs e verifica se algum possui valor nulo ou em branco
     inputs.each(function(index, input) {
@@ -53,7 +53,8 @@ $( document ).ready(function() {
 
     $( ".js-btn-finalizar" ).click(function() {
         var form = $(this).closest("form");
-        validarFormulario(form);
+        //validarFormulario(form);
+        form.submit();
     });
 
     $(".js-cursos").change(function() {
@@ -65,7 +66,8 @@ $( document ).ready(function() {
     //carrega turmas se curso ja estiver selecionar na hora de carregar a pagina
 
     var cursoId = $(".js-cursos").val();
-    if (cursoId != null && cursoId != '') {
+    var turmaId = $('.js-turmas').val();
+    if (cursoId != null && cursoId != '' && turmaId == null) {
         carregarOptionsCurso($('.js-turmas'), cursoId);
     }
 
@@ -74,7 +76,36 @@ $( document ).ready(function() {
     var containerAlunos = $('#sec-integrantes');
     var btnAddAluno = $('#btn-add-aluno');
 
+    $( ".js-clica-remove-card" ).click(function() {
+
+
+        //$(this).closest( ".card" ).remove();
+
+
+        var form = $('#grupoForm');
+        var oldAction = form.attr('action');
+        var id = $(this).attr('data-alunoId')
+        var newAction = '/grupos/remover-aluno/'+id
+        form.attr('action', newAction);
+        form.submit();
+        form.attr('action', oldAction);
+
+
+    });
+
     btnAddAluno.click(function() {
+
+        var form = $(this).closest("form");
+        var oldAction = form.attr('action');
+        var newAction = '/grupos/adicionar-aluno/'
+        form.attr('action', newAction);
+        form.submit();
+        form.attr('action', oldAction);
+
+
+    });
+
+ /*   btnAddAluno.click(function() {
         indexAluno = indexAluno + 1;
         var integranteNumero = indexAluno +1
         var corpoHtml =	`<div id="card-0" class="card profile">
@@ -147,7 +178,7 @@ $( document ).ready(function() {
          });
 
     });
-
+*/
 });
 
 
