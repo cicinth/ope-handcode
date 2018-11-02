@@ -125,13 +125,15 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
 
         entregas.add(Entrega(handcode.disciplina!!, null, Entrega.Status.PENDENTE, tarefa1, handcode, mutableListOf()))
 
-        entregas.add(Entrega(handcode.disciplina!!, null, Entrega.Status.REALIZADA, tarefa2, handcode, mutableListOf()))
 
-        entregas.add(Entrega(handcode.disciplina!!, null, Entrega.Status.REALIZADA, tarefa2, handcode, mutableListOf()))
 
-        entregas.add(Entrega(handcode.disciplina!!, null, Entrega.Status.REALIZADA, tarefa2, handcode, mutableListOf()))
+        entregas.add(Entrega(handcode.disciplina!!, Date(), Entrega.Status.REALIZADA, tarefa2, handcode, mutableListOf()))
 
-        entregas.add(Entrega(handcode.disciplina!!, null, Entrega.Status.REALIZADA, tarefa2, handcode, mutableListOf()))
+        entregas.add(Entrega(handcode.disciplina!!, Date(), Entrega.Status.REALIZADA, tarefa2, handcode, mutableListOf()))
+
+        entregas.add(Entrega(handcode.disciplina!!, Date(), Entrega.Status.REALIZADA, tarefa2, handcode, mutableListOf()))
+
+        entregas.add(Entrega(handcode.disciplina!!, Date(), Entrega.Status.REALIZADA, tarefa2, handcode, mutableListOf()))
 
         entregaRepository.saveAll(entregas)
 
