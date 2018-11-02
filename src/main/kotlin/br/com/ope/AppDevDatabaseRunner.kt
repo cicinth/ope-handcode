@@ -115,13 +115,23 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
 
         val entregas = mutableListOf<Entrega>()
 
-        val entrega1 = Entrega(handcode.disciplina!!, null, Entrega.Status.PENDENTE, tarefa1, handcode, mutableListOf())
+        entregas.add(Entrega(handcode.disciplina!!, null, Entrega.Status.PENDENTE, tarefa1, handcode, mutableListOf()))
 
-        entregas.add(entrega1)
+        entregas.add(Entrega(handcode.disciplina!!, null, Entrega.Status.PENDENTE, tarefa1, handcode, mutableListOf()))
 
-        val entrega2 = Entrega(handcode.disciplina!!, null, Entrega.Status.REALIZADA, tarefa2, handcode, mutableListOf())
+        entregas.add(Entrega(handcode.disciplina!!, null, Entrega.Status.PENDENTE, tarefa1, handcode, mutableListOf()))
 
-        entregas.add(entrega2)
+        entregas.add(Entrega(handcode.disciplina!!, null, Entrega.Status.PENDENTE, tarefa1, handcode, mutableListOf()))
+
+        entregas.add(Entrega(handcode.disciplina!!, null, Entrega.Status.PENDENTE, tarefa1, handcode, mutableListOf()))
+
+        entregas.add(Entrega(handcode.disciplina!!, null, Entrega.Status.REALIZADA, tarefa2, handcode, mutableListOf()))
+
+        entregas.add(Entrega(handcode.disciplina!!, null, Entrega.Status.REALIZADA, tarefa2, handcode, mutableListOf()))
+
+        entregas.add(Entrega(handcode.disciplina!!, null, Entrega.Status.REALIZADA, tarefa2, handcode, mutableListOf()))
+
+        entregas.add(Entrega(handcode.disciplina!!, null, Entrega.Status.REALIZADA, tarefa2, handcode, mutableListOf()))
 
         entregaRepository.saveAll(entregas)
 
