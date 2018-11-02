@@ -1,5 +1,6 @@
 package br.com.ope.model
 
+import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonIgnore
 import java.math.BigDecimal
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -9,6 +10,7 @@ import javax.persistence.*
 @Entity
 class Entrega : AbstractModel {
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     var dataEntrega : Date? = null
     var status : Status = Status.PENDENTE
     var nota : BigDecimal? = null
