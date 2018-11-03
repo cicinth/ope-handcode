@@ -104,7 +104,7 @@ class PainelAdminGruposController {
         alunoRepository.saveAll(alunosRemovidos)
 
         grupo.get().alunosRemovidos = alunosRemovidos
-
+        grupo.get().disciplina = grupo.get().turma!!.disciplina
         grupoRepository.save(grupo.get())
 
         //TODO ENVIAR EMAIL COM MOTIVO

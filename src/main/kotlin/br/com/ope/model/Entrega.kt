@@ -2,16 +2,15 @@ package br.com.ope.model
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonIgnore
-import java.math.BigDecimal
 import com.fasterxml.jackson.annotation.JsonProperty
+import java.math.BigDecimal
 import java.util.*
 import javax.persistence.*
 
 @Entity
 class Entrega : AbstractModel {
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    var dataEntrega : Date? = null
+    var dataEnvio : Date? = null
     var status : Status = Status.PENDENTE
     var nota : BigDecimal? = null
 
@@ -46,11 +45,16 @@ class Entrega : AbstractModel {
         return tarefa!!.descricao
     }
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    fun getDataEntrega() : Date? {
+        return tarefa!!.dataEntrega
+    }
+
     constructor() : super()
 
-    constructor(disciplina: Disciplina,  dataEntrega: Date? = null, situacaoEntrega: Status = Status.PENDENTE, tarefa: Tarefa, grupo: Grupo, arquivos: MutableList<Arquivo> = mutableListOf()) : super() {
+    constructor(disciplina: Disciplina,  dataEnvio: Date? = null, situacaoEntrega: Status = Status.PENDENTE, tarefa: Tarefa, grupo: Grupo, arquivos: MutableList<Arquivo> = mutableListOf()) : super() {
         this.disciplina = disciplina
-        this.dataEntrega = dataEntrega
+        this.dataEnvio = dataEnvio
         this.status = situacaoEntrega
         this.tarefa = tarefa
         this.grupo = grupo
