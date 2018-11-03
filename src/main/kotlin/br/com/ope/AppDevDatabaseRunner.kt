@@ -34,17 +34,14 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
         disciplinaRepository.save(ope2)
         val ope3 = Disciplina(nome = "Oficina projeto empresa 3", sigla = "OPE3")
         disciplinaRepository.save(ope3)
-        val ope4 = Disciplina(nome = "Oficina projeto empresa 4", sigla = "OPE4")
-        disciplinaRepository.save(ope4)
         var ads = Curso("Analise de sistemas","ADS",4, disciplinaRepository.findAll())
         ads = cursoRepository.save(ads)
 
-        var turmaA = Turma("A",1,2018,ads, mutableListOf(),Turma.Periodo.MANHA,ope1)
+        var turmaA = Turma("B",4,2018,ads, mutableListOf(),Turma.Periodo.NOITE,ope2)
         turmaRepository.save(turmaA)
-        var turmaB = Turma("B",1,2018,ads, mutableListOf(),Turma.Periodo.NOITE,ope1)
-        turmaRepository.save(turmaB)
-        var turmaC = Turma("C",1,2018,ads, mutableListOf(),Turma.Periodo.NOITE,ope1)
-        turmaRepository.save(turmaC)
+        var turmaB2 = Turma("A",4,2018,ads, mutableListOf(),Turma.Periodo.MANHA,ope2)
+        turmaRepository.save(turmaB2)
+        var turmaB = Turma("A",3,2018,ads, mutableListOf(),Turma.Periodo.NOITE,ope1)
 
 
         val admin = Administrador(nome = "Administrador", email = "admin@email.com.br", senha = BCryptPasswordEncoder().encode("senha"), ativo = true, permissoes = mutableSetOf(Role.ROLE_ADMIN))
@@ -58,7 +55,7 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
         usuarioRepository.save(fernando)
 
 
-        val handcode = Grupo(nome = "Handcode", curso = ads, alunos = mutableListOf(), turma = turmaA, tema = "Sistema gerenciador de OPE", disciplina = ope3 )
+        val handcode = Grupo(nome = "Handcode", curso = ads, alunos = mutableListOf(), turma = turmaA, tema = "Sistema gerenciador de OPE", disciplina = ope2 )
 
         grupoRepository.save(handcode)
 
@@ -88,7 +85,7 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
         val rodolfo = Aluno(nome = "Rodolfo", ra = 1700047, senha = BCryptPasswordEncoder().encode("senha"), email = "rodolfo@email.com.br", ativo = true, permissoes = mutableSetOf(Role.ROLE_ALUNO), turma = turmaB)
         usuarioRepository.save(rodolfo)
 
-        val grupo = Grupo(nome = "Grupo do Rodolfo", curso = ads, alunos = mutableListOf(rodolfo, aluno), turma = turmaB, tema = "Tema do Rodolfo", disciplina = ope4)
+        val grupo = Grupo(nome = "Grupo do Rodolfo", curso = ads, alunos = mutableListOf(rodolfo, aluno), turma = turmaB, tema = "Tema do Rodolfo", disciplina = ope1)
 
         grupoRepository.save(grupo)
 
