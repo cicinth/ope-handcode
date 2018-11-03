@@ -6,16 +6,17 @@ import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import java.util.*
-import javax.persistence.ElementCollection
-import javax.persistence.Entity
-import javax.persistence.EnumType
-import javax.persistence.Enumerated
+import javax.persistence.*
+import javax.validation.constraints.NotBlank
 
 
 @Entity
 open class Usuario : AbstractModel, UserDetails {
 
+    @NotBlank
     var nome  : String = ""
+    @Column(unique = true)
+    @NotBlank
     var email : String = ""
     var ativo : Boolean = false
     @JsonIgnore
@@ -25,6 +26,8 @@ open class Usuario : AbstractModel, UserDetails {
     var permissoes: MutableSet<Role> = mutableSetOf()
 
     constructor() : super()
+
+
 
     constructor(nome: String) : super() {
         this.nome = nome
@@ -50,6 +53,8 @@ open class Usuario : AbstractModel, UserDetails {
 
     }
 
+    constructor(id: UUID?) : super(id)
+
     @JsonIgnore
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         val authorities = mutableSetOf<GrantedAuthority>()
@@ -63,7 +68,7 @@ open class Usuario : AbstractModel, UserDetails {
     }
     @JsonIgnore
     override fun isEnabled(): Boolean {
-        return ativo
+        return ativo && !excluido
     }
     @JsonIgnore
     override fun getUsername(): String {
@@ -71,7 +76,7 @@ open class Usuario : AbstractModel, UserDetails {
     }
     @JsonIgnore
     override fun isCredentialsNonExpired(): Boolean {
-        return ativo
+        return ativo && !excluido
     }
     @JsonIgnore
     override fun getPassword(): String {
@@ -79,11 +84,11 @@ open class Usuario : AbstractModel, UserDetails {
     }
     @JsonIgnore
     override fun isAccountNonExpired(): Boolean {
-        return ativo
+        return ativo && !excluido
     }
     @JsonIgnore
     override fun isAccountNonLocked(): Boolean {
-        return ativo
+        return ativo && !excluido
     }
 
     open fun getPainelUrl() = "painel"

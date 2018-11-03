@@ -1,149 +1,161 @@
 <th:block xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout-home}">
 
-    <th:block layout:fragment="css">
+	<th:block layout:fragment="css">
 
-    </th:block>
+	</th:block>
 
-    <div layout:fragment="conteudo">
+	<div layout:fragment="conteudo">
 
-        <main class="main">
+		<main class="main">
 
-            <form id="drag-and-drop-zone" hidden="">
-                <input type="file" />
-            </form>
+			<form id="drag-and-drop-zone" hidden="">
+				<input type="file" />
+			</form>
 
-            <section class="container">
+			<section class="container">
 
-                <form th:action="@{/grupos/}" method="POST">
-                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" id="token" />
-                    <div class="content__inner">
-                        <header class="content__title">
-                            <h1>Cadastro do grupo</h1>
-                            <small>Insira as informações sobre seu grupo e os integrantes, em seguinda aguarde a aprovação por email
-                                para acessar a plataforma!</small>
-                        </header>
+				<form id="grupoForm" th:action="@{/grupos/}" method="POST" th:object="${grupo}">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" id="token" />
+
+					<div class="content__inner">
+						<header class="content__title">
+							<h1>Cadastro do grupo</h1>
+							<small>Insira as informações sobre seu grupo e os integrantes, em seguinda aguarde a aprovação por email para acessar a plataforma!</small>
+						</header>
+
+						<div class="card profile">
+							<div class="actions">
+							</div>
+							<div class="profile__img">
+								<img id="img-logo-grupo" src="" th:src="@{/img/group_empty.jpg}" style="height: 200px;width: 200px;" />
+								<a data-img-id="img-logo-grupo" data-input-result-id="input-logo-hash-grupo" class="js-link-upload-foto zmdi zmdi-camera profile__img__edit"></a>
+								<input id="input-logo-hash-grupo" name="logoHash" type="text" hidden="" />
+							</div>
+							<div class="profile__info">
+								<h3 class="card-body__title">Informações Grupo</h3>
+<!-- 
+								<ul>
+									<li th:each="e : ${#fields.detailedErrors()}" th:class="${e.global}? globalerr : fielderr">
+											<span th:text="${e.global}? '*' : ${e.fieldName}">The field name</span> |
+											<span th:text="${e.message}">The error message</span>
+									</li>
+								</ul> -->
+
+								<div class="col-sm-12">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input th:errorclass="is-invalid" th:field="*{nome}" type="text" class="form-control" placeholder="Nome do grupo" />
+												<div class="invalid-feedback">
+													Nome do grupo é obrigatório.
+												</div>
+												<i class="form-group__bar"></i>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input th:errorclass="is-invalid" th:field="*{tema}" type="text" class="form-control js-obrigatorio" placeholder="Tema">
+												<div class="invalid-feedback" >
+													Tema do grupo é obrigatório.
+												</div>
+												<i class="form-group__bar"></i>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<div class="select">
+													<select th:errorclass="is-invalid" th:field="*{curso}" class="form-control js-obrigatorio js-cursos" placeholder="Curso">
+														<option th:selected="${curso.id eq grupo?.curso?.id}" th:each="curso : ${cursos}" th:value="${curso.id}" th:text="${curso.nome}"></option>
+													</select>
+													<div class="invalid-feedback">
+														Curso é obrigatório.
+													</div>
+													<i class="form-group__bar"></i>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<div class="select">
+													<select th:errorclass="is-invalid" th:field="*{turma}"  class="form-control js-obrigatorio js-turmas" placeholder="Turma">
+														<option th:selected="${turma.id eq grupo?.turma?.id}" th:each="turma : ${turmas}" th:value="${turma.id}" th:text="|${turma.semestre}º${turma.letra} - ${turma.curso.sigla} (${turma.periodo.nome}) - ${turma.ano}|"></option>
+													</select>
+													<div class="invalid-feedback">
+														Turma é obrigatório.
+													</div>
+													<i class="form-group__bar"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
 
 
+					</div>
+					<section id="sec-integrantes" data-quantia="0" class="js-integrates">
 
-                        <div class="card profile">
-                            <div class="actions">
-                            </div>
-                            <div class="profile__img">
-                                <img id="img-logo-grupo" src="" th:src="@{/img/group_empty.jpg}" style="height: 200px;width: 200px;" />
-                                <a data-img-id="img-logo-grupo" data-input-result-id="input-logo-hash-grupo" class="js-link-upload-foto zmdi zmdi-camera profile__img__edit"></a>
-                                <input id="input-logo-hash-grupo" name="logoHash" type="text" hidden="" />
-                            </div>
-                            <div class="profile__info">
-                                <h3 class="card-body__title">Informações Grupo</h3>
-                                <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <input name="nome" type="text" class="form-control js-obrigatorio" placeholder="Nome do grupo" />
-                                                <div class="invalid-feedback">
-                                                    Nome do grupo é obrigatório.
-                                                </div>
-                                                <i class="form-group__bar"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <input name="tema" type="text" class="form-control js-obrigatorio" placeholder="Tema">
-                                                <div class="invalid-feedback">
-                                                    Tema do grupo é obrigatório.
-                                                </div>
-                                                <i class="form-group__bar"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <div class="select">
-                                                    <select name="curso" class="form-control js-obrigatorio js-cursos" placeholder="Curso">
-                                                        <option th:each="curso : ${cursos}" th:value="${curso.id}" th:text="${curso.nome}"></option>
-                                                    </select>
-                                                    <div class="invalid-feedback">
-                                                        Curso é obrigatório.
-                                                    </div>
-                                                    <i class="form-group__bar"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <div class="select">
-                                                    <select name="turma" class="form-control js-obrigatorio js-turmas" placeholder="Turma">
+						
 
+            <div th:each="aluno, i: *{alunos}" class="card profile">
+							<div class="actions">
+								<a th:attr="data-alunoId=${aluno.id}" class="actions__item zmdi zmdi-close js-clica-remove-card"></a>
+							</div>
+							<div class="profile__img">
+								<img id="img-foto-integrante-0" src="" th:src="@{/img/group_empty.jpg}" style="height: 200px;width: 200px;" />
+								<a data-img-id="img-foto-integrante-0" data-input-result-id="input-foto-hash-0" class="js-link-upload-foto zmdi zmdi-camera profile__img__edit"></a>
+								<input th:field="*{alunos[__${i.index}__].fotoHash}" id="input-foto-hash-0" type="text" hidden="" />
+								<input th:field="*{alunos[__${i.index}__].id}" type="text" hidden="" />
+							</div>
+							<div class="profile__info">
+								<h3 class="card-body__title" th:text="|${i.count}º Integrante|">1º Integrante</h3>
+								<div class="col-sm-12">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input th:field="*{alunos[__${i.index}__].nome}" th:errorclass="is-invalid" type="text" class="form-control js-obrigatorio" placeholder="Nome" />
+												<div class="invalid-feedback" >
+													Nome do integrante é obrigatório.
+												</div>
+												<i class="form-group__bar"></i>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input th:field="*{alunos[__${i.index}__].ra}"  th:errorclass="is-invalid" type="number" class="form-control js-obrigatorio" placeholder="RA">
+												<div class="invalid-feedback" th:errors="*{alunos[__${i.index}__].ra}">
+													RA é obrigatório.
+												</div>
+												<i class="form-group__bar"></i>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input th:field="*{alunos[__${i.index}__].email}" th:errorclass="is-invalid" type="email" class="form-control js-obrigatorio" placeholder="Email">
+												<div class="invalid-feedback" th:errors="*{alunos[__${i.index}__].email}">
+													Email é obrigatório.
+												</div>
+												<i class="form-group__bar"></i>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<input th:field="*{alunos[__${i.index}__].telefone}" th:errorclass="is-invalid" type="number" class="form-control" placeholder="Telefone">
+												<i class="form-group__bar"></i>
+											</div>
+										</div>
 
-                                                    </select>
-                                                    <div class="invalid-feedback">
-                                                        Turma é obrigatório.
-                                                    </div>
-                                                    <i class="form-group__bar"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+									</div>
+								</div>
+							</div>
+						</div>
 
 
 
-                    </div>
-                    <section id="sec-integrantes" data-quantia="0" class="js-integrates">
-                        <div id="card-0" class="card profile">
-                            <div class="actions">
-                            </div>
-                            <div class="profile__img">
-                                <img id="img-foto-integrante-0" src="" th:src="@{/img/group_empty.jpg}" style="height: 200px;width: 200px;" />
-                                <a data-img-id="img-foto-integrante-0" data-input-result-id="input-foto-hash-0" class="js-link-upload-foto zmdi zmdi-camera profile__img__edit"></a>
-                                <input id="input-foto-hash-0" name="alunos[0].fotoHash" type="text" hidden="" />
-                            </div>
-                            <div class="profile__info">
-                                <h3 class="card-body__title">1º Integrante</h3>
-                                <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <input name="alunos[0].nome" type="text" class="form-control js-obrigatorio" placeholder="Nome" />
-                                                <div class="invalid-feedback">
-                                                    Nome do integrante é obrigatório.
-                                                </div>
-                                                <i class="form-group__bar"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <input name="alunos[0].ra" type="number" class="form-control js-obrigatorio" placeholder="RA">
-                                                <div class="invalid-feedback">
-                                                    RA é obrigatório.
-                                                </div>
-                                                <i class="form-group__bar"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <input name="alunos[0].email" type="email" class="form-control js-obrigatorio" placeholder="Email">
-                                                <div class="invalid-feedback">
-                                                    Email é obrigatório.
-                                                </div>
-                                                <i class="form-group__bar"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <input name="alunos[0].telefone" type="number" class="form-control" placeholder="Telefone">
-                                                <i class="form-group__bar"></i>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <!--  <div class="card">
+					</section>
+					<!--  <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between flex-wrap">
                                 <button id="btn-add-aluno" class="btn btn-info btn--icon-text mt-auto" type="button" style="margin:1em">
@@ -154,28 +166,28 @@
                         </div>
                     </div> -->
 
-                    <div class="menu btn-support pmd-floating-action" role="navigation" style="display: flex; flex-direction: column;">
-                        <button id="btn-add-aluno" data-toggle="tooltip" data-placement="left" data-original-title="Adicionar outro integrante" class="m-2 btn pmd-btn-fab pmd-ripple-effect btn-info"
-                            type="button">
-                            <i class="material-icons pmd-sm">add</i>
-                        </button>
-                        <button data-toggle="tooltip" data-placement="left" data-original-title="Finalizar" class="m-2 btn pmd-btn-fab pmd-ripple-effect btn-success js-btn-finalizar"
-                            type="button">
-                            <i class="material-icons pmd-sm">check</i>
-                        </button>
-                    </div>
-                </form>
-            </section>
-        </main>
-    </div>
+					<div class="menu btn-support pmd-floating-action" role="navigation" style="display: flex; flex-direction: column;">
+						<button id="btn-add-aluno" data-toggle="tooltip" data-placement="left" data-original-title="Adicionar outro integrante" class="m-2 btn pmd-btn-fab pmd-ripple-effect btn-info"
+						 type="button">
+							<i class="material-icons pmd-sm">add</i>
+						</button>
+						<button data-toggle="tooltip" data-placement="left" data-original-title="Finalizar" class="m-2 btn pmd-btn-fab pmd-ripple-effect btn-success js-btn-finalizar"
+						 type="button">
+							<i class="material-icons pmd-sm">check</i>
+						</button>
+					</div>
+				</form>
+			</section>
+		</main>
+	</div>
 
-    <th:block layout:fragment="javascript">
+	<th:block layout:fragment="javascript">
 
-        <script th:src="@{/js/home/grupos.js}">
+		<script th:src="@{/js/home/grupos.js}">
 
-        </script>
+		</script>
 
 
-    </th:block>
+	</th:block>
 
 </th:block>

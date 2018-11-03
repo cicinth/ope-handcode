@@ -20,7 +20,7 @@ class RefreshToken private constructor(val claims: Jws<Claims>) : JwtToken {
         fun create(token: RawAccessJwtToken, signingKey: String): Optional<RefreshToken> {
             val claims = token.parseClaims(signingKey)
 
-            val scopes = claims.body.get("scopes", List::class.java)
+            val scopes = claims.body.get("scopes", MutableList::class.java)
             //TODO FIX ME
             return if (scopes == null || scopes.isEmpty()
                     || !scopes.stream().filter { scope -> Scopes.REFRESH_TOKEN.authority() == scope }.findFirst().isPresent) {

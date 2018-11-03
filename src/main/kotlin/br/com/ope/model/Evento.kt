@@ -16,22 +16,22 @@ open class Evento : AbstractModel {
 
     @ManyToMany
     @JoinTable
-    var disciplinas : List<Disciplina> = mutableListOf()
+    var disciplinas : MutableList<Disciplina> = mutableListOf()
 
     @ManyToMany
     @JoinTable
-    var cursos : List<Curso> = mutableListOf()
+    var cursos : MutableList<Curso> = mutableListOf()
 
     @ManyToMany
     @JoinTable
-    var turmas : List<Turma> = mutableListOf()
+    var turmas : MutableList<Turma> = mutableListOf()
 
     @ManyToMany
     @JoinTable
-    var arquivos: List<Arquivo> = mutableListOf()
+    var arquivos: MutableList<Arquivo> = mutableListOf()
 
     constructor() : super()
-    constructor(dataHora: Date, descricao: String, titulo: String, disciplinas: List<Disciplina>, cursos: List<Curso>, turmas: List<Turma>) : super() {
+    constructor(dataHora: Date, descricao: String, titulo: String, disciplinas: MutableList<Disciplina>, cursos: MutableList<Curso>, turmas: MutableList<Turma>) : super() {
         this.dataHora = dataHora
         this.descricao = descricao
         this.titulo = titulo

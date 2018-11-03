@@ -3,11 +3,15 @@ package br.com.ope.model
 import com.fasterxml.jackson.annotation.JsonIgnore
 import java.util.*
 import javax.persistence.*
+import javax.validation.Valid
+import javax.validation.constraints.NotBlank
 
 @Entity
 class Grupo : AbstractModel {
 
+    @NotBlank
     var nome : String = ""
+    @NotBlank
     var tema : String = ""
     @ManyToOne
     @JoinColumn
@@ -22,18 +26,19 @@ class Grupo : AbstractModel {
     @ManyToMany
     @JoinTable
     @JsonIgnore
-    var disciplinasAnteriores : List<Disciplina> = mutableListOf()
+    var disciplinasAnteriores : MutableList<Disciplina> = mutableListOf()
+
+    @OneToMany(mappedBy = "grupo")
+    @JsonIgnore
+    @Valid
+    var alunos : MutableList<Aluno> = mutableListOf()
 
     @ManyToMany
     @JoinTable
-    var alunos : List<Aluno> = mutableListOf()
-
-    @ManyToMany
-    @JoinTable
-    var alunosRemovidos : List<Aluno> = mutableListOf()
+    var alunosRemovidos : MutableList<Aluno> = mutableListOf()
 
     @Enumerated(EnumType.STRING)
-    var status : TipoStatusAprovacaoGrupo = TipoStatusAprovacaoGrupo.AGUARDANDO
+    var status : Status = Status.AGUARDANDO
 
     var logoHash : UUID? = null
 
@@ -42,15 +47,15 @@ class Grupo : AbstractModel {
     var turma : Turma? = null
 
     @OneToMany(mappedBy = "grupo")
-    var entregas : List<Entrega> = mutableListOf()
+    var entregas : MutableList<Entrega> = mutableListOf()
 
     constructor() : super()
 
     constructor(id: UUID? = null,
                 nome: String,
                 curso: Curso?,
-                alunos: List<Aluno> = mutableListOf(),
-                alunosRemovidos: List<Aluno> = mutableListOf(),
+                alunos: MutableList<Aluno> = mutableListOf(),
+                alunosRemovidos: MutableList<Aluno> = mutableListOf(),
                 disciplina: Disciplina? = null,
                 turma : Turma,
                 tema : String) : super(id) {
@@ -63,18 +68,18 @@ class Grupo : AbstractModel {
         this.tema = tema
     }
 
-    enum class TipoStatusAprovacaoGrupo(val nome : String, val cor : String) {
+    enum class Status(val nome : String, val cor : String) {
 
         APROVADO("Aprovado", "success"),
-        REPROVADO("Reprovado", "danger"),
+        RECUSADO("Recusado", "danger"),
         AGUARDANDO("Aguardando", "warning")
 
     }
 
-    fun isAprovado() = TipoStatusAprovacaoGrupo.APROVADO == status
+    fun isAprovado() = Status.APROVADO == status
 
     fun isNotAprovado() = !isAprovado()
 
-    fun isAguardando() = TipoStatusAprovacaoGrupo.AGUARDANDO == status
+    fun isAguardando() = Status.AGUARDANDO == status
 
 }

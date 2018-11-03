@@ -17,7 +17,7 @@ class EventosRestController {
     }
 
     @GetMapping
-    fun eventos() :  List<Evento> {
+    fun eventos() :  MutableList<Evento> {
         return eventoRepository.findAll()
     }
 

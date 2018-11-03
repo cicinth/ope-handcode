@@ -14,13 +14,22 @@ class Disciplina : AbstractModel {
     var semestre : Int = 1
     @ManyToMany(mappedBy = "disciplinas")
     @JsonIgnore
-    var cursos: List<Curso> = mutableListOf()
+    var cursos: MutableList<Curso> = mutableListOf()
     @OneToMany(mappedBy = "disciplina")
     @JsonIgnore
-    var grupos: List<Grupo> = mutableListOf()
+    var grupos: MutableList<Grupo> = mutableListOf()
     @ManyToMany(mappedBy = "disciplinasAnteriores")
     @JsonIgnore
-    var gruposAnteriores: List<Grupo> = mutableListOf()
+    var gruposAnteriores: MutableList<Grupo> = mutableListOf()
+    @ManyToMany(mappedBy = "disciplinas")
+    @JsonIgnore
+    var tarefas: MutableList<Tarefa> = mutableListOf()
+    @OneToMany(mappedBy = "disciplina")
+    @JsonIgnore
+    var entregas: MutableList<Entrega> = mutableListOf()
+    @OneToMany(mappedBy = "disciplina")
+    @JsonIgnore
+    var turmas: MutableList<Turma> = mutableListOf()
 
     constructor() : super()
 

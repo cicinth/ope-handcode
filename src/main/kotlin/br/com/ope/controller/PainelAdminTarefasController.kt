@@ -5,6 +5,7 @@ import br.com.ope.repository.CursoRepository
 import br.com.ope.repository.DisciplinaRepository
 import br.com.ope.repository.TarefaRepository
 import br.com.ope.repository.TurmaRepository
+import br.com.ope.service.TarefaService
 import br.com.ope.vo.MensagemVO
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -25,12 +26,14 @@ class PainelAdminTarefasController {
     val cursoRepository: CursoRepository
     val disciplinaRepository: DisciplinaRepository
     val tarefaRepository: TarefaRepository
+    val tarefaService: TarefaService
 
-    constructor(turmaRepository: TurmaRepository, cursoRepository: CursoRepository, disciplinaRepository: DisciplinaRepository, tarefaRepository: TarefaRepository) {
+    constructor(turmaRepository: TurmaRepository, cursoRepository: CursoRepository, disciplinaRepository: DisciplinaRepository, tarefaRepository: TarefaRepository, tarefaService: TarefaService) {
         this.turmaRepository = turmaRepository
         this.cursoRepository = cursoRepository
         this.disciplinaRepository = disciplinaRepository
         this.tarefaRepository = tarefaRepository
+        this.tarefaService = tarefaService
     }
 
     @GetMapping("/novo")
@@ -47,7 +50,8 @@ class PainelAdminTarefasController {
 
         if (bindingResult.hasErrors()) return this.novo(model, tarefa)
 
-        tarefaRepository.save(tarefa)
+        tarefaService.criarNovaTarefaEGerarEntregas(tarefa)
+
         redirectAttributes.addFlashAttribute("mensagem", MensagemVO("Tarefa salvo!","Sucesso!", MensagemVO.TipoMensagem.success ))
         return "redirect:/painel/admin"
     }

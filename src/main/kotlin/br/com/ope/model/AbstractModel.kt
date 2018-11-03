@@ -23,6 +23,9 @@ abstract class AbstractModel {
 
     var dataExclusao : Date? = null
 
+    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
+    var excluido : Boolean = false
+
     constructor()
 
     constructor(id: UUID?) {

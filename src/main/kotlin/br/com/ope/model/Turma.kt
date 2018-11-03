@@ -20,23 +20,36 @@ class Turma : AbstractModel {
     @NotNull
     @JsonIgnore
     var curso : Curso? = null
-    @OneToMany
+    @OneToMany(mappedBy = "turma")
     @JsonIgnore
-    var alunos: List<Aluno> = mutableListOf()
+    var alunos: MutableList<Aluno> = mutableListOf()
     @Enumerated(EnumType.STRING)
     @NotNull
     var periodo : Periodo? = null
 
+    @OneToMany(mappedBy = "turma")
+    @JsonIgnore
+    var grupos: MutableList<Grupo> = mutableListOf()
+
+    @ManyToMany(mappedBy = "turmas")
+    @JsonIgnore
+    var tarefas: MutableList<Tarefa> = mutableListOf()
+
+    @ManyToOne
+    @JoinColumn
+    var disciplina : Disciplina? = null
+
     constructor() : super()
 
     constructor(id: UUID?) : super(id)
-    constructor(letra: String, semestre: Int, ano: Int, curso: Curso?, alunos: List<Aluno>, periodo: Periodo?) : super() {
+    constructor(letra: String, semestre: Int, ano: Int, curso: Curso?, alunos: MutableList<Aluno>, periodo: Periodo?, disciplina : Disciplina) : super() {
         this.letra = letra
         this.semestre = semestre
         this.ano = ano
         this.curso = curso
         this.alunos = alunos
         this.periodo = periodo
+        this.disciplina = disciplina
     }
 
     fun atualizar(turma: Turma) : Turma {

@@ -21,7 +21,8 @@ function buscarEventos(token, calendario){
                     end:   e.dataHora,
                     allDay: true,
                     className: 'bg-blue',
-                    description: e.descricao
+                    description: e.descricao,
+                    type: e.type
                 }, true);
             });
         });
