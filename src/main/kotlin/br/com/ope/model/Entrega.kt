@@ -65,7 +65,7 @@ class Entrega : AbstractModel {
     enum class Status(val nome : String, val textClass: String) {
 
         PENDENTE("Pendente", "text-warning"),
-        REALIZADA("Realizada","text-success")
+        REALIZADA("Realizada","text-success"),
 
     }
 

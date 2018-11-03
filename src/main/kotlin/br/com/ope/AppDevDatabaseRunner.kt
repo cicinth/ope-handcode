@@ -42,7 +42,7 @@ class AppDevDatabaseRunner(val cursoRepository: CursoRepository,
         var turmaB2 = Turma("A",4,2018,ads, mutableListOf(),Turma.Periodo.MANHA,ope2)
         turmaRepository.save(turmaB2)
         var turmaB = Turma("A",3,2018,ads, mutableListOf(),Turma.Periodo.NOITE,ope1)
-
+        turmaRepository.save(turmaB)
 
         val admin = Administrador(nome = "Administrador", email = "admin@email.com.br", senha = BCryptPasswordEncoder().encode("senha"), ativo = true, permissoes = mutableSetOf(Role.ROLE_ADMIN))
         val yuri = Professor(nome = "Yuri", email = "professor@email.com.br", senha = BCryptPasswordEncoder().encode("senha"), ativo = true, permissoes = mutableSetOf(Role.ROLE_PROFESSOR))

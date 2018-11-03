@@ -77,6 +77,7 @@
                             <div class="contacts__info">
                                 <strong th:text="${aluno.nome}">Alan presidente</strong>
                                 <small th:text="${aluno.email}">alan@alan.com</small>
+                                <small th:text="${aluno.ra}">11111</small>
                                 <br>
                                 <a  th:href="@{/painel/admin/grupos/__${grupo.id}__/remover-integrante/__${aluno.id}__}" class="btn btn-sm btn-danger">Remover</a>
                             </div>
@@ -110,19 +111,23 @@
                             <div class="contacts__info">
                                 <strong th:text="${aluno.nome}">Alan presidente</strong>
                                 <small th:text="${aluno.email}">alan@alan.com</small>
+                                <small th:text="${aluno.ra}">11111</small>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="tab-pane fade" id="nav-tarefas-pendentes" role="tabpanel" aria-labelledby="nav-tarefas-pendentes-tab">
+            <div class="tab-pane fade active show" id="nav-tarefas-pendentes" role="tabpanel" aria-labelledby="nav-tarefas-pendentes-tab">
 
                 <th:block th:each="entrega, i: ${entregasPendentes}" >
                     <div class="card border-light mb-12">
                         <div class="card-header bg-light  d-flex flex-row justify-content-start align-items-center ">
                             <i class="avatar-char bg-light-blue "></i>
-                            <h4 class="m-0 ml-2 mr-2 flex-grow-1 card-title" th:utext="${entrega.tarefa.titulo}" style="flex-grow: 1">1º Entrega</h4>
+                            <div class="m-0 ml-2 mr-2 flex-grow-1" style="flex-grow: 1">
+                                <h4 class="m-0 card-title" th:utext="|${entrega.tarefa.titulo}|">1º Entrega</h4>
+                                <span th:text="|Data para entrega: ${#dates.format(entrega.tarefa.dataEntrega, 'dd-mm-yyyy HH:mm')}|"></span>
+                            </div>
                             <p class="m-0">
                                 <span class="text-success" th:class="${entrega.status.textClass}" th:text="${entrega.status.nome}">Entregue</span>
                                 <br>
@@ -143,7 +148,7 @@
                                class="card-subtitle">
                                 Lançada em 10/10/2018 pelo professor Alan Faraj
                             </p>
-                            <h5 th:text="|Data para entrega: ${#dates.format(entrega.tarefa.dataEntrega, 'dd-mm-yyyy HH:mm')}|"  class="">Data para entrega: 10/10/2018</h5>
+
                             <div class="row border-top border-bottom bg-light">
                                 <div th:utext="${entrega.tarefa.descricao}" class="card-text m-2">
                                     Engenharia de software (Entregável 1)
@@ -244,7 +249,10 @@
                     <div class="card border-light mb-12">
                         <div class="card-header bg-light  d-flex flex-row justify-content-start align-items-center ">
                             <i class="avatar-char bg-light-blue "></i>
-                            <h4 class="m-0 ml-2 mr-2 flex-grow-1 card-title" th:utext="${entrega.tarefa.titulo}" style="flex-grow: 1">1º Entrega</h4>
+                            <div class="m-0 ml-2 mr-2 flex-grow-1" style="flex-grow: 1">
+                                <h4 class="m-0 card-title" th:utext="|${entrega.tarefa.titulo}|">1º Entrega</h4>
+                                <span th:text="|Data para entrega: ${#dates.format(entrega.tarefa.dataEntrega, 'dd-mm-yyyy HH:mm')}|"></span>
+                            </div>
                             <p class="m-0">
                                 <span class="text-success" th:class="${entrega.status.textClass}" th:text="${entrega.status.nome}">Entregue</span>
                                 <br>
@@ -265,7 +273,7 @@
                                class="card-subtitle">
                                 Lançada em 10/10/2018 pelo professor Alan Faraj
                             </p>
-                            <h5 th:text="|Data para entrega: ${#dates.format(entrega.tarefa.dataEntrega, 'dd-mm-yyyy HH:mm')}|"  class="">Data para entrega: 10/10/2018</h5>
+
                             <div class="row border-top border-bottom bg-light">
                                 <div th:utext="${entrega.tarefa.descricao}" class="card-text m-2">
                                     Engenharia de software (Entregável 1)
